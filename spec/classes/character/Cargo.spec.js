@@ -1,5 +1,5 @@
-import Item from '../../src/classes/Item.js'
-import Cargo from '../../src/classes/character/Cargo.js'
+import Item from '../../../src/classes/Item.js'
+import Cargo from '../../../src/classes/character/Cargo.js'
 
 function добавление_итемов_и_группировка_итемов() {
   const cargo = new Cargo()

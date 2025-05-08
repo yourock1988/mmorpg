@@ -1,12 +1,12 @@
-import Health from '../../src/classes/character/Health.js'
-import Leveler from '../../src/classes/character/Leveler.js'
-import Wear from '../../src/classes/character/Wear.js'
-import listActiveSkills from '../../src/lists/listActiveSkills.js'
-import listBuffs from '../../src/lists/listBuffs.js'
-import listDebuffs from '../../src/lists/listDebuffs.js'
-import listEquipment from '../../src/lists/listEquipment.js'
-import listPassiveSkills from '../../src/lists/listPassiveSkills.js'
-import listStatsBasic from '../../src/lists/listStatsBasic.js'
+import Health from '../../../src/classes/character/Health.js'
+import Leveler from '../../../src/classes/character/Leveler.js'
+import Wear from '../../../src/classes/character/Wear.js'
+import listActiveSkills from '../../../src/lists/listActiveSkills.js'
+import listBuffs from '../../../src/lists/listBuffs.js'
+import listDebuffs from '../../../src/lists/listDebuffs.js'
+import listEquipment from '../../../src/lists/listEquipment.js'
+import listPassiveSkills from '../../../src/lists/listPassiveSkills.js'
+import listStatsBasic from '../../../src/lists/listStatsBasic.js'
 
 function умрёт_ли_без_здоровья() {
   const leveler = new Leveler()

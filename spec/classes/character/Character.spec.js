@@ -1,7 +1,7 @@
-import Character from '../../src/classes/character/Character.js'
-import listBuffs from '../../src/lists/listBuffs.js'
-import listEquipment from '../../src/lists/listEquipment.js'
-import listItems from '../../src/lists/listItems.js'
+import Character from '../../../src/classes/character/Character.js'
+import listBuffs from '../../../src/lists/listBuffs.js'
+import listEquipment from '../../../src/lists/listEquipment.js'
+import listItems from '../../../src/lists/listItems.js'
 
 function characterDieWithKillingDamage() {
   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')

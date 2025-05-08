@@ -1,5 +1,5 @@
-import Inventory from '../../src/classes/character/Inventory.js'
-import listEquipment from '../../src/lists/listEquipment.js'
+import Inventory from '../../../src/classes/character/Inventory.js'
+import listEquipment from '../../../src/lists/listEquipment.js'
 
 function tryToWearEquipment() {
   const inventory = new Inventory()

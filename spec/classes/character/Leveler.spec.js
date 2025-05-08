@@ -1,4 +1,4 @@
-import Leveler from '../../src/classes/character/Leveler.js'
+import Leveler from '../../../src/classes/character/Leveler.js'
 
 function возможно_ли_остаться_с_exp_меньше_1n() {
   const leveler = new Leveler()

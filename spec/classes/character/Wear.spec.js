@@ -1,5 +1,5 @@
-import Wear from '../../src/classes/character/Wear.js'
-import listEquipment from '../../src/lists/listEquipment.js'
+import Wear from '../../../src/classes/character/Wear.js'
+import listEquipment from '../../../src/lists/listEquipment.js'
 
 function checkStatsCalculations() {
   const wear = new Wear()
