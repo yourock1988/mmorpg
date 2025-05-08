@@ -1,0 +1,7 @@
+require('./classes/Character.spec.js')
+require('./classes/Health.spec.js')
+require('./classes/Inventory.spec.js')
+require('./classes/Cargo.spec.js')
+require('./classes/Leveler.spec.js')
+require('./classes/Wear.spec.js')
+require('./functions/takePercent.spec.js')
