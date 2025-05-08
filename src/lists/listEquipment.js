@@ -1,4 +1,4 @@
-import Equipment from '../classes/Equipment.js'
+import Equipment from '../classes/item/Equipment.js'
 import takePercent from '../functions/takePercent.js'
 
 export default [

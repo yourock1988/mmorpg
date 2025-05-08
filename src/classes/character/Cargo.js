@@ -1,5 +1,3 @@
-import randomId from '../../functions/randomId.js'
-
 export default class Cargo {
   constructor() {
     this.items = []

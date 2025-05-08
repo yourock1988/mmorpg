@@ -1,4 +1,4 @@
-import randomId from '../functions/randomId.js'
+import randomId from '../../functions/randomId.js'
 
 export default class Item {
   constructor(caption, isCountable = false, count) {

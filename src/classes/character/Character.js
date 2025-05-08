@@ -4,9 +4,11 @@ import Inventory from './Inventory.js'
 import Leveler from './Leveler.js'
 import Health from './Health.js'
 import Mana from './Mana.js'
+import randomId from '../../functions/randomId.js'
 
 export default class Character {
   constructor(nick, race, kind, prof) {
+    this.id = randomId()
     this.nick = nick
     this.race = race
     this.kind = kind

@@ -1,4 +1,4 @@
-import Item from '../classes/Item.js'
+import Item from '../classes/item/Item.js'
 
 export default [
   new Item('Powder', true),

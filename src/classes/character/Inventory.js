@@ -1,4 +1,4 @@
-import Equipment from '../Equipment.js'
+import Equipment from '../item/Equipment.js'
 import Cargo from './Cargo.js'
 import Wear from './Wear.js'
 

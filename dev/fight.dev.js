@@ -1,4 +1,4 @@
-import Character from '../src/classes/Character.js'
+import Character from '../src/classes/character/Character.js'
 import FightHalf from '../src/classes/FightHalf.js'
 import viewCharacter from '../src/functions/viewCharacter.js'
 import listEquipment from '../src/lists/listEquipment.js'
@@ -16,7 +16,7 @@ viewCharacter(P1)
 viewCharacter(P2)
 
 P2.inventory.cargo.addItem(listEquipment[0])
-const idToWear = P2.inventory.cargo[0].id
+const idToWear = P2.inventory.cargo.items[0].id
 
 setTimeout(() => P2.inventory.wearItemById(idToWear), 5000)
 
