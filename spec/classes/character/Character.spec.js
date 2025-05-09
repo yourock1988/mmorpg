@@ -1,7 +1,6 @@
 import Character from '../../../src/classes/character/Character.js'
-import listBuffs from '../../../src/lists/listBuffs.js'
-import listEquipment from '../../../src/lists/listEquipment.js'
-import listItems from '../../../src/lists/listItems.js'
+import buffsFabric from '../../../src/classes/fabric/buffsFabric.js'
+import equipmentFabric from '../../../src/classes/fabric/equipmentFabric.js'
 
 function characterDieWithKillingDamage() {
   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
@@ -37,7 +36,8 @@ function increaseStatsWhenLevelUp() {
 
 function увеличатся_ли_статы_при_надетом_снаряжении() {
   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
-  characterGood.inventory.cargo.addItem(listEquipment[0])
+  const weapon = equipmentFabric('Axe Of Glory')
+  characterGood.inventory.cargo.addItem(weapon)
   const idToWear = characterGood.inventory.cargo.items[0].id
   const oldStats = { ...characterGood.statsCombat }
 
@@ -48,7 +48,8 @@ function увеличатся_ли_статы_при_надетом_снаряж
 
 function уменьшатся_ли_статы_при_снятии_снаряжения() {
   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
-  characterGood.inventory.cargo.addItem(listEquipment[0])
+  const weapon = equipmentFabric('Axe Of Glory')
+  characterGood.inventory.cargo.addItem(weapon)
   const idToWear = characterGood.inventory.cargo.items[0].id
   characterGood.inventory.wearItemById(idToWear)
   const oldStats = { ...characterGood.statsCombat }
@@ -61,26 +62,28 @@ function уменьшатся_ли_статы_при_снятии_снаряже
 function увеличатся_ли_статы_при_бафе() {
   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
   const oldStats = { ...characterGood.statsCombat }
+  const haste = buffsFabric('Haste', 1n)
 
-  characterGood.buffs.push(listBuffs[1])
+  characterGood.activities.add(haste)
 
   console.assert(characterGood.statsCombat.Speed > oldStats.Speed)
 }
 
 function умешьшатся_ли_статы_при_снятии_бафа() {
   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
-  characterGood.buffs.push(listBuffs[1])
+  const haste = buffsFabric('Haste', 1n)
+  characterGood.activities.add(haste)
   const oldStats = { ...characterGood.statsCombat }
 
-  characterGood.buffs = []
+  characterGood.activities.buffs = []
 
   console.assert(characterGood.statsCombat.Speed < oldStats.Speed)
 }
 
-увеличатся_ли_статы_при_бафе()
-умешьшатся_ли_статы_при_снятии_бафа()
+// characterDieWithKillingDamage()
+
+increaseStatsWhenLevelUp()
 увеличатся_ли_статы_при_надетом_снаряжении()
 уменьшатся_ли_статы_при_снятии_снаряжения()
-increaseStatsWhenLevelUp()
-
-// characterDieWithKillingDamage()
+увеличатся_ли_статы_при_бафе()
+умешьшатся_ли_статы_при_снятии_бафа()

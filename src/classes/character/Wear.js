@@ -30,24 +30,30 @@ export default class Wear {
       )
   }
 
-  get nForces2Health() {
+  get listActivities() {
     return Object.values(this)
-      .filter(v => v)
-      .reduce(
-        (acc, { nForce2Health }) =>
-          nForce2Health ? acc.concat(nForce2Health) : acc,
-        []
-      )
+      .filter(v => v?.activity)
+      .map(v => v.activity)
   }
 
-  get nForces2Mana() {
-    return Object.values(this)
-      .filter(v => v)
-      .reduce(
-        (acc, { nForce2Mana }) => (nForce2Mana ? acc.concat(nForce2Mana) : acc),
-        []
-      )
-  }
+  // get nForces2Health() {
+  //   return Object.values(this)
+  //     .filter(v => v)
+  //     .reduce(
+  //       (acc, { nForce2Health }) =>
+  //         nForce2Health ? acc.concat(nForce2Health) : acc,
+  //       []
+  //     )
+  // }
+
+  // get nForces2Mana() {
+  //   return Object.values(this)
+  //     .filter(v => v)
+  //     .reduce(
+  //       (acc, { nForce2Mana }) => (nForce2Mana ? acc.concat(nForce2Mana) : acc),
+  //       []
+  //     )
+  // }
 
   mount(equipment) {
     const oldEquipment = this[equipment.slotName]

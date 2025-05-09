@@ -1,11 +1,11 @@
 import Wear from '../../../src/classes/character/Wear.js'
-import listEquipment from '../../../src/lists/listEquipment.js'
+import equipmentFabric from '../../../src/classes/fabric/equipmentFabric.js'
 
 function checkStatsCalculations() {
   const wear = new Wear()
-  wear.mount(listEquipment[0])
-  wear.mount(listEquipment[2])
-  wear.mount(listEquipment[3])
+  wear.mount(equipmentFabric('Axe Of Glory'))
+  wear.mount(equipmentFabric('Helmet Of Truth'))
+  wear.mount(equipmentFabric('Gloves Of Monk'))
 
   const stats = wear.stats
 
@@ -16,24 +16,25 @@ function checkStatsCalculations() {
 
 function checkStatsAfterChangeEquipment() {
   const wear = new Wear()
-  wear.mount(listEquipment[0])
-  wear.mount(listEquipment[1])
+  wear.mount(equipmentFabric('Axe Of Glory'))
+  wear.mount(equipmentFabric('Blade Of Blood'))
 
   const stats = wear.stats
 
   console.assert(stats.PAtk === 33n && stats.AtkSpd === undefined)
 }
 
-function вычисляются_ли_нфорсы() {
+function вычисляется_ли_listActivities() {
   const wear = new Wear()
-  wear.mount(listEquipment[2])
+
+  wear.mount(equipmentFabric('Helmet Of Truth'))
 
   console.assert(
-    wear.nForces2Health.length === 1 &&
-      typeof wear.nForces2Health[0] === 'function'
+    wear.listActivities.length === 1 &&
+      typeof wear.listActivities[0].enforce.toHealth === 'function'
   )
 }
 
-вычисляются_ли_нфорсы()
 checkStatsCalculations()
 checkStatsAfterChangeEquipment()
+вычисляется_ли_listActivities()

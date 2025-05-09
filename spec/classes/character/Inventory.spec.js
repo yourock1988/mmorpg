@@ -1,11 +1,11 @@
 import Inventory from '../../../src/classes/character/Inventory.js'
-import listEquipment from '../../../src/lists/listEquipment.js'
+import equipmentFabric from '../../../src/classes/fabric/equipmentFabric.js'
 
 function tryToWearEquipment() {
   const inventory = new Inventory()
-  inventory.cargo.addItem(listEquipment[0])
-  inventory.cargo.addItem(listEquipment[2])
-  inventory.cargo.addItem(listEquipment[3])
+  inventory.cargo.addItem(equipmentFabric('Axe Of Glory'))
+  inventory.cargo.addItem(equipmentFabric('Helmet Of Truth'))
+  inventory.cargo.addItem(equipmentFabric('Gloves Of Monk'))
   const idToWear0 = inventory.cargo.items[0].id
   const idToWear2 = inventory.cargo.items[1].id
   const idToWear3 = inventory.cargo.items[2].id
@@ -24,9 +24,9 @@ function tryToWearEquipment() {
 
 function tryToUnwearEquipment() {
   const inventory = new Inventory()
-  inventory.cargo.addItem(listEquipment[0])
-  inventory.cargo.addItem(listEquipment[2])
-  inventory.cargo.addItem(listEquipment[3])
+  inventory.cargo.addItem(equipmentFabric('Axe Of Glory'))
+  inventory.cargo.addItem(equipmentFabric('Helmet Of Truth'))
+  inventory.cargo.addItem(equipmentFabric('Gloves Of Monk'))
   const idToWear0 = inventory.cargo.items[0].id
   const idToWear2 = inventory.cargo.items[1].id
   const idToWear3 = inventory.cargo.items[2].id
@@ -44,10 +44,10 @@ function tryToUnwearEquipment() {
 
 function tryToChangeWearEquipment() {
   const inventory = new Inventory()
-  inventory.cargo.addItem(listEquipment[0])
-  inventory.cargo.addItem(listEquipment[1])
-  inventory.cargo.addItem(listEquipment[2])
-  inventory.cargo.addItem(listEquipment[3])
+  inventory.cargo.addItem(equipmentFabric('Axe Of Glory'))
+  inventory.cargo.addItem(equipmentFabric('Blade Of Blood'))
+  inventory.cargo.addItem(equipmentFabric('Helmet Of Truth'))
+  inventory.cargo.addItem(equipmentFabric('Gloves Of Monk'))
   const idToWear0 = inventory.cargo.items[0].id
   const idToWear1 = inventory.cargo.items[1].id
   const idToWear2 = inventory.cargo.items[2].id

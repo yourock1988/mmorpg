@@ -1,20 +1,8 @@
 export default class Health {
-  constructor(
-    statsBasic,
-    leveler,
-    passiveSkills,
-    activeSkills,
-    buffs,
-    debuffs,
-    wear
-  ) {
+  constructor(statsBasic, leveler, activities) {
     this.statsBasic = statsBasic
     this.leveler = leveler
-    this.passiveSkills = passiveSkills
-    this.activeSkills = activeSkills
-    this.buffs = buffs
-    this.debuffs = debuffs
-    this.wear = wear
+    this.activities = activities
     this.current = this.total
     this.leveler.on('update:lvl', this.restore.bind(this))
     this.protoTotal = 0n
@@ -22,11 +10,7 @@ export default class Health {
 
   get total() {
     this.protoTotal = this.statsBasic.CON * 3n * this.leveler.lvl
-    this.passiveSkills?.forEach(ps => ps.nForce2Health?.(this))
-    this.activeSkills?.forEach(as => as.nForce2Health?.(this))
-    this.buffs?.forEach(buff => buff.nForce2Health?.(this))
-    this.debuffs?.forEach(debuff => debuff.nForce2Health?.(this))
-    this.wear?.nForces2Health.forEach(nForce => nForce?.(this))
+    this.activities.list.forEach(a => a.enforce.toHealth?.(this))
     if (this.current > this.protoTotal) this.current = this.protoTotal
     return this.protoTotal
   }

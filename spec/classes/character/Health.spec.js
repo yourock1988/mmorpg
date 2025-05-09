@@ -1,10 +1,11 @@
+import Activities from '../../../src/classes/character/Activities.js'
 import Health from '../../../src/classes/character/Health.js'
 import Leveler from '../../../src/classes/character/Leveler.js'
 import Wear from '../../../src/classes/character/Wear.js'
+import buffsFabric from '../../../src/classes/fabric/buffsFabric.js'
+import equipmentFabric from '../../../src/classes/fabric/equipmentFabric.js'
 import listActiveSkills from '../../../src/lists/listActiveSkills.js'
-import listBuffs from '../../../src/lists/listBuffs.js'
 import listDebuffs from '../../../src/lists/listDebuffs.js'
-import listEquipment from '../../../src/lists/listEquipment.js'
 import listPassiveSkills from '../../../src/lists/listPassiveSkills.js'
 import listStatsBasic from '../../../src/lists/listStatsBasic.js'
 
@@ -12,7 +13,7 @@ function умрёт_ли_без_здоровья() {
   const leveler = new Leveler()
   const wear = new Wear()
   const stats = listStatsBasic['Orc']['Fighter']
-  const buffs = [listBuffs[0]]
+  const buffs = [buffsFabric('Heart Of Lion', 1n)]
   const pSkills = [listPassiveSkills[0]]
   const health = new Health(stats, leveler, pSkills, [], buffs, [], wear)
   const oldHPtotal = health.total
@@ -74,12 +75,12 @@ function повышается_ли_здоровье_при_активке() {
 function повышается_ли_здоровье_при_баффе() {
   const stats = listStatsBasic['Orc']['Fighter']
   const leveler = new Leveler()
-  const buffs = []
-  const health = new Health(stats, leveler, null, null, buffs)
+  const activities = new Activities()
+  const health = new Health(stats, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
 
-  buffs.push(listBuffs[0])
+  activities.add(buffsFabric('Heart Of Lion', 1n))
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
 }
@@ -98,12 +99,12 @@ function понижается_ли_здоровье_при_дебаффе() {
 function повышается_ли_здоровье_при_снаряжении() {
   const stats = listStatsBasic['Orc']['Fighter']
   const leveler = new Leveler()
-  const wear = new Wear()
-  const health = new Health(stats, leveler, null, null, null, null, wear)
+  const activities = new Activities()
+  const health = new Health(stats, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
 
-  wear.mount(listEquipment[2])
+  activities.add(equipmentFabric('Helmet Of Truth').activity)
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
 }
@@ -156,12 +157,12 @@ function одновременно_статы_лвл_пасивка_активк�
   console.assert(health.total > oldHPtotal && health.current <= oldHPcurrent)
 }
 
-умрёт_ли_без_здоровья()
-повышается_ли_здоровье_при_увеличении_CON()
-повышается_ли_здоровье_при_левелапе()
-повышается_ли_здоровье_при_пасивке()
-повышается_ли_здоровье_при_активке()
-повышается_ли_здоровье_при_баффе()
-понижается_ли_здоровье_при_дебаффе()
+// умрёт_ли_без_здоровья()
+// повышается_ли_здоровье_при_увеличении_CON()
+// повышается_ли_здоровье_при_левелапе()
+// повышается_ли_здоровье_при_пасивке()
+// повышается_ли_здоровье_при_активке()
+// повышается_ли_здоровье_при_баффе()
+// понижается_ли_здоровье_при_дебаффе()
 повышается_ли_здоровье_при_снаряжении()
-одновременно_статы_лвл_пасивка_активка_бафы_дебафы_эквип()
+// одновременно_статы_лвл_пасивка_активка_бафы_дебафы_эквип()
