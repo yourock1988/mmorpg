@@ -3,9 +3,9 @@ import Health from '../../../src/classes/character/Health.js'
 import Leveler from '../../../src/classes/character/Leveler.js'
 import Wear from '../../../src/classes/character/Wear.js'
 import buffsFabric from '../../../src/classes/fabric/buffsFabric.js'
+import debuffsFabric from '../../../src/classes/fabric/debuffsFabric.js'
 import equipmentFabric from '../../../src/classes/fabric/equipmentFabric.js'
 import listActiveSkills from '../../../src/lists/listActiveSkills.js'
-import listDebuffs from '../../../src/lists/listDebuffs.js'
 import listPassiveSkills from '../../../src/lists/listPassiveSkills.js'
 import listStatsBasic from '../../../src/lists/listStatsBasic.js'
 
@@ -87,12 +87,12 @@ function повышается_ли_здоровье_при_баффе() {
 function понижается_ли_здоровье_при_дебаффе() {
   const stats = listStatsBasic['Orc']['Fighter']
   const leveler = new Leveler()
-  const debuffs = []
-  const health = new Health(stats, leveler, null, null, null, debuffs)
+  const activities = new Activities()
+  const health = new Health(stats, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
 
-  debuffs.push(listDebuffs[0])
+  activities.add(debuffsFabric('Curse Poison', 1n))
 
   console.assert(health.total < oldHPtotal && health.current <= health.total)
 }
@@ -162,7 +162,7 @@ function одновременно_статы_лвл_пасивка_активк�
 // повышается_ли_здоровье_при_левелапе()
 // повышается_ли_здоровье_при_пасивке()
 // повышается_ли_здоровье_при_активке()
-// повышается_ли_здоровье_при_баффе()
-// понижается_ли_здоровье_при_дебаффе()
+повышается_ли_здоровье_при_баффе()
+понижается_ли_здоровье_при_дебаффе()
 повышается_ли_здоровье_при_снаряжении()
 // одновременно_статы_лвл_пасивка_активка_бафы_дебафы_эквип()

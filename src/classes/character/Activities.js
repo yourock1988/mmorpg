@@ -18,6 +18,6 @@ export default class Activities {
   }
 
   get list() {
-    return [...this.buffs, ...this.equipmentAuras]
+    return [...this.buffs, ...this.equipmentAuras, ...this.debuffs]
   }
 }
