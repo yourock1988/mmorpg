@@ -8,10 +8,10 @@ import buffsFabric from '../../../src/classes/fabric/buffsFabric.js'
 import debuffsFabric from '../../../src/classes/fabric/debuffsFabric.js'
 import equipmentFabric from '../../../src/classes/fabric/equipmentFabric.js'
 import listActiveSkills from '../../../src/lists/listActiveSkills.js'
-import listStatsBasic from '../../../src/lists/listStatsBasic.js'
+import statsBasic from '../../../dicts/statsBasic.js'
 
 function умрёт_ли_без_здоровья() {
-  const stats = listStatsBasic['Orc']['Fighter']
+  const stats = statsBasic['Orc']['Fighter']
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
@@ -26,7 +26,7 @@ function умрёт_ли_без_здоровья() {
   )
 }
 function повышается_ли_здоровье_при_увеличении_CON() {
-  const stats = listStatsBasic['Orc']['Mage']
+  const stats = statsBasic['Orc']['Mage']
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
@@ -38,7 +38,7 @@ function повышается_ли_здоровье_при_увеличении_
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
 }
 function повышается_ли_здоровье_при_левелапе() {
-  const stats = listStatsBasic['Orc']['Fighter']
+  const stats = statsBasic['Orc']['Fighter']
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
@@ -50,7 +50,7 @@ function повышается_ли_здоровье_при_левелапе() {
   console.assert(health.total > oldHPtotal && health.current > oldHPcurrent)
 }
 function повышается_ли_здоровье_при_пасивке() {
-  const stats = listStatsBasic['Orc']['Fighter']
+  const stats = statsBasic['Orc']['Fighter']
   const leveler = new Leveler()
   const ability = abilitiesFabric('Defensive Aura', 1n)
   const abilities = new Abilities()
@@ -64,7 +64,7 @@ function повышается_ли_здоровье_при_пасивке() {
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
 }
 function повышается_ли_здоровье_при_активке() {
-  const stats = listStatsBasic['Orc']['Fighter']
+  const stats = statsBasic['Orc']['Fighter']
   const leveler = new Leveler()
   const aSkills = []
   const health = new Health(stats, leveler, null, aSkills)
@@ -76,7 +76,7 @@ function повышается_ли_здоровье_при_активке() {
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
 }
 function повышается_ли_здоровье_при_баффе() {
-  const stats = listStatsBasic['Orc']['Fighter']
+  const stats = statsBasic['Orc']['Fighter']
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
@@ -88,7 +88,7 @@ function повышается_ли_здоровье_при_баффе() {
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
 }
 function понижается_ли_здоровье_при_дебаффе() {
-  const stats = listStatsBasic['Orc']['Fighter']
+  const stats = statsBasic['Orc']['Fighter']
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
@@ -100,7 +100,7 @@ function понижается_ли_здоровье_при_дебаффе() {
   console.assert(health.total < oldHPtotal && health.current <= health.total)
 }
 function повышается_ли_здоровье_при_снаряжении() {
-  const stats = listStatsBasic['Orc']['Fighter']
+  const stats = statsBasic['Orc']['Fighter']
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
@@ -114,7 +114,7 @@ function повышается_ли_здоровье_при_снаряжении(
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
 }
 function одновременно_статы_лвл_пасивка_активка_бафы_дебафы_эквип() {
-  const stats = listStatsBasic['Orc']['Fighter']
+  const stats = statsBasic['Orc']['Fighter']
   const leveler = new Leveler()
   const ability = abilitiesFabric('Defensive Aura', 1n)
   const abilities = new Abilities()

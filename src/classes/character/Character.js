@@ -1,5 +1,5 @@
 import calcStatsCombat from '../../functions/calcStatsCombat.js'
-import listStatsBasic from '../../lists/listStatsBasic.js'
+import statsBasic from '../../../dicts/statsBasic.js'
 import Inventory from './Inventory.js'
 import Leveler from './Leveler.js'
 import Health from './Health.js'
@@ -32,7 +32,7 @@ export default class Character {
   }
 
   get statsBasic() {
-    return listStatsBasic[this.race][this.kind]
+    return statsBasic[this.race][this.kind]
   }
 
   get statsCombat() {
