@@ -8,7 +8,7 @@ import buffsFabric from '../../../src/classes/fabric/buffsFabric.js'
 import debuffsFabric from '../../../src/classes/fabric/debuffsFabric.js'
 import equipmentFabric from '../../../src/classes/fabric/equipmentFabric.js'
 import listActiveSkills from '../../../src/lists/listActiveSkills.js'
-import statsBasic from '../../../dicts/statsBasic.js'
+import statsBasic from '../../../src/dicts/statsBasic.js'
 
 function умрёт_ли_без_здоровья() {
   const stats = statsBasic['Orc']['Fighter']

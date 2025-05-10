@@ -1,5 +1,5 @@
 import calcStatsCombat from '../../functions/calcStatsCombat.js'
-import statsBasic from '../../../dicts/statsBasic.js'
+import statsBasic from '../../dicts/statsBasic.js'
 import Inventory from './Inventory.js'
 import Leveler from './Leveler.js'
 import Health from './Health.js'

@@ -1,5 +1,5 @@
-import profAbilitiesCaptions from '../../dicts/profAbilitiesCaptions.js'
-import profHierarhy from '../../dicts/profHierarhy.js'
+import profAbilitiesCaptions from '../dicts/profAbilitiesCaptions.js'
+import profHierarhy from '../dicts/profHierarhy.js'
 import abilitiesList from '../lists/abilitiesList.js'
 import abilitiesFabric from './fabric/abilitiesFabric.js'
 
