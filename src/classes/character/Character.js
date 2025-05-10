@@ -5,7 +5,7 @@ import Leveler from './Leveler.js'
 import Health from './Health.js'
 import Mana from './Mana.js'
 import randomId from '../../functions/randomId.js'
-import TrainedSkills from './TrainedSkills.js'
+import Abilities from './Abilities.js'
 import Activities from './Activities.js'
 
 export default class Character {
@@ -17,13 +17,15 @@ export default class Character {
     this.prof = prof
     this.inventory = new Inventory()
     this.leveler = new Leveler()
-    this.activities = new Activities()
+    // this.skills = new Skills()
+    this.abilities = new Abilities()
+    this.activities = new Activities(this.abilities)
     this.health = new Health(this.statsBasic, this.leveler, this.activities)
     this.mana = new Mana(this.statsBasic, this.leveler)
-    this.trainedSkills = new TrainedSkills()
     this.partyId = 0n
     this.clanId = 0n
     this.money = 0n
+    this.sp = 0n
     this.leveler.on('update:lvl', lvl =>
       console.log(`${this.nick} перешел на уровень ${lvl}`)
     )

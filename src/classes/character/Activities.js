@@ -1,7 +1,7 @@
 export default class Activities {
-  constructor() {
-    this.passiveSkills = []
-    this.activeSkills = []
+  constructor(abilities, skills) {
+    this.abilities = abilities?.list ?? []
+    // this.skills = skills.enabled
     this.buffs = []
     this.debuffs = []
     this.equipmentAuras = []
@@ -18,6 +18,11 @@ export default class Activities {
   }
 
   get list() {
-    return [...this.buffs, ...this.equipmentAuras, ...this.debuffs]
+    return [
+      ...this.buffs,
+      ...this.equipmentAuras,
+      ...this.debuffs,
+      ...this.abilities,
+    ]
   }
 }
