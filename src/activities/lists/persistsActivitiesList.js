@@ -1,8 +1,8 @@
-import takePercent from '../functions/takePercent.js'
+import takePercent from '../../functions/takePercent.js'
 
 export default [
   {
-    caption: 'Defensive Aura',
+    caption: 'Defensive Persist',
     level: 1n,
     enforce: {
       toCombat(combat) {
@@ -12,6 +12,5 @@ export default [
         health.protoTotal += takePercent(10n)(health.protoTotal)
       },
     },
-    cost: 123n,
   },
 ]

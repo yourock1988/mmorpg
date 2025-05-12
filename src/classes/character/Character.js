@@ -6,7 +6,7 @@ import Health from './Health.js'
 import Mana from './Mana.js'
 import randomId from '../../functions/randomId.js'
 import Abilities from './Abilities.js'
-import Activities from './Activities.js'
+import Activities from './Activities2.js'
 
 export default class Character {
   constructor(nick, race, kind, prof) {
@@ -17,7 +17,6 @@ export default class Character {
     this.prof = prof
     this.inventory = new Inventory()
     this.leveler = new Leveler()
-    // this.skills = new Skills()
     this.abilities = new Abilities()
     this.activities = new Activities(this.abilities)
     this.health = new Health(this.statsBasic, this.leveler, this.activities)
