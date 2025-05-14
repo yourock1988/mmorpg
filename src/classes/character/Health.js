@@ -1,11 +1,15 @@
-export default class Health {
+import EventEmitter from 'node:events'
+
+export default class Health extends EventEmitter {
   constructor(statsBasic, leveler, activities) {
-    this.statsBasic = statsBasic
-    this.leveler = leveler
+    super()
+    this.statsBasic = statsBasic ?? { CON: 50n }
+    this.leveler = leveler ?? { lvl: 5n }
     this.activities = activities
-    this.current = this.total
-    this.leveler.on('update:lvl', this.restore.bind(this))
     this.protoTotal = 0n
+    this.current = this.total
+    this.leveler.on?.('update:lvl', this.restore.bind(this))
+    activities.interlinkedWithinHealth(this)
   }
 
   get total() {
@@ -18,7 +22,10 @@ export default class Health {
   lose(hp) {
     if (hp <= 0n) return
     this.current -= hp
-    if (this.current < 0n) this.current = 0n
+    if (this.current <= 0n) {
+      this.current = 0n
+      this.emit('life-is-over')
+    }
   }
 
   gain(hp) {

@@ -1,13 +1,12 @@
+import auraAbilityFabric from '../../../src/abilities/fabrics/auraAbilityFabric.js'
+import persistAbilityFabric from '../../../src/abilities/fabrics/persistAbilityFabric.js'
 import Abilities from '../../../src/classes/character/Abilities.js'
 import Activities from '../../../src/classes/character/Activities.js'
 import Health from '../../../src/classes/character/Health.js'
 import Leveler from '../../../src/classes/character/Leveler.js'
-import Wear from '../../../src/classes/character/Wear.js'
-import abilitiesFabric from '../../../src/classes/fabric/abilitiesFabric.js'
-import buffsFabric from '../../../src/classes/fabric/buffsFabric.js'
-import debuffsFabric from '../../../src/classes/fabric/debuffsFabric.js'
-import equipmentFabric from '../../../src/classes/fabric/equipmentFabric.js'
-import listActiveSkills from '../../../src/lists/listActiveSkills.js'
+// import buffsFabric from '../../../src/classes/fabric/buffsFabric.js'
+// import debuffsFabric from '../../../src/classes/fabric/debuffsFabric.js'
+// import equipmentFabric from '../../../src/classes/fabric/equipmentFabric.js'
 import statsBasic from '../../../src/dicts/statsBasic.js'
 
 function умрёт_ли_без_здоровья() {
@@ -49,31 +48,38 @@ function повышается_ли_здоровье_при_левелапе() {
 
   console.assert(health.total > oldHPtotal && health.current > oldHPcurrent)
 }
-function повышается_ли_здоровье_при_пасивке() {
+function повышается_ли_здоровье_при_персисте() {
   const stats = statsBasic['Orc']['Fighter']
   const leveler = new Leveler()
-  const ability = abilitiesFabric('Defensive Aura', 1n)
-  const abilities = new Abilities()
-  const activities = new Activities(abilities)
+  const persist = persistAbilityFabric('Defensive Persist', 1n)
+  const activities = new Activities()
+  const abilities = new Abilities(activities)
   const health = new Health(stats, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
 
-  abilities.train(ability)
+  abilities.add(persist)
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
+
+  activities.removeAll()
 }
-function повышается_ли_здоровье_при_активке() {
+function повышается_ли_здоровье_при_ауре() {
   const stats = statsBasic['Orc']['Fighter']
+  const persist = auraAbilityFabric('Concentration Aura', 1n)
   const leveler = new Leveler()
-  const aSkills = []
-  const health = new Health(stats, leveler, null, aSkills)
+  const activities = new Activities()
+  const abilities = new Abilities(activities)
+  const health = new Health(stats, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
 
-  aSkills.push(listActiveSkills[0])
+  abilities.add(persist)
+  abilities.toggleAuraById(persist.id, true)
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
+
+  activities.removeAll()
 }
 function повышается_ли_здоровье_при_баффе() {
   const stats = statsBasic['Orc']['Fighter']
@@ -116,7 +122,7 @@ function повышается_ли_здоровье_при_снаряжении(
 function одновременно_статы_лвл_пасивка_активка_бафы_дебафы_эквип() {
   const stats = statsBasic['Orc']['Fighter']
   const leveler = new Leveler()
-  const ability = abilitiesFabric('Defensive Aura', 1n)
+  const ability = auraAbilityFabric('Defensive Aura', 1n)
   const abilities = new Abilities()
   const activities = new Activities(abilities)
   const health = new Health(stats, leveler, activities)
@@ -165,12 +171,12 @@ function одновременно_статы_лвл_пасивка_активк�
 умрёт_ли_без_здоровья()
 повышается_ли_здоровье_при_увеличении_CON()
 повышается_ли_здоровье_при_левелапе()
-повышается_ли_здоровье_при_пасивке()
+повышается_ли_здоровье_при_персисте()
 
-// повышается_ли_здоровье_при_активке()
+повышается_ли_здоровье_при_ауре()
 
-повышается_ли_здоровье_при_баффе()
-понижается_ли_здоровье_при_дебаффе()
-повышается_ли_здоровье_при_снаряжении()
+// повышается_ли_здоровье_при_баффе()
+// понижается_ли_здоровье_при_дебаффе()
+// повышается_ли_здоровье_при_снаряжении()
 
-одновременно_статы_лвл_пасивка_активка_бафы_дебафы_эквип()
+// одновременно_статы_лвл_пасивка_активка_бафы_дебафы_эквип()

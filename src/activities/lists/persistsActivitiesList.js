@@ -4,12 +4,25 @@ export default [
   {
     caption: 'Defensive Persist',
     level: 1n,
+    desc: 'увеличивает защиту, макс хп и реген хп',
+    config: {
+      isSeen: false,
+      canPulsing: true,
+      duration: Infinity,
+      pulseIntervalId: 0,
+      pulseIntervalDelay: 300,
+    },
     enforce: {
       toCombat(combat) {
         combat.PDef += takePercent(10n)(combat.PDef)
       },
       toHealth(health) {
         health.protoTotal += takePercent(10n)(health.protoTotal)
+      },
+    },
+    pulse: {
+      toHealth(health) {
+        health.gain(7n)
       },
     },
   },

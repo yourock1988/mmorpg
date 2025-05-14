@@ -1,9 +1,9 @@
-import persistAbilityFabric from '../abilities/fabrics/persistAbilityFabric.js'
-import persistsAbilitiesList from '../abilities/lists/persistsAbilitiesList.js'
+import auraAbilityFabric from '../abilities/fabrics/auraAbilityFabric.js'
+import aurasAbilitiesList from '../abilities/lists/aurasAbilitiesList.js'
 import profAbilitiesCaptions from '../dicts/profAbilitiesCaptions.js'
 import profHierarhy from '../dicts/profHierarhy.js'
 
-export default class BootcampPersists {
+export default class BootcampAuras {
   constructor(character) {
     this.character = character
     // const profs = profHierarhy.getProfsByProf(character.prof)
@@ -12,11 +12,11 @@ export default class BootcampPersists {
     //   []
     // )
 
-    this.availableCaptions = ['Defensive Persist']
+    this.availableCaptions = ['Defensive Aura']
   }
 
   get availableAbilities() {
-    return persistsAbilitiesList.filter(a =>
+    return aurasAbilitiesList.filter(a =>
       this.availableCaptions.includes(a.caption)
     )
   }
@@ -28,9 +28,9 @@ export default class BootcampPersists {
   }
 
   train(caption, level) {
-    const persist = persistAbilityFabric(caption, level)
-    if (persist.cost.sp > this.character.sp) return //console.log('low sp')
-    this.character.sp -= persist.cost.sp
-    this.character.abilities.add(persist)
+    const aura = auraAbilityFabric(caption, level)
+    if (aura.cost.sp > this.character.sp) return //console.log('low sp')
+    this.character.sp -= aura.cost.sp
+    this.character.abilities.add(aura)
   }
 }
