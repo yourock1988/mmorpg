@@ -1,8 +1,8 @@
-import takePercent from '../../functions/takePercent.js'
+import takePercent from '../../../functions/takePercent.js'
 
 export default [
   {
-    caption: 'Defensive Persist',
+    caption: 'Helmet Of Truth',
     level: 1n,
     desc: 'увеличивает защиту, макс хп и реген хп',
     config: {

@@ -1,4 +1,4 @@
-import takePercent from '../functions/takePercent.js'
+import takePercent from '../../../functions/takePercent.js'
 
 export default [
   {

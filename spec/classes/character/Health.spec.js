@@ -1,5 +1,5 @@
-import auraAbilityFabric from '../../../src/abilities/fabrics/auraAbilityFabric.js'
-import persistAbilityFabric from '../../../src/abilities/fabrics/persistAbilityFabric.js'
+import auraAbilityFabric from '../../../src/abstract-fabric/abilities/fabrics/auraAbilityFabric.js'
+import persistAbilityFabric from '../../../src/abstract-fabric/abilities/fabrics/persistAbilityFabric.js'
 import Abilities from '../../../src/classes/character/Abilities.js'
 import Activities from '../../../src/classes/character/Activities.js'
 import Health from '../../../src/classes/character/Health.js'

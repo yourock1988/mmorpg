@@ -1,7 +1,7 @@
 import Activities from '../../../src/classes/character/Activities.js'
 import Health from '../../../src/classes/character/Health.js'
 import Inventory from '../../../src/classes/character/Inventory.js'
-import equipmentFabric from '../../../src/classes/fabric/equipmentFabric.js'
+import equipmentFabric from '../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
 
 function tryToWearEquipment() {
   const inventory = new Inventory()

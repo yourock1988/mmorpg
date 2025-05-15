@@ -1,5 +1,5 @@
-import auraActivityFabric from '../activities/fabrics/auraActivityFabric.js'
-import persistActivityFabric from '../activities/fabrics/persistActivityFabric.js'
+import auraActivityFabric from '../abstract-fabric/activities/fabrics/auraActivityFabric.js'
+import persistActivityFabric from '../abstract-fabric/activities/fabrics/persistActivityFabric.js'
 import randomId from '../functions/randomId.js'
 
 export default class Ability {

@@ -1,4 +1,4 @@
-import equipmentActivityFabric from '../../activities/fabrics/equipmentActivityFabric.js'
+import equipmentActivityFabric from '../../abstract-fabric/activities/fabrics/equipmentActivityFabric.js'
 import randomId from '../../functions/randomId.js'
 import Activity from '../Activity.js'
 import Item from './Item.js'

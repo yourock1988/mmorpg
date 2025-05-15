@@ -1,4 +1,4 @@
-import persistAbilityFabric from '../../src/abilities/fabrics/persistAbilityFabric.js'
+import persistAbilityFabric from '../../src/abstract-fabric/abilities/fabrics/persistAbilityFabric.js'
 import BootcampPersists from '../../src/bootcamps/BootcampPersists.js'
 import Abilities from '../../src/classes/character/Abilities.js'
 import Activities from '../../src/classes/character/Activities.js'

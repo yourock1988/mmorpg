@@ -1,4 +1,4 @@
-import Activity from '../../classes/Activity.js'
+import Activity from '../../../classes/Activity.js'
 import equipmentsActivitiesList from '../lists/equipmentsActivitiesList.js'
 
 export default function equipmentActivityFabric(caption) {

@@ -1,5 +1,5 @@
-import Equipment from '../item/Equipment.js'
-import equipmentList from '../../lists/equipmentList.js'
+import Equipment from '../../../classes/item/Equipment.js'
+import equipmentList from '../lists/equipmentsList.js'
 
 export default function equipmentFabric(caption) {
   const findedEquipment = equipmentList.find(e => e.caption === caption)

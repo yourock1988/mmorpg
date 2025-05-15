@@ -1,5 +1,5 @@
-import auraAbilityFabric from '../abilities/fabrics/auraAbilityFabric.js'
-import aurasAbilitiesList from '../abilities/lists/aurasAbilitiesList.js'
+import auraAbilityFabric from '../abstract-fabric/abilities/fabrics/auraAbilityFabric.js'
+import aurasAbilitiesList from '../abstract-fabric/abilities/lists/aurasAbilitiesList.js'
 import profAbilitiesCaptions from '../dicts/profAbilitiesCaptions.js'
 import profHierarhy from '../dicts/profHierarhy.js'
 

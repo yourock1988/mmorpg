@@ -1,5 +1,5 @@
-import persistAbilityFabric from '../abilities/fabrics/persistAbilityFabric.js'
-import persistsAbilitiesList from '../abilities/lists/persistsAbilitiesList.js'
+import persistAbilityFabric from '../abstract-fabric/abilities/fabrics/persistAbilityFabric.js'
+import persistsAbilitiesList from '../abstract-fabric/abilities/lists/persistsAbilitiesList.js'
 import profAbilitiesCaptions from '../dicts/profAbilitiesCaptions.js'
 import profHierarhy from '../dicts/profHierarhy.js'
 
