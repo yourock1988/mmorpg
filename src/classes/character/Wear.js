@@ -1,5 +1,7 @@
+import Activities from './Activities.js'
+
 export default class Wear {
-  constructor() {
+  constructor(activities) {
     this.weapon = null
     this.helmet = null
     this.upper = null
@@ -12,11 +14,13 @@ export default class Wear {
     this.ringRight = null
     this.earringLeft = null
     this.earringRight = null
+    this.activities = activities
   }
 
   get stats() {
     return Object.values(this)
       .filter(v => v)
+      .filter(v => !(v instanceof Activities))
       .reduce(
         (acc, { stats }) =>
           Object.entries(stats).reduce(
@@ -56,15 +60,20 @@ export default class Wear {
   // }
 
   mount(equipment) {
-    const oldEquipment = this[equipment.slotName]
+    const oldEquip = this[equipment.slotName]
     this[equipment.slotName] = equipment
-    return oldEquipment
+    if (!this.activities) return oldEquip
+    if (oldEquip?.hasActivity) this.activities.remove(oldEquip.activity)
+    if (equipment?.hasActivity) this.activities.add(equipment.activity)
+    return oldEquip
   }
 
   umountBySlotName(slotName) {
-    const oldEquipment = this[slotName]
+    const oldEquip = this[slotName]
     this[slotName] = null
-    return oldEquipment
+    if (!this.activities) return oldEquip
+    if (oldEquip?.hasActivity) this.activities.remove(oldEquip.activity)
+    return oldEquip
   }
 
   // setWeapon(weapon) {

@@ -1,32 +1,20 @@
-export default class Mana {
-  constructor(
-    statsBasic,
-    leveler,
-    passiveSkills,
-    activeSkills,
-    buffs,
-    debuffs,
-    wear
-  ) {
-    this.statsBasic = statsBasic
-    this.leveler = leveler
-    this.passiveSkills = passiveSkills
-    this.activeSkills = activeSkills
-    this.buffs = buffs
-    this.debuffs = debuffs
-    this.wear = wear
-    this.current = this.total
+import EventEmitter from 'node:events'
+
+export default class Mana extends EventEmitter {
+  constructor(statsBasic, leveler, activities) {
+    super()
+    this.statsBasic = statsBasic ?? { MEN: 50n }
+    this.leveler = leveler ?? { lvl: 5n }
     this.leveler.on('update:lvl', this.restore.bind(this))
+    this.activities = activities
+    this.activities.interlinkedWithinMana(this)
+    this.current = this.total
     this.protoTotal = 0n
   }
 
   get total() {
-    this.protoTotal = this.statsBasic.MEN * this.leveler.lvl
-    this.passiveSkills?.forEach(ps => ps.nForce2Mana?.(this))
-    this.activeSkills?.forEach(as => as.nForce2Mana?.(this))
-    this.buffs?.forEach(buff => buff.nForce2Mana?.(this))
-    this.debuffs?.forEach(debuff => debuff.nForce2Mana?.(this))
-    this.wear?.nForces2Mana.forEach(nForce => nForce?.(this))
+    this.protoTotal = this.statsBasic.MEN * 3n * this.leveler.lvl
+    this.activities.enforces.forEach(e => e.toMana?.(this))
     if (this.current > this.protoTotal) this.current = this.protoTotal
     return this.protoTotal
   }
@@ -34,7 +22,10 @@ export default class Mana {
   lose(mp) {
     if (mp <= 0n) return
     this.current -= mp
-    if (this.current < 0n) this.current = 0n
+    if (this.current <= 0n) {
+      this.current = 0n
+      this.emit('mana-is-over')
+    }
   }
 
   gain(mp) {

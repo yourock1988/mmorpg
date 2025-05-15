@@ -1,3 +1,5 @@
+import Activities from '../../../src/classes/character/Activities.js'
+import Health from '../../../src/classes/character/Health.js'
 import Inventory from '../../../src/classes/character/Inventory.js'
 import equipmentFabric from '../../../src/classes/fabric/equipmentFabric.js'
 
@@ -66,6 +68,30 @@ function tryToChangeWearEquipment() {
   )
 }
 
+function проверка_пульсирования_при_надетом_шлеме() {
+  const activities = new Activities()
+  const inventory = new Inventory(activities)
+  const health = new Health(null, null, activities)
+  const equipment = equipmentFabric('Helmet Of Truth')
+  let oldHpTotal = health.total
+  let oldHpCurrent = health.current
+  inventory.cargo.addItem(equipment)
+  inventory.wearItemById(equipment.id)
+
+  console.assert(health.current === oldHpCurrent)
+  const intervalId = setInterval(() => {
+    console.assert(health.total > oldHpTotal)
+    console.assert(health.current > oldHpCurrent)
+    oldHpCurrent = health.current
+  }, equipment.activity.config.pulseIntervalDelay + 33)
+
+  setTimeout(() => {
+    clearInterval(intervalId)
+    inventory.unwearItemBySlotName('helmet')
+  }, 2000)
+}
+
 tryToWearEquipment()
 tryToUnwearEquipment()
 tryToChangeWearEquipment()
+проверка_пульсирования_при_надетом_шлеме()

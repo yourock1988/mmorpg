@@ -5,16 +5,16 @@ export default class Health extends EventEmitter {
     super()
     this.statsBasic = statsBasic ?? { CON: 50n }
     this.leveler = leveler ?? { lvl: 5n }
-    this.activities = activities
-    this.protoTotal = 0n
-    this.current = this.total
     this.leveler.on?.('update:lvl', this.restore.bind(this))
-    activities.interlinkedWithinHealth(this)
+    this.activities = activities
+    this.activities.interlinkedWithinHealth(this)
+    this.current = this.total
+    this.protoTotal = 0n
   }
 
   get total() {
     this.protoTotal = this.statsBasic.CON * 3n * this.leveler.lvl
-    this.activities.list.forEach(a => a.enforce.toHealth?.(this))
+    this.activities.enforces.forEach(e => e.toHealth?.(this))
     if (this.current > this.protoTotal) this.current = this.protoTotal
     return this.protoTotal
   }

@@ -1,12 +1,12 @@
+import randomId from '../../functions/randomId.js'
 import calcStatsCombat from '../../functions/calcStatsCombat.js'
 import statsBasic from '../../dicts/statsBasic.js'
-import Inventory from './Inventory.js'
 import Leveler from './Leveler.js'
+import Activities from './Activities.js'
+import Inventory from './Inventory.js'
+import Abilities from './Abilities.js'
 import Health from './Health.js'
 import Mana from './Mana.js'
-import randomId from '../../functions/randomId.js'
-import Abilities from './Abilities.js'
-import Activities from './Activities.js'
 
 export default class Character {
   constructor(nick, race, kind, prof) {
@@ -16,11 +16,11 @@ export default class Character {
     this.kind = kind
     this.prof = prof
     this.leveler = new Leveler()
-    this.inventory = new Inventory()
     this.activities = new Activities()
+    this.inventory = new Inventory(this.activities)
     this.abilities = new Abilities(this.activities)
     this.health = new Health(this.statsBasic, this.leveler, this.activities)
-    this.mana = new Mana(this.statsBasic, this.leveler)
+    this.mana = new Mana(this.statsBasic, this.leveler, this.activities)
     this.partyId = 0n
     this.clanId = 0n
     this.money = 0n
@@ -40,7 +40,7 @@ export default class Character {
       this.leveler.lvl,
       this.inventory.wear.stats
     )
-    this.activities.list.forEach(a => a.enforce.toCombat?.(protoStatsCombat))
+    this.activities.enforces.forEach(e => e.toCombat?.(protoStatsCombat))
     return protoStatsCombat
   }
 }

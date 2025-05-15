@@ -3,8 +3,8 @@ import Cargo from './Cargo.js'
 import Wear from './Wear.js'
 
 export default class Inventory {
-  constructor() {
-    this.wear = new Wear()
+  constructor(activities) {
+    this.wear = new Wear(activities)
     this.cargo = new Cargo()
   }
 
