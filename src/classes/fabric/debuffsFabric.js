@@ -1,5 +1,5 @@
 import debuffsList from '../../lists/debuffsList.js'
-import Activity from '../Activity.js'
+import Activity from '../../abstract-fabric/activities/Activity.js'
 
 export default function debuffsFabric(caption, level) {
   const debuff = debuffsList.find(

@@ -1,4 +1,4 @@
-import Activity from '../../../classes/Activity.js'
+import Activity from '../Activity.js'
 import aurasActivitiesList from '../lists/aurasActivitiesList.js'
 
 export default function auraActivityFabric(caption, level) {

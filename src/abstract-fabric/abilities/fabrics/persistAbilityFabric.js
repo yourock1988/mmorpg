@@ -1,4 +1,4 @@
-import Ability from '../../../classes/Ability.js'
+import Ability from '../Ability.js'
 import persistAbilitiesList from '../lists/persistsAbilitiesList.js'
 
 export default function persistAbilityFabric(caption, level) {

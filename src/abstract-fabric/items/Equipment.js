@@ -1,6 +1,6 @@
-import equipmentActivityFabric from '../../abstract-fabric/activities/fabrics/equipmentActivityFabric.js'
+import equipmentActivityFabric from '../activities/fabrics/equipmentActivityFabric.js'
 import randomId from '../../functions/randomId.js'
-import Activity from '../Activity.js'
+import Activity from '../activities/Activity.js'
 import Item from './Item.js'
 
 export default class Equipment extends Item {

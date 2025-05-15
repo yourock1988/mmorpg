@@ -1,4 +1,4 @@
-import Activity from '../../../classes/Activity.js'
+import Activity from '../Activity.js'
 import persistsActivitiesList from '../lists/persistsActivitiesList.js'
 
 export default function persistActivityFabric(caption, level) {

@@ -1,5 +1,5 @@
 import EventEmitter from 'node:events'
-import Activity from '../Activity.js'
+import Activity from '../../abstract-fabric/activities/Activity.js'
 import Health from './Health.js'
 import Mana from './Mana.js'
 

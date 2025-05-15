@@ -1,5 +1,5 @@
 import buffsFabric from '../../src/classes/fabric/buffsFabric.js'
-import Activity from '../../src/classes/Activity.js'
+import Activity from '../../src/abstract-fabric/activities/Activity.js'
 
 const haste = buffsFabric('Haste', 1n)
 

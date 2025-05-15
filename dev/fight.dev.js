@@ -1,5 +1,5 @@
+import equipmentFabric from '../src/abstract-fabric/items/fabrics/equipmentFabric.js'
 import Character from '../src/classes/character/Character.js'
-import equipmentFabric from '../src/classes/fabric/equipmentFabric.js'
 import FightHalf from '../src/classes/FightHalf.js'
 import viewCharacter from '../src/functions/viewCharacter.js'
 

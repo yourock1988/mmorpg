@@ -1,4 +1,4 @@
-import Ability from '../../../classes/Ability.js'
+import Ability from '../Ability.js'
 import aurasAbilitiesList from '../lists/aurasAbilitiesList.js'
 
 export default function auraAbilityFabric(caption, level) {

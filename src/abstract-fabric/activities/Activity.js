@@ -1,4 +1,4 @@
-import randomId from '../functions/randomId.js'
+import randomId from '../../functions/randomId.js'
 
 export default class Activity {
   constructor({ type, caption, level, desc, config, enforce, pulse }) {

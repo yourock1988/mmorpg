@@ -1,4 +1,4 @@
-import Equipment from '../../../classes/item/Equipment.js'
+import Equipment from '../Equipment.js'
 import equipmentList from '../lists/equipmentsList.js'
 
 export default function equipmentFabric(caption) {

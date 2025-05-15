@@ -1,4 +1,4 @@
-import Item from '../../../src/classes/item/Item.js'
+import Item from '../../../src/abstract-fabric/items/Item.js'
 import Cargo from '../../../src/classes/character/Cargo.js'
 
 function добавление_итемов_и_группировка_итемов() {
