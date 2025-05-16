@@ -1,10 +1,6 @@
-import logBigInt from './logBigInt.js'
-
 const calc = (sb, c, l, se) => sb * c * l + se
 
-// console.log(calc(1n, 2n, 3n, 4n))
-
-function calcStatsCombat(statsBasic, lvl, statsEquip) {
+export default function calcStatsCombat(statsBasic, lvl, statsEquip) {
   return {
     PAtk: calc(statsBasic.STR, 1n, lvl, statsEquip.PAtk ?? 0n),
     PDef: calc(statsBasic.CON, 2n, lvl, statsEquip.PDef ?? 0n),
@@ -18,5 +14,3 @@ function calcStatsCombat(statsBasic, lvl, statsEquip) {
     CastSpd: calc(statsBasic.WIT, 3n, lvl, statsEquip.CastSpd ?? 0n),
   }
 }
-
-export default calcStatsCombat

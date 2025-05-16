@@ -25,12 +25,11 @@ export default class Activity {
       this.pulse.toCombat?.(combat)
       this.pulse.toHealth?.(health)
       this.pulse.toMana?.(mana)
-      // console.log(health.current)
     }, this.config.pulseIntervalDelay)
   }
 
   pulseStop() {
     clearInterval(this.config.pulseIntervalId)
-    // console.log('pulseStop')
+    //console.log('pulseStop')
   }
 }

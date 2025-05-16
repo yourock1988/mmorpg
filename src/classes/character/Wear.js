@@ -40,25 +40,6 @@ export default class Wear {
       .map(v => v.activity)
   }
 
-  // get nForces2Health() {
-  //   return Object.values(this)
-  //     .filter(v => v)
-  //     .reduce(
-  //       (acc, { nForce2Health }) =>
-  //         nForce2Health ? acc.concat(nForce2Health) : acc,
-  //       []
-  //     )
-  // }
-
-  // get nForces2Mana() {
-  //   return Object.values(this)
-  //     .filter(v => v)
-  //     .reduce(
-  //       (acc, { nForce2Mana }) => (nForce2Mana ? acc.concat(nForce2Mana) : acc),
-  //       []
-  //     )
-  // }
-
   mount(equipment) {
     const oldEquip = this[equipment.slotName]
     this[equipment.slotName] = equipment
@@ -75,43 +56,4 @@ export default class Wear {
     if (oldEquip?.hasActivity) this.activities.remove(oldEquip.activity)
     return oldEquip
   }
-
-  // setWeapon(weapon) {
-  //   if (weapon instanceof Equipment) this.weapon = weapon
-  // }
-
-  // setHelmet(helmet) {
-  //   if (helmet instanceof Equipment) this.helmet = helmet
-  // }
-  // setUpper(upper) {
-  //   if (upper instanceof Equipment) this.upper = upper
-  // }
-  // setLower(lower) {
-  //   if (lower instanceof Equipment) this.lower = lower
-  // }
-  // setBoots(boots) {
-  //   if (boots instanceof Equipment) this.boots = boots
-  // }
-  // setGloves(gloves) {
-  //   if (gloves instanceof Equipment) this.gloves = gloves
-  // }
-  // setShield(shield) {
-  //   if (shield instanceof Equipment) this.shield = shield
-  // }
-
-  // setNecklace(necklace) {
-  //   if (necklace instanceof Equipment) this.necklace = necklace
-  // }
-  // setRingLeft(ringLeft) {
-  //   if (ringLeft instanceof Equipment) this.ringLeft = ringLeft
-  // }
-  // setRingRight(ringRight) {
-  //   if (ringRight instanceof Equipment) this.ringRight = ringRight
-  // }
-  // setEarringLeft(earringLeft) {
-  //   if (earringLeft instanceof Equipment) this.earringLeft = earringLeft
-  // }
-  // setEarringRight(earringRight) {
-  //   if (earringRight instanceof Equipment) this.earringRight = earringRight
-  // }
 }

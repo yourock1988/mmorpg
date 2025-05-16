@@ -3,7 +3,7 @@ import aurasActivitiesList from '../lists/aurasActivitiesList.js'
 
 export default function auraActivityFabric(caption, level) {
   const findedAura = aurasActivitiesList.find(
-    b => b.caption === caption && b.level === level
+    a => a.caption === caption && a.level === level
   )
   if (!findedAura) throw new Error(`wrong aura`)
   const aura = Object.assign({}, findedAura, { type: 'aura' })

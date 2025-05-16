@@ -3,7 +3,7 @@ import persistsActivitiesList from '../lists/persistsActivitiesList.js'
 
 export default function persistActivityFabric(caption, level) {
   const findedPersist = persistsActivitiesList.find(
-    b => b.caption === caption && b.level === level
+    p => p.caption === caption && p.level === level
   )
   if (!findedPersist) throw new Error(`wrong persist`)
   const persist = Object.assign({}, findedPersist, { type: 'persist' })

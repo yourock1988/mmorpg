@@ -3,7 +3,6 @@ import BootcampAuras from '../src/bootcamps/BootcampAuras.js'
 import Abilities from '../src/classes/character/Abilities.js'
 import Activities from '../src/classes/character/Activities.js'
 import Character from '../src/classes/character/Character.js'
-import Health from '../src/classes/character/Health.js'
 
 function обновляется_ли_активити_при_активации_ауры() {
   const activities = new Activities()
