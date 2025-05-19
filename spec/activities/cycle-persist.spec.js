@@ -9,7 +9,7 @@ function обновляется_ли_персист_активити_при_до
   const abilities = new Abilities(activities)
   const persist = persistAbilityFabric('Defensive Persist', 1n)
 
-  abilities.add(persist)
+  abilities.learn(persist)
 
   console.assert(
     activities.persists.length === 1 &&
@@ -30,7 +30,6 @@ function действует_ли_выученный_персист_на_перс
   // bootcamp.train('Defensive Persist', 1n)
 
   // console.assert(
-  //   player1.abilities.persistsActivities.length === 1 &&
   //     player1.activities.persists.length === 1 &&
   //     player1.statsCombat.PDef > oldPDef &&
   //     player1.health.total > oldHpTotal &&
@@ -50,8 +49,7 @@ function без_сп_обучение_не_срабатывает() {
   bootcamp.train('Defensive Persist', 1n)
 
   console.assert(
-    player1.abilities.persistsActivities.length === 0 &&
-      player1.activities.persists.length === 0 &&
+    player1.activities.persists.length === 0 &&
       player1.statsCombat.PDef === oldPDef &&
       player1.health.total === oldHpTotal &&
       player1.health.current === oldHpCurrent
@@ -78,7 +76,7 @@ function проверка_пульсирования_персиста() {
     // console.log(player1.health.current)
     // console.log(player1.health.total)
     oldHpCurrent = player1.health.current
-  }, persist.activity.config.pulseIntervalDelay + 33)
+  }, player1.activities.persists[0].config.pulseIntervalDelay + 33)
 
   setTimeout(() => {
     clearInterval(intervalId)

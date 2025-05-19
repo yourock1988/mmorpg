@@ -4,9 +4,6 @@ import Abilities from '../../../src/classes/character/Abilities.js'
 import Activities from '../../../src/classes/character/Activities.js'
 import Health from '../../../src/classes/character/Health.js'
 import Leveler from '../../../src/classes/character/Leveler.js'
-// import buffsFabric from '../../../src/classes/fabric/buffsFabric.js'
-// import debuffsFabric from '../../../src/classes/fabric/debuffsFabric.js'
-// import equipmentFabric from '../../../src/classes/fabric/equipmentFabric.js'
 import statsBasic from '../../../src/dicts/statsBasic.js'
 
 function умрёт_ли_без_здоровья() {
@@ -58,27 +55,25 @@ function повышается_ли_здоровье_при_персисте() {
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
 
-  abilities.add(persist)
+  abilities.learn(persist)
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
-
   activities.removeAll()
 }
 function повышается_ли_здоровье_при_ауре() {
   const stats = statsBasic['Orc']['Fighter']
-  const persist = auraAbilityFabric('Concentration Aura', 1n)
+  const aura = auraAbilityFabric('Concentration Aura', 1n)
   const leveler = new Leveler()
   const activities = new Activities()
   const abilities = new Abilities(activities)
   const health = new Health(stats, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
+  abilities.learn(aura)
 
-  abilities.add(persist)
-  abilities.toggleAuraById(persist.id, true)
+  abilities.castByTypeId('aura', aura.id, activities)
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
-
   activities.removeAll()
 }
 function повышается_ли_здоровье_при_баффе() {
@@ -141,7 +136,7 @@ function одновременно_статы_лвл_пасивка_активк�
 
   oldHPtotal = health.total
   oldHPcurrent = health.current
-  abilities.train(ability)
+  abilities.learn(ability)
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
 
   // oldHPtotal = health.total
@@ -172,11 +167,10 @@ function одновременно_статы_лвл_пасивка_активк�
 повышается_ли_здоровье_при_увеличении_CON()
 повышается_ли_здоровье_при_левелапе()
 повышается_ли_здоровье_при_персисте()
-
 повышается_ли_здоровье_при_ауре()
 
-// повышается_ли_здоровье_при_баффе()
-// понижается_ли_здоровье_при_дебаффе()
-// повышается_ли_здоровье_при_снаряжении()
+//// повышается_ли_здоровье_при_баффе()
+//// понижается_ли_здоровье_при_дебаффе()
+//// повышается_ли_здоровье_при_снаряжении()
 
-// одновременно_статы_лвл_пасивка_активка_бафы_дебафы_эквип()
+//// одновременно_статы_лвл_пасивка_активка_бафы_дебафы_эквип()

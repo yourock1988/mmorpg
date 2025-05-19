@@ -1,22 +1,22 @@
 export default [
   {
-    caption: 'Concentration Aura',
+    caption: 'Heart Of Lion',
     level: 1n,
     cost: {
       sp: 100n,
-      mp: 0n,
+      mp: 50n,
       hp: 0n,
     },
     config: {
-      castSpeed: 0,
-      castRange: 0,
-      abortRange: 0,
-      cooldownTotal: 0,
+      castSpeed: 500,
+      castRange: 5000,
+      abortRange: 8000,
+      cooldownTotal: 15000,
       massRange: 0,
       isMassive: false,
       isSwitchable: false,
       isRequiresTarget: true,
-      canAbort: false,
+      canAbort: true,
     },
     status: {
       canStartCast: false, // computed
@@ -28,23 +28,23 @@ export default [
     },
   },
   {
-    caption: 'Breathe Aura',
+    caption: 'Haste',
     level: 1n,
     cost: {
       sp: 100n,
-      mp: 0n,
+      mp: 50n,
       hp: 0n,
     },
     config: {
-      castSpeed: 0,
-      castRange: 0,
-      abortRange: 0,
-      cooldownTotal: 0,
+      castSpeed: 500,
+      castRange: 5000,
+      abortRange: 8000,
+      cooldownTotal: 15000,
       massRange: 0,
       isMassive: false,
       isSwitchable: false,
       isRequiresTarget: true,
-      canAbort: false,
+      canAbort: true,
     },
     status: {
       canStartCast: false, // computed

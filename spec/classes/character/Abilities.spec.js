@@ -1,13 +1,94 @@
-import BootcampPersists from '../../../src/bootcamps/BootcampPersists.js'
-import Character from '../../../src/classes/character/Character.js'
-import viewCharacter from '../../../src/functions/viewCharacter.js'
+import persistAbilityFabric from '../../../src/abstract-fabric/abilities/fabrics/persistAbilityFabric.js'
+import Abilities from '../../../src/classes/character/Abilities.js'
+import Activities from '../../../src/classes/character/Activities.js'
+import Health from '../../../src/classes/character/Health.js'
 
-const character = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-const bootcampPersists = new BootcampPersists(character)
-character.sp += 300n
-viewCharacter(character)
+function персист_изучается() {
+  const activities = new Activities()
+  const ablilities = new Abilities(activities)
 
-bootcampPersists.train('Defensive Aura', 1n)
+  ablilities.learn(persistAbilityFabric('Defensive Persist', 1n))
 
-viewCharacter(character)
-console.log(character.abilities.list)
+  console.assert(ablilities.persists.length === 1)
+  activities.removeAll()
+}
+
+function персист_активируется() {
+  const activities = new Activities()
+  const ablilities = new Abilities(activities)
+
+  ablilities.learn(persistAbilityFabric('Defensive Persist', 1n))
+
+  console.assert(activities.persists.length === 1)
+  activities.removeAll()
+}
+
+function персист_енфорсится() {
+  const activities = new Activities()
+  const ablilities = new Abilities(activities)
+  const health = new Health(null, null, activities)
+  let oldHPtotal = health.total
+  let oldHPcurrent = health.current
+
+  ablilities.learn(persistAbilityFabric('Defensive Persist', 1n))
+
+  console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
+  activities.removeAll()
+}
+
+function персист_пульсирует() {
+  const activities = new Activities()
+  const ablilities = new Abilities(activities)
+  const health = new Health(null, null, activities)
+
+  ablilities.learn(persistAbilityFabric('Defensive Persist', 1n))
+
+  let oldHPtotal = health.total
+  let oldHPcurrent = health.current
+  let intervalId = setInterval(() => {
+    console.assert(health.total === oldHPtotal && health.current > oldHPcurrent)
+    oldHPtotal = health.total
+    oldHPcurrent = health.current
+  }, 333)
+
+  setTimeout(() => {
+    clearInterval(intervalId)
+    health.forceDeath()
+  }, 2000)
+}
+
+function всё_сразу() {
+  const activities = new Activities()
+  const ablilities = new Abilities(activities)
+  const health = new Health(null, null, activities)
+  let oldHPtotal = health.total
+  let oldHPcurrent = health.current
+
+  ablilities.learn(persistAbilityFabric('Defensive Persist', 1n))
+
+  console.assert(
+    activities.persists.length === 1 &&
+      ablilities.persists.length === 1 &&
+      health.total > oldHPtotal &&
+      health.current === oldHPcurrent
+  )
+
+  oldHPtotal = health.total
+  oldHPcurrent = health.current
+  let intervalId = setInterval(() => {
+    console.assert(health.total === oldHPtotal && health.current > oldHPcurrent)
+    oldHPtotal = health.total
+    oldHPcurrent = health.current
+  }, 333)
+
+  setTimeout(() => {
+    clearInterval(intervalId)
+    health.forceDeath()
+  }, 2000)
+}
+
+персист_изучается()
+персист_активируется()
+персист_енфорсится()
+персист_пульсирует()
+всё_сразу()

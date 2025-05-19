@@ -6,6 +6,7 @@ export default function persistAbilityFabric(caption, level) {
     p => p.caption === caption && p.level === level
   )
   if (!findedPersist) throw new Error(`wrong persist`)
-  const persist = Object.assign({}, findedPersist, { type: 'persist' })
-  return new Ability(persist)
+  const persistClone = structuredClone(findedPersist)
+  Object.assign(persistClone, { type: 'persist' })
+  return new Ability(persistClone)
 }

@@ -2,9 +2,9 @@ import takePercent from '../../../functions/takePercent.js'
 
 export default [
   {
-    caption: 'Concentration Aura',
+    caption: 'Heart Of Lion',
     level: 1n,
-    desc: 'увеличивает точность и макс хп. потребляет хп',
+    desc: 'увеличивает точность, макс хп и реген. потребляет мп',
     config: {
       isSeen: true,
       canPulsing: true,
@@ -24,34 +24,29 @@ export default [
     },
     pulse: {
       toHealth(health) {
-        health.lose(3n)
+        health.gain(3n)
+      },
+      toMana(mana) {
+        mana.lose(3n)
       },
     },
   },
   {
-    caption: 'Breathe Aura',
+    caption: 'Haste',
     level: 1n,
-    desc: 'увеличивает скорость атаки и макс хп. потребляет мп',
+    desc: 'увеличивает скорость передвижения',
     config: {
       isSeen: true,
-      canPulsing: true,
+      canPulsing: false,
       duration: Infinity,
-      pulseIntervalDelay: 300,
+      pulseIntervalDelay: 0,
     },
     status: {
       pulseIntervalId: 0,
     },
     enforce: {
       toCombat(combat) {
-        combat.AtkSpd += takePercent(10n)(combat.PDef)
-      },
-      toHealth(health) {
-        health.protoTotal += takePercent(10n)(health.protoTotal)
-      },
-    },
-    pulse: {
-      toMana(mana) {
-        mana.lose(7n)
+        combat.Speed += takePercent(10n)(combat.Speed)
       },
     },
   },

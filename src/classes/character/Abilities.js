@@ -10,22 +10,31 @@ export default class Abilities {
     this.activities.on('removed-aura', this.markAuraAsDisabled.bind(this))
   }
 
-  add(ability) {
-    this[ability.type + 's'].push(ability)
-    if (ability.type === 'persist') this.activities.add(ability.activity)
+  castByTypeId(type, id, targetActivities = this.activities) {
+    const ability = this.findAbilityByTypeId(type, id)
+    if (!ability) return
+    ability.cast(targetActivities)
   }
 
-  toggleAuraById(id, toggle) {
-    const findedAura = this.findAbilityByTypeId('aura', id)
-    toggle ??= !findedAura.config.isEnabled
-    if (findedAura?.config?.isSwitchable) findedAura.config.isEnabled = toggle
-    if (findedAura.config.isEnabled) this.activities.add(findedAura.activity)
-    else this.activities.remove(findedAura.activity)
+  learn(ability) {
+    this[ability.type + 's'].push(ability)
+    if (ability.type === 'persist') {
+      ability.cast(this.activities)
+    }
   }
+
+  // toggleAuraById(id, toggle) {
+  //   const findedAura = this.findAbilityByTypeId('aura', id)
+  //   if (!findedAura) throw new Error(`ауры с таким id не существует`)
+  //   toggle ??= !findedAura.status.isSwitchedOn
+  //   if (findedAura.config.isSwitchable) findedAura.status.isSwitchedOn = toggle
+  //   if (findedAura.status.isSwitchedOn) this.activities.add(findedAura.activity)
+  //   else this.activities.remove(findedAura.activity)
+  // }
 
   markAuraAsDisabled(activity) {
     const aura = this.findAbilityByTypeCaption('aura', activity.caption)
-    aura.config.isEnabled = false
+    aura.status.isSwitchedOn = false
   }
 
   findAbilityByTypeId(type, id) {
@@ -35,10 +44,10 @@ export default class Abilities {
     return this[type + 's'].find(a => a.caption === caption)
   }
 
-  get persistsActivities() {
-    return this.persists.map(p => p.activity)
-  }
-  get aurasActivities() {
-    return this.auras.filter(a => a.config.isEnabled).map(a => a.activity)
-  }
+  // get persistsActivities() {
+  //   return this.persists.map(p => p.activity)
+  // }
+  // get aurasActivities() {
+  //   return this.auras.filter(a => a.status.isSwitchedOn).map(a => a.activity)
+  // }
 }

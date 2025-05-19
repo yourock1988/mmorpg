@@ -9,8 +9,10 @@ export default [
       isSeen: false,
       canPulsing: true,
       duration: Infinity,
-      pulseIntervalId: 0,
       pulseIntervalDelay: 300,
+    },
+    status: {
+      pulseIntervalId: 0,
     },
     enforce: {
       toCombat(combat) {

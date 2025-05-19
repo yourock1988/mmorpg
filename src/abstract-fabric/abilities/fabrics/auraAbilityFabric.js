@@ -6,6 +6,7 @@ export default function auraAbilityFabric(caption, level) {
     a => a.caption === caption && a.level === level
   )
   if (!findedAura) throw new Error(`wrong aura`)
-  const aura = Object.assign({}, findedAura, { type: 'aura' })
-  return new Ability(aura)
+  const auraClone = structuredClone(findedAura)
+  Object.assign(auraClone, { type: 'aura' })
+  return new Ability(auraClone)
 }

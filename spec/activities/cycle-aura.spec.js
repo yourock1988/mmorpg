@@ -3,16 +3,16 @@ import BootcampAuras from '../../src/bootcamps/BootcampAuras.js'
 import Abilities from '../../src/classes/character/Abilities.js'
 import Activities from '../../src/classes/character/Activities.js'
 import Character from '../../src/classes/character/Character.js'
-import Health from '../../src/classes/character/Health.js'
 
 function обновляется_ли_активити_при_активации_ауры() {
   const activities = new Activities()
   const abilities = new Abilities(activities)
   const aura = auraAbilityFabric('Concentration Aura', 1n)
   const idToToggle = aura.id
-  abilities.add(aura)
+  abilities.learn(aura)
 
-  abilities.toggleAuraById(idToToggle, true)
+  // abilities.toggleAuraById(idToToggle, true)
+  aura.cast(activities)
 
   console.assert(
     activities.auras.length === 1 &&
@@ -31,17 +31,18 @@ function работает_ли_энфорс() {
   const aura = player1.abilities.auras[0]
   const idToToggle = aura.id
 
-  player1.abilities.toggleAuraById(idToToggle, true)
+  // player1.abilities.toggleAuraById(idToToggle, true)
+  aura.cast(player1.activities)
 
   console.assert(
-    player1.abilities.aurasActivities.length === 1 &&
-      player1.activities.auras.length === 1 &&
+    player1.activities.auras.length === 1 &&
       player1.statsCombat.Accuracy > oldAccuracy &&
       player1.health.total > oldHpTotal &&
       player1.health.current === oldHpCurrent
   )
 
-  player1.abilities.toggleAuraById(idToToggle, false)
+  player1.activities.removeAll(['auras'])
+  // player1.abilities.toggleAuraById(idToToggle, false)
 }
 function работает_ли_пульсирование() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -52,16 +53,18 @@ function работает_ли_пульсирование() {
   const aura = player1.abilities.auras[0]
   const idToToggle = aura.id
 
-  player1.abilities.toggleAuraById(idToToggle, true)
+  // player1.abilities.toggleAuraById(idToToggle, true)
+  aura.cast(player1.activities)
 
   const intervalId = setInterval(() => {
     console.assert(player1.health.current < oldHpCurrent)
     oldHpCurrent = player1.health.current
-  }, aura.activity.config.pulseIntervalDelay + 33)
+  }, player1.activities.auras[0].config.pulseIntervalDelay + 33)
 
   setTimeout(() => {
     clearInterval(intervalId)
-    player1.abilities.toggleAuraById(idToToggle, false)
+    // player1.abilities.toggleAuraById(idToToggle, false)
+    player1.activities.removeAll(['auras'])
   }, 2000)
 }
 function без_сп_обучение_не_срабатывает() {
@@ -74,15 +77,14 @@ function без_сп_обучение_не_срабатывает() {
   bootcamp.train('Concentration Aura', 1n)
 
   console.assert(
-    player1.abilities.aurasActivities.length === 0 &&
-      player1.activities.auras.length === 0 &&
+    player1.activities.auras.length === 0 &&
       player1.statsCombat.Accuracy === oldAccuracy &&
       player1.health.total === oldHpTotal &&
       player1.health.current === oldHpCurrent
   )
 }
 
+обновляется_ли_активити_при_активации_ауры()
 работает_ли_энфорс()
 работает_ли_пульсирование()
-обновляется_ли_активити_при_активации_ауры()
 без_сп_обучение_не_срабатывает()

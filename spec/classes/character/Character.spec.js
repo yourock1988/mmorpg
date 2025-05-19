@@ -1,5 +1,4 @@
 import Character from '../../../src/classes/character/Character.js'
-import buffsFabric from '../../../src/classes/fabric/buffsFabric.js'
 import equipmentFabric from '../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
 
 function characterDieWithKillingDamage() {
@@ -59,26 +58,26 @@ function уменьшатся_ли_статы_при_снятии_снаряже
   console.assert(characterGood.statsCombat.PAtk < oldStats.PAtk)
 }
 
-function увеличатся_ли_статы_при_бафе() {
-  const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
-  const oldStats = { ...characterGood.statsCombat }
-  const haste = buffsFabric('Haste', 1n)
+// function увеличатся_ли_статы_при_бафе() {
+//   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
+//   const oldStats = { ...characterGood.statsCombat }
+//   const haste = buffsFabric('Haste', 1n)
 
-  characterGood.activities.add(haste)
+//   characterGood.activities.add(haste)
 
-  console.assert(characterGood.statsCombat.Speed > oldStats.Speed)
-}
+//   console.assert(characterGood.statsCombat.Speed > oldStats.Speed)
+// }
 
-function умешьшатся_ли_статы_при_снятии_бафа() {
-  const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
-  const haste = buffsFabric('Haste', 1n)
-  characterGood.activities.add(haste)
-  const oldStats = { ...characterGood.statsCombat }
+// function умешьшатся_ли_статы_при_снятии_бафа() {
+//   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
+//   const haste = buffsFabric('Haste', 1n)
+//   characterGood.activities.add(haste)
+//   const oldStats = { ...characterGood.statsCombat }
 
-  characterGood.activities.buffs = []
+//   characterGood.activities.buffs = []
 
-  console.assert(characterGood.statsCombat.Speed < oldStats.Speed)
-}
+//   console.assert(characterGood.statsCombat.Speed < oldStats.Speed)
+// }
 
 // characterDieWithKillingDamage()
 

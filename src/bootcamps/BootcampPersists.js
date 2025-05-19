@@ -31,6 +31,6 @@ export default class BootcampPersists {
     const persist = persistAbilityFabric(caption, level)
     if (persist.cost.sp > this.character.sp) return //console.log('low sp')
     this.character.sp -= persist.cost.sp
-    this.character.abilities.add(persist)
+    this.character.abilities.learn(persist)
   }
 }

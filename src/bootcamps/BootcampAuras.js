@@ -31,6 +31,6 @@ export default class BootcampAuras {
     const aura = auraAbilityFabric(caption, level)
     if (aura.cost.sp > this.character.sp) return //console.log('low sp')
     this.character.sp -= aura.cost.sp
-    this.character.abilities.add(aura)
+    this.character.abilities.learn(aura)
   }
 }
