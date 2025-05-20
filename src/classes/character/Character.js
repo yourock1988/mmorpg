@@ -7,18 +7,22 @@ import Inventory from './Inventory.js'
 import Abilities from './Abilities.js'
 import Health from './Health.js'
 import Mana from './Mana.js'
+import Target from './Target.js'
 
 export default class Character {
   constructor(nick, race, kind, prof) {
     this.id = randomId()
+    this.type = 'character'
     this.nick = nick
     this.race = race
     this.kind = kind
     this.prof = prof
+    this.coords = new Coords()
+    this.target = new Target()
     this.leveler = new Leveler()
     this.activities = new Activities()
     this.inventory = new Inventory(this.activities)
-    this.abilities = new Abilities(this.activities)
+    this.abilities = new Abilities(this.activities, this.target)
     this.health = new Health(this.statsBasic, this.leveler, this.activities)
     this.mana = new Mana(this.statsBasic, this.leveler, this.activities)
     this.partyId = 0n
