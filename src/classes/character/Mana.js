@@ -5,7 +5,7 @@ export default class Mana extends EventEmitter {
     super()
     this.statsBasic = statsBasic ?? { MEN: 50n }
     this.leveler = leveler ?? { lvl: 5n }
-    this.leveler.on('update:lvl', this.restore.bind(this))
+    this.leveler.on?.('update:lvl', this.restore.bind(this))
     this.activities = activities
     this.activities.interlinkedWithinMana(this)
     this.current = this.total

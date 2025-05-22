@@ -14,17 +14,17 @@ export default class Ability {
     this.desc = this.createActivity().desc
   }
 
-  cast(targetActivities) {
-    // console.log('A')
-    // if (!this.status.canStartCast) return
-    // console.log('B')
-    const activity = this.createActivity()
-    targetActivities.add(activity)
-  }
+  // cast(targetActivities) {
+  //   // console.log('A')
+  //   // if (!this.status.canStartCast) return
+  //   // console.log('B')
+  //   const activity = this.createActivity()
+  //   targetActivities.add(activity)
+  // }
 
-  get status_canStartCast() {
-    if (this.config.isRequiresTarget && !this.target) return
-  }
+  // get status_canStartCast() {
+  //   if (this.config.isRequiresTarget && !this.target) return
+  // }
 
   createActivity() {
     switch (this.type) {

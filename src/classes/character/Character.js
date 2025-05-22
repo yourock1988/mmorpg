@@ -8,6 +8,7 @@ import Abilities from './Abilities.js'
 import Health from './Health.js'
 import Mana from './Mana.js'
 import Target from './Target.js'
+import Coords from './Coords.js'
 
 export default class Character {
   constructor(nick, race, kind, prof) {
@@ -18,13 +19,18 @@ export default class Character {
     this.kind = kind
     this.prof = prof
     this.coords = new Coords()
-    this.target = new Target()
+    this.target = new Target(this.coords)
     this.leveler = new Leveler()
     this.activities = new Activities()
     this.inventory = new Inventory(this.activities)
-    this.abilities = new Abilities(this.activities, this.target)
     this.health = new Health(this.statsBasic, this.leveler, this.activities)
     this.mana = new Mana(this.statsBasic, this.leveler, this.activities)
+    this.abilities = new Abilities(
+      this.activities,
+      this.target,
+      this.health,
+      this.mana
+    )
     this.partyId = 0n
     this.clanId = 0n
     this.money = 0n
