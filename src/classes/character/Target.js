@@ -1,32 +1,32 @@
+import distance from '../../functions/distance.js'
+
 export default class Target {
   constructor(ownerCoords) {
     this.subject = null
-    this.type = ''
     this.hasTarget = false
     this.ownerCoords = ownerCoords
+    Object.assign(this, Promise.withResolvers())
   }
 
-  set(target) {
-    this.subject = target
-    this.type = target.type
+  set(subject) {
+    this.cancel()
+    this.subject = subject
     this.hasTarget = true
+    Object.assign(this, Promise.withResolvers())
   }
 
   cancel() {
     this.subject = null
-    this.type = ''
     this.hasTarget = false
+    this.resolve(false)
   }
 
-  goto() {
-    this.ownerCoords.moveTo(this.subject.coords)
+  async goto() {
+    if (!this.hasTarget) return false
+    return await this.ownerCoords.moveTo(this)
   }
 
   get distance() {
-    if (this.hasTarget) {
-      const dx = this.ownerCoords.x - this.subject.coords.x
-      const dy = this.ownerCoords.y - this.subject.coords.y
-      return Math.hypot(dx, dy)
-    }
+    if (this.hasTarget) return distance(this.ownerCoords, this.subject.coords)
   }
 }

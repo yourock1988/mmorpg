@@ -1,3 +1,6 @@
+import wait from '../../functions/wait.js'
+import distance from '../../functions/distance.js'
+
 export default class Coords {
   constructor() {
     this.x = 0
@@ -5,10 +8,21 @@ export default class Coords {
   }
 
   teleportTo(coords) {
-    //
+    this.x = coords.x
+    this.y = coords.y
   }
 
-  moveTo(coords) {
+  async moveTo(target) {
+    return await Promise.race([wait(1400), target.promise])
+
+    // while (target.hasTarget && distance(this, target.subject.coords) > 9) {
+    //   await this.step(subject.coords)
+    // }
+    // return true
+    // target.resolve(true)
+  }
+
+  async step(targetCoords) {
     //
   }
 

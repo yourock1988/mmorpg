@@ -15,11 +15,9 @@ export default [
       cooldownTotal: 0,
       isMassive: false,
       isAbortable: false,
-      isSwitchable: false,
       isRequiresTarget: false,
     },
     status: {
-      isSwitchedOn: false,
       cooldownCurrent: 0,
     },
   },
