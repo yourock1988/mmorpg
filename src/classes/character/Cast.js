@@ -1,44 +1,23 @@
 export default class Cast {
-  constructor({
-    activities,
-    ability,
-    config,
-    target,
-    state,
-    status,
-    health,
-    mana,
-    cost,
-  }) {
-    this.activities = activities
-    this.ability = ability
-    this.config = config
-    this.target = target
+  constructor({ state, status, config, target, health, mana, cost }) {
     this.state = state
     this.status = status
+    this.config = config
+    this.target = target
     this.health = health
     this.mana = mana
     this.cost = cost
   }
 
-  async run() {
-    let res1 = this.stage1(this.state, this.status)
-    console.log(res1)
-    if (!res1) return
-    let res2 = await this.stage2(this.config, this.target)
-    console.log(res2)
-    if (!res2) return
-    let res3 = this.stage3(this.health, this.mana, this.cost)
-    console.log(res3)
-    if (!res3) return
-    let res4 = await this.stage4(this.config, this.target, this.state)
-    console.log(res4)
-    if (!res4) return
-    this.stage5(this.config, this.target, this.activities, this.ability)
+  async run(activities, ability) {
+    this.stage1(this.state, this.status) &&
+      (await this.stage2(this.config, this.target)) &&
+      this.stage3(this.health, this.mana, this.cost) &&
+      (await this.stage4(this.config, this.target, this.state)) &&
+      this.stage5(this.config, this.target, activities, ability)
   }
 
   stage1(state, status) {
-    console.log('stage1')
     if (state.castProgress !== 0) return false
     if (state.isCastInProcess) return false
     if (status.isSwitchedOn) return false
@@ -47,7 +26,6 @@ export default class Cast {
   }
 
   async stage2(config, target) {
-    console.log('stage2')
     if (config.isRequiresTarget) {
       if (!target.hasTarget) return false
       if (target.distance > config.castRange) {
@@ -59,7 +37,6 @@ export default class Cast {
   }
 
   stage3(health, mana, cost) {
-    console.log('stage3')
     if (health.current < cost.hp || mana.current < cost.mp) return false
     health.lose(cost.hp)
     mana.lose(cost.mp)
@@ -67,7 +44,6 @@ export default class Cast {
   }
 
   async stage4(config, target, state) {
-    console.log('stage4')
     return await new Promise(resolve => {
       const intervalId = setInterval(() => {
         state.castProgress++
@@ -88,7 +64,6 @@ export default class Cast {
   }
 
   stage5(config, target, activities, ability) {
-    console.log('stage5')
     const activity = ability.createActivity()
     if (!config.isRequiresTarget) {
       activities.add(activity)

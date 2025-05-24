@@ -1,4 +1,3 @@
-import EventEmitter from 'node:events'
 import Cast from './Cast.js'
 
 export default class Abilities {
@@ -29,20 +28,8 @@ export default class Abilities {
   async cast(ability) {
     const { cost, config, status } = ability
     const { mana, health, target, activities, state } = this
-
-    const c = new Cast({
-      cost,
-      config,
-      status,
-      mana,
-      health,
-      target,
-      activities,
-      state,
-      ability,
-    })
-
-    c.run()
+    const cast = new Cast({ state, status, config, target, health, mana, cost })
+    await cast.run(activities, ability)
   }
 
   learn(ability) {
