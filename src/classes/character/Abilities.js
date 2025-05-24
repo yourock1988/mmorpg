@@ -20,9 +20,9 @@ export default class Abilities {
     }
   }
 
-  castByTypeId(type, id) {
+  async castByTypeId(type, id) {
     const ability = this.findAbilityByTypeId(type, id)
-    if (ability) this.cast(ability)
+    if (ability) await this.cast(ability)
   }
 
   async cast(ability) {
@@ -32,9 +32,9 @@ export default class Abilities {
     await cast.run(activities, ability)
   }
 
-  learn(ability) {
+  async learn(ability) {
     this[ability.type + 's'].push(ability)
-    if (ability.type === 'persist') this.cast(ability)
+    if (ability.type === 'persist') await this.cast(ability)
   }
 
   findAbilityByTypeId(type, id) {

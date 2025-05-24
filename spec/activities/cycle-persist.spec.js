@@ -8,7 +8,7 @@ import Target from '../../src/classes/character/Target.js'
 import Health from '../../src/classes/character/Health.js'
 import Mana from '../../src/classes/character/Mana.js'
 
-function обновляется_ли_персист_активити_при_добавлении_абилки() {
+async function обновляется_ли_персист_активити_при_добавлении_абилки() {
   const coords = new Coords()
   const target = new Target(coords)
   const activities = new Activities()
@@ -17,18 +17,16 @@ function обновляется_ли_персист_активити_при_до
   const abilities = new Abilities(activities, target, health, mana)
   const persist = persistAbilityFabric('Defensive Persist', 1n)
 
-  abilities.learn(persist)
+  await abilities.learn(persist)
 
-  setTimeout(() => {
-    console.assert(
-      activities.persists.length === 1 &&
-        activities.auras.length === 0 &&
-        activities.enforces.length === 1
-    )
-    activities.removeAll()
-  }, 1100)
+  console.assert(
+    activities.persists.length === 1 &&
+      activities.auras.length === 0 &&
+      activities.enforces.length === 1
+  )
+  activities.removeAll()
 }
-function действует_ли_выученный_персист_на_персонажа() {
+async function действует_ли_выученный_персист_на_персонажа() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new BootcampPersists(player1)
   const oldPDef = player1.statsCombat.PDef
@@ -36,17 +34,15 @@ function действует_ли_выученный_персист_на_перс
   const oldHpCurrent = player1.health.current
   player1.sp = 505n
 
-  bootcamp.train('Defensive Persist', 1n)
+  await bootcamp.train('Defensive Persist', 1n)
 
-  setTimeout(() => {
-    console.assert(
-      player1.activities.persists.length === 1 &&
-        player1.statsCombat.PDef > oldPDef &&
-        player1.health.total > oldHpTotal &&
-        player1.health.current === oldHpCurrent
-    )
-    player1.activities.removeAll()
-  }, 1100)
+  console.assert(
+    player1.activities.persists.length === 1 &&
+      player1.statsCombat.PDef > oldPDef &&
+      player1.health.total > oldHpTotal &&
+      player1.health.current === oldHpCurrent
+  )
+  player1.activities.removeAll()
 }
 function без_сп_обучение_не_срабатывает() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -65,7 +61,7 @@ function без_сп_обучение_не_срабатывает() {
       player1.health.current === oldHpCurrent
   )
 }
-function проверка_пульсирования_персиста() {
+async function проверка_пульсирования_персиста() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new BootcampPersists(player1)
   const oldPDef = player1.statsCombat.PDef
@@ -73,22 +69,16 @@ function проверка_пульсирования_персиста() {
   let oldHpCurrent = player1.health.current
   player1.sp = 505n
 
-  bootcamp.train('Defensive Persist', 1n)
+  await bootcamp.train('Defensive Persist', 1n)
 
-  setTimeout(() => {
-    const intervalId = setInterval(() => {
-      console.assert(
-        player1.health.current > oldHpCurrent ||
-          player1.health.current === player1.health.total
-      )
-      oldHpCurrent = player1.health.current
-    }, player1.activities.persists[0].config.pulseIntervalDelay + 33)
-
-    setTimeout(() => {
+  const intervalId = setInterval(() => {
+    console.assert(player1.health.current > oldHpCurrent)
+    oldHpCurrent = player1.health.current
+    if (player1.health.current === player1.health.total) {
       clearInterval(intervalId)
       player1.activities.removeAll()
-    }, 2000)
-  }, 1100)
+    }
+  }, player1.activities.persists[0].config.pulseIntervalDelay + 33)
 }
 
 обновляется_ли_персист_активити_при_добавлении_абилки()
