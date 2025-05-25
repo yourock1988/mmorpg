@@ -10,21 +10,15 @@ export default [
     config: {
       castSpeed: 500,
       castRange: 5000,
+      massRange: 0,
       abortRange: 8000,
       cooldownTotal: 15000,
-      massRange: 0,
       isMassive: false,
-      isSwitchable: false,
+      isAbortable: true,
       isRequiresTarget: true,
-      canAbort: true,
     },
     status: {
-      canStartCast: false, // computed
       cooldownCurrent: 0,
-      castProgress: 0,
-      isCastInProcess: false,
-      isSwitchedOn: false,
-      target: null,
     },
   },
   {
@@ -38,21 +32,15 @@ export default [
     config: {
       castSpeed: 500,
       castRange: 5000,
+      massRange: 0,
       abortRange: 8000,
       cooldownTotal: 15000,
-      massRange: 0,
       isMassive: false,
-      isSwitchable: false,
+      isAbortable: true,
       isRequiresTarget: true,
-      canAbort: true,
     },
     status: {
-      canStartCast: false, // computed
       cooldownCurrent: 0,
-      castProgress: 0,
-      isCastInProcess: false,
-      isSwitchedOn: false,
-      target: null,
     },
   },
 ]
