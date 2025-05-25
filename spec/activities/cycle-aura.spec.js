@@ -3,36 +3,41 @@ import BootcampAuras from '../../src/bootcamps/BootcampAuras.js'
 import Abilities from '../../src/classes/character/Abilities.js'
 import Activities from '../../src/classes/character/Activities.js'
 import Character from '../../src/classes/character/Character.js'
+import Coords from '../../src/classes/character/Coords.js'
+import Target from '../../src/classes/character/Target.js'
+import Health from '../../src/classes/character/Health.js'
+import Mana from '../../src/classes/character/Mana.js'
 
-function обновляется_ли_активити_при_активации_ауры() {
+async function обновляется_ли_активити_при_активации_ауры() {
+  const coords = new Coords()
+  const target = new Target(coords)
   const activities = new Activities()
-  const abilities = new Abilities(activities)
+  const health = new Health(null, null, activities)
+  const mana = new Mana(null, null, activities)
+  const abilities = new Abilities(activities, target, health, mana)
   const aura = auraAbilityFabric('Concentration Aura', 1n)
-  const idToToggle = aura.id
-  abilities.learn(aura)
+  await abilities.learn(aura)
 
-  // abilities.toggleAuraById(idToToggle, true)
-  aura.cast(activities)
+  await abilities.cast(aura)
 
   console.assert(
     activities.auras.length === 1 &&
       activities.persists.length === 0 &&
       activities.enforces.length === 1
   )
+  activities.removeAll()
 }
-function работает_ли_энфорс() {
+async function работает_ли_энфорс() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new BootcampAuras(player1)
   const oldAccuracy = player1.statsCombat.Accuracy
   const oldHpTotal = player1.health.total
   let oldHpCurrent = player1.health.current
   player1.sp = 505n
-  bootcamp.train('Concentration Aura', 1n)
+  await bootcamp.train('Concentration Aura', 1n)
   const aura = player1.abilities.auras[0]
-  const idToToggle = aura.id
 
-  // player1.abilities.toggleAuraById(idToToggle, true)
-  aura.cast(player1.activities)
+  await player1.abilities.cast(aura)
 
   console.assert(
     player1.activities.auras.length === 1 &&
@@ -40,41 +45,35 @@ function работает_ли_энфорс() {
       player1.health.total > oldHpTotal &&
       player1.health.current === oldHpCurrent
   )
-
   player1.activities.removeAll(['auras'])
-  // player1.abilities.toggleAuraById(idToToggle, false)
 }
-function работает_ли_пульсирование() {
+async function работает_ли_пульсирование() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new BootcampAuras(player1)
   let oldHpCurrent = player1.health.current
   player1.sp = 505n
-  bootcamp.train('Concentration Aura', 1n)
+  await bootcamp.train('Concentration Aura', 1n)
   const aura = player1.abilities.auras[0]
-  const idToToggle = aura.id
 
-  // player1.abilities.toggleAuraById(idToToggle, true)
-  aura.cast(player1.activities)
+  await player1.abilities.cast(aura)
 
   const intervalId = setInterval(() => {
     console.assert(player1.health.current < oldHpCurrent)
     oldHpCurrent = player1.health.current
+    if (oldHpCurrent < 150n) {
+      clearInterval(intervalId)
+      player1.activities.removeAll(['auras'])
+    }
   }, player1.activities.auras[0].config.pulseIntervalDelay + 33)
-
-  setTimeout(() => {
-    clearInterval(intervalId)
-    // player1.abilities.toggleAuraById(idToToggle, false)
-    player1.activities.removeAll(['auras'])
-  }, 2000)
 }
-function без_сп_обучение_не_срабатывает() {
+async function без_сп_обучение_не_срабатывает() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new BootcampAuras(player1)
   const oldAccuracy = player1.statsCombat.Accuracy
   const oldHpTotal = player1.health.total
   const oldHpCurrent = player1.health.current
   player1.sp = 55n
-  bootcamp.train('Concentration Aura', 1n)
+  await bootcamp.train('Concentration Aura', 1n)
 
   console.assert(
     player1.activities.auras.length === 0 &&

@@ -27,10 +27,10 @@ export default class BootcampAuras {
     )
   }
 
-  train(caption, level) {
+  async train(caption, level) {
     const aura = auraAbilityFabric(caption, level)
     if (aura.cost.sp > this.character.sp) return //console.log('low sp')
     this.character.sp -= aura.cost.sp
-    this.character.abilities.learn(aura)
+    await this.character.abilities.learn(aura)
   }
 }
