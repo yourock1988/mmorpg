@@ -1,7 +1,7 @@
-import equipmentFabric from '../src/abstract-fabric/items/fabrics/equipmentFabric.js'
-import Character from '../src/classes/character/Character.js'
-import FightHalf from '../src/classes/FightHalf.js'
-import viewCharacter from '../src/functions/viewCharacter.js'
+import equipmentFabric from '../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
+import Character from '../../src/classes/character/Character.js'
+import FightHalf from '../../src/classes/FightHalf.js'
+import viewCharacter from '../../src/functions/viewCharacter.js'
 
 const P1 = new Character('Player1', 'Orc', 'Fighter')
 const P2 = new Character('Player2', 'Orc', 'Mage')
