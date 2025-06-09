@@ -3,7 +3,7 @@ import persistsActivitiesList from '../lists/persistsActivitiesList.js'
 
 export default function persistActivityFabric(caption, level) {
   const findedActivity = persistsActivitiesList.find(
-    p => p.caption === caption && p.level === level
+    a => a.caption === caption && a.level === level
   )
   if (!findedActivity) throw new Error(`wrong persist`)
   const activityClone = {

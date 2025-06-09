@@ -9,7 +9,7 @@ export default class Equipment extends Item {
     this.stats = stats ?? {}
     this.hasActivity = hasActivity
     if (hasActivity) {
-      this.activity = equipmentActivityFabric(caption)
+      this.activity = equipmentActivityFabric(caption, 1n)
     }
   }
 }

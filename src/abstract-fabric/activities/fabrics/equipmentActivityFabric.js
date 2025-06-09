@@ -1,9 +1,9 @@
 import Activity from '../Activity.js'
 import equipmentsActivitiesList from '../lists/equipmentsActivitiesList.js'
 
-export default function equipmentActivityFabric(caption) {
+export default function equipmentActivityFabric(caption, level) {
   const findedActivity = equipmentsActivitiesList.find(
-    e => e.caption === caption
+    a => a.caption === caption && a.level === level
   )
   if (!findedActivity) throw new Error(`wrong equipment`)
   const activityClone = {
