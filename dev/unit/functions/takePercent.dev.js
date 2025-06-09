@@ -1,4 +1,4 @@
-import takePercent from '../../src/functions/takePercent.js'
+import takePercent from '../../../src/functions/takePercent.js'
 
 console.assert(
   2n === takePercent(10n)(20n) &&

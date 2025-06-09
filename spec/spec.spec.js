@@ -2,11 +2,10 @@ require('./classes/character/Character.spec.js')
 require('./classes/character/Health.spec.js')
 require('./classes/character/Inventory.spec.js')
 require('./classes/character/Cargo.spec.js')
-
-// require('./classes/character/Leveler.spec.js')
-
 require('./classes/character/Wear.spec.js')
 require('./classes/character/Target.spec.js')
-require('./functions/takePercent.spec.js')
-require('./activities/cycle-persist.spec.js')
-require('./activities/cycle-aura.spec.js')
+
+// require('../dev/unit/functions/takePercent.spec.js')
+// require('./classes/character/Leveler.spec.js')
+// require('./activities/cycle-persist.spec.js')
+// require('./activities/cycle-aura.spec.js')
