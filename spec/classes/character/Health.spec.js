@@ -37,6 +37,8 @@ function повышается_ли_здоровье_при_увеличении_
   stats.CON += 10n
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
+
+  stats.CON -= 10n
 }
 function повышается_ли_здоровье_при_левелапе() {
   const stats = statsBasic['Orc']['Fighter']

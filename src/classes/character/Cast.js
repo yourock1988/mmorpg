@@ -49,7 +49,7 @@ export default class Cast {
         state.castProgress++
         if (state.castProgress > 100) {
           state.castProgress = 0
-          console.log('cast completed')
+          // console.log('cast completed')
           clearInterval(intervalId)
           resolve(true)
         }
@@ -58,7 +58,7 @@ export default class Cast {
           clearInterval(intervalId)
           resolve(false)
         }
-        if (state.castProgress % 16 === 4) console.log(state.castProgress)
+        // if (state.castProgress % 16 === 4) console.log(state.castProgress)
       }, 10)
     })
   }

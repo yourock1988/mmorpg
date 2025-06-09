@@ -1,6 +1,6 @@
-import buffAbilityFabric from '../../src/abstract-fabric/abilities/fabrics/buffAbilityFabric.js'
-import buffsAbilitiesList from '../../src/abstract-fabric/abilities/lists/buffsAbilitiesList.js'
-import getMock from '../mock.js'
+import buffAbilityFabric from '../../../../src/abstract-fabric/abilities/fabrics/buffAbilityFabric.js'
+import buffsAbilitiesList from '../../../../src/abstract-fabric/abilities/lists/buffsAbilitiesList.js'
+import getMock from '../../../mock.js'
 
 const mock = getMock()
 const srcBuff = buffsAbilitiesList.find(b => b.caption === 'Heart Of Lion')

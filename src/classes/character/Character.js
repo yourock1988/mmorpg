@@ -35,9 +35,9 @@ export default class Character {
     this.clanId = 0n
     this.money = 0n
     this.sp = 0n
-    this.leveler.on('update:lvl', lvl =>
-      console.log(`${this.nick} перешел на уровень ${lvl}`)
-    )
+    // this.leveler.on('update:lvl', lvl =>
+    //   console.log(`${this.nick} перешел на уровень ${lvl}`)
+    // )
   }
 
   get statsBasic() {
