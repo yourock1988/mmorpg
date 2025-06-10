@@ -1,3 +1,4 @@
+import Ability from '../../abstract-fabric/abilities/Ability.js'
 import Cast from './Cast.js'
 
 export default class Abilities {
@@ -26,6 +27,7 @@ export default class Abilities {
   }
 
   async cast(ability) {
+    if (!(ability instanceof Ability)) return
     const { cost, config, status } = ability
     const { mana, health, target, activities, state } = this
     const cast = new Cast({ state, status, config, target, health, mana, cost })

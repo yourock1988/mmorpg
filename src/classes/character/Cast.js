@@ -18,6 +18,7 @@ export default class Cast {
   }
 
   stage1(state, status) {
+    // console.log('stage1')
     if (state.castProgress !== 0) return false
     if (state.isCastInProcess) return false
     if (status.isSwitchedOn) return false
@@ -26,8 +27,12 @@ export default class Cast {
   }
 
   async stage2(config, target) {
+    // console.log('stage2')
     if (config.isRequiresTarget) {
-      if (!target.hasTarget) return false
+      if (!target.hasTarget) {
+        console.log('требуется цель')
+        return false
+      }
       if (target.distance > config.castRange) {
         console.log('цель слишком далеко. преследую цель.')
         return await target.goto()
@@ -37,6 +42,7 @@ export default class Cast {
   }
 
   stage3(health, mana, cost) {
+    // console.log('stage3')
     if (health.current < cost.hp || mana.current < cost.mp) return false
     health.lose(cost.hp)
     mana.lose(cost.mp)
@@ -44,6 +50,7 @@ export default class Cast {
   }
 
   async stage4(config, target, state) {
+    // console.log('stage4')
     return await new Promise(resolve => {
       const intervalId = setInterval(() => {
         state.castProgress++
@@ -64,6 +71,7 @@ export default class Cast {
   }
 
   stage5(config, target, activities, ability) {
+    // console.log('stage5')
     const activity = ability.createActivity()
     if (!config.isRequiresTarget) {
       activities.add(activity)
