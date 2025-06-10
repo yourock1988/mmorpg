@@ -46,7 +46,9 @@ export default class Leveler extends EventEmitter {
     this.receiveExp(expToPrevLvl)
   }
 
-  forceSetLevel() {
-    // not implemented
+  forceSetLevel(newLevel) {
+    const exp = this.algBase ** (newLevel - 1n) - this.algBase ** this.lvl
+    const expToNextLvl = this.nextLvlExp - this.exp
+    this.receiveExp(expToNextLvl + exp)
   }
 }
