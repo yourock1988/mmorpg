@@ -1,5 +1,5 @@
 import abilityFabric from '../../src/abstract-fabric/abilities/abilityFabric.js'
-import BootcampAuras from '../../src/bootcamps/BootcampAuras.js'
+import Bootcamp from '../../src/bootcamps/Bootcamp.js'
 import Abilities from '../../src/classes/character/Abilities.js'
 import Activities from '../../src/classes/character/Activities.js'
 import Character from '../../src/classes/character/Character.js'
@@ -29,12 +29,12 @@ async function обновляется_ли_активити_при_актива�
 }
 async function работает_ли_энфорс() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new BootcampAuras(player1)
+  const bootcamp = new Bootcamp(player1)
   const oldAccuracy = player1.statsCombat.Accuracy
   const oldHpTotal = player1.health.total
   let oldHpCurrent = player1.health.current
   player1.sp = 505n
-  await bootcamp.train('Concentration Aura', 1n)
+  await bootcamp.train('aura', 'Concentration Aura', 1n)
   const aura = player1.abilities.auras[0]
 
   await player1.abilities.cast(aura)
@@ -49,10 +49,10 @@ async function работает_ли_энфорс() {
 }
 async function работает_ли_пульсирование() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new BootcampAuras(player1)
+  const bootcamp = new Bootcamp(player1)
   let oldHpCurrent = player1.health.current
   player1.sp = 505n
-  await bootcamp.train('Concentration Aura', 1n)
+  await bootcamp.train('aura', 'Concentration Aura', 1n)
   const aura = player1.abilities.auras[0]
 
   await player1.abilities.cast(aura)
@@ -68,12 +68,12 @@ async function работает_ли_пульсирование() {
 }
 async function без_сп_обучение_не_срабатывает() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new BootcampAuras(player1)
+  const bootcamp = new Bootcamp(player1)
   const oldAccuracy = player1.statsCombat.Accuracy
   const oldHpTotal = player1.health.total
   const oldHpCurrent = player1.health.current
   player1.sp = 55n
-  await bootcamp.train('Concentration Aura', 1n)
+  await bootcamp.train('aura', 'Concentration Aura', 1n)
 
   console.assert(
     player1.activities.auras.length === 0 &&

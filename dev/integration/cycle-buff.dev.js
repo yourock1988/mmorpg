@@ -1,14 +1,14 @@
-import BootcampBuffs from '../../src/bootcamps/BootcampBuffs.js'
+import Bootcamp from '../../src/bootcamps/Bootcamp.js'
 import Character from '../../src/classes/character/Character.js'
 
 async function баф_не_выучивается_при_недостатке_сп() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new BootcampBuffs(player1)
+  const bootcamp = new Bootcamp(player1)
   const oldAccuracy = player1.statsCombat.Accuracy
   const oldHpTotal = player1.health.total
   player1.sp = 55n
 
-  await bootcamp.train('Heart Of Lion', 1n)
+  await bootcamp.train('buff', 'Heart Of Lion', 1n)
 
   console.assert(
     player1.abilities.buffs.length === 0 &&
@@ -18,12 +18,12 @@ async function баф_не_выучивается_при_недостатке_с
 }
 async function баф_выучивается_при_наличии_сп() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new BootcampBuffs(player1)
+  const bootcamp = new Bootcamp(player1)
   const oldAccuracy = player1.statsCombat.Accuracy
   const oldHpTotal = player1.health.total
   player1.sp = 505n
 
-  await bootcamp.train('Heart Of Lion', 1n)
+  await bootcamp.train('buff', 'Heart Of Lion', 1n)
 
   console.assert(
     player1.activities.persists.length === 0 &&
@@ -33,10 +33,10 @@ async function баф_выучивается_при_наличии_сп() {
 }
 async function баф_кастуется_на_самого_себя() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new BootcampBuffs(player1)
+  const bootcamp = new Bootcamp(player1)
   player1.leveler.forceSetLevel(5n)
   player1.sp = 505n
-  await bootcamp.train('Heart Of Lion', 1n)
+  await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
   const oldAccuracy = player1.statsCombat.Accuracy
   const oldHpTotal = player1.health.total
@@ -54,11 +54,11 @@ async function баф_кастуется_на_самого_себя() {
 async function баф_кастуется_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new BootcampBuffs(player1)
+  const bootcamp = new Bootcamp(player1)
   player1.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
-  await bootcamp.train('Heart Of Lion', 1n)
+  await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
   const oldAccuracy = player2.statsCombat.Accuracy
   const oldHpTotal = player2.health.total
@@ -71,11 +71,11 @@ async function баф_кастуется_на_контрагенте() {
 async function энфорс_действует_после_завершения_каста_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new BootcampBuffs(player1)
+  const bootcamp = new Bootcamp(player1)
   player1.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
-  await bootcamp.train('Heart Of Lion', 1n)
+  await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
   const oldAccuracy = player2.statsCombat.Accuracy
   const oldHpTotal = player2.health.total
@@ -91,13 +91,13 @@ async function энфорс_действует_после_завершения_�
 async function пульсация_действует_после_завершения_каста_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new BootcampBuffs(player1)
+  const bootcamp = new Bootcamp(player1)
   player1.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
   player2.leveler.forceSetLevel(5n)
   player2.health.lose(200n)
-  await bootcamp.train('Heart Of Lion', 1n)
+  await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
   let oldHpCurrent = player2.health.current
 
@@ -115,11 +115,11 @@ async function пульсация_действует_после_завершен
 async function энфорс_до_завершения_каста_не_действует_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new BootcampBuffs(player1)
+  const bootcamp = new Bootcamp(player1)
   player1.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
-  await bootcamp.train('Heart Of Lion', 1n)
+  await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
   const oldAccuracy = player2.statsCombat.Accuracy
   const oldHpTotal = player2.health.total
@@ -137,13 +137,13 @@ async function энфорс_до_завершения_каста_не_дейст
 async function пульсация_до_завершения_каста_не_действует_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new BootcampBuffs(player1)
+  const bootcamp = new Bootcamp(player1)
   player1.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
   player2.leveler.forceSetLevel(5n)
   player2.health.lose(200n)
-  await bootcamp.train('Heart Of Lion', 1n)
+  await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
   let oldHpCurrent = player2.health.current
 
