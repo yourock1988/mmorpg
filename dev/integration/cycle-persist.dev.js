@@ -1,5 +1,5 @@
 import abilityFabric from '../../src/abstract-fabric/abilities/abilityFabric.js'
-import Bootcamp from '../../src/bootcamps/Bootcamp.js'
+import Bootcamp from '../../src/classes/Bootcamp.js'
 import Abilities from '../../src/classes/character/Abilities.js'
 import Activities from '../../src/classes/character/Activities.js'
 import Character from '../../src/classes/character/Character.js'

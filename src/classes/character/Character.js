@@ -41,7 +41,7 @@ export default class Character {
   }
 
   get statsBasic() {
-    return statsBasic[this.race][this.kind]
+    return { ...statsBasic[this.race][this.kind] }
   }
 
   get statsCombat() {

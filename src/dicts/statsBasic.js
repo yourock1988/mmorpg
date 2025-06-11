@@ -1,4 +1,4 @@
-const listStatsBasic = {
+export default {
   Orc: {
     Fighter: {
       STR: 41n,
@@ -18,5 +18,3 @@ const listStatsBasic = {
     },
   },
 }
-
-export default listStatsBasic

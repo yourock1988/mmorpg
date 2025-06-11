@@ -1,4 +1,4 @@
-import Bootcamp from '../../src/bootcamps/Bootcamp.js'
+import Bootcamp from '../../src/classes/Bootcamp.js'
 import Character from '../../src/classes/character/Character.js'
 
 async function баф_не_выучивается_при_недостатке_сп() {
