@@ -1,6 +1,7 @@
 import randomId from '../../functions/randomId.js'
 import auraActivityFabric from '../activities/fabrics/auraActivityFabric.js'
 import buffActivityFabric from '../activities/fabrics/buffActivityFabric.js'
+import debuffActivityFabric from '../activities/fabrics/debuffActivityFabric.js'
 import persistActivityFabric from '../activities/fabrics/persistActivityFabric.js'
 
 export default class Ability {
@@ -35,6 +36,8 @@ export default class Ability {
         return auraActivityFabric(this.caption, this.level)
       case 'buff':
         return buffActivityFabric(this.caption, this.level)
+      case 'debuff':
+        return debuffActivityFabric(this.caption, this.level)
     }
   }
 }
