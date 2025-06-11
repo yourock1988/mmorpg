@@ -1,5 +1,4 @@
-import auraAbilityFabric from '../../../src/abstract-fabric/abilities/fabrics/auraAbilityFabric.js'
-import persistAbilityFabric from '../../../src/abstract-fabric/abilities/fabrics/persistAbilityFabric.js'
+import abilityFabric from '../../../src/abstract-fabric/abilities/abilityFabric.js'
 import equipmentFabric from '../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
 import Abilities from '../../../src/classes/character/Abilities.js'
 import Activities from '../../../src/classes/character/Activities.js'
@@ -59,7 +58,7 @@ async function повышается_ли_здоровье_при_персист�
   const health = new Health(null, null, activities)
   const mana = new Mana(null, null, activities)
   const abilities = new Abilities(activities, target, health, mana)
-  const persist = persistAbilityFabric('Defensive Persist', 1n)
+  const persist = abilityFabric('persist', 'Defensive Persist', 1n)
 
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
@@ -78,7 +77,7 @@ async function повышается_ли_здоровье_при_ауре() {
   const abilities = new Abilities(activities, target, health, mana)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
-  const aura = auraAbilityFabric('Concentration Aura', 1n)
+  const aura = abilityFabric('aura', 'Concentration Aura', 1n)
   await abilities.learn(aura)
 
   await abilities.castByTypeId('aura', aura.id)
@@ -128,7 +127,7 @@ function понижается_ли_здоровье_при_дебаффе() {
 function одновременно_статы_лвл_пасивка_активка_бафы_дебафы_эквип() {
   const stats = statsBasic['Orc']['Fighter']
   const leveler = new Leveler()
-  const ability = auraAbilityFabric('Defensive Aura', 1n)
+  const ability = abilityFabric('aura', 'Defensive Aura', 1n)
   const abilities = new Abilities()
   const activities = new Activities(abilities)
   const health = new Health(stats, leveler, activities)

@@ -1,4 +1,4 @@
-import persistAbilityFabric from '../../../src/abstract-fabric/abilities/fabrics/persistAbilityFabric.js'
+import abilityFabric from '../../../src/abstract-fabric/abilities/abilityFabric.js'
 import Abilities from '../../../src/classes/character/Abilities.js'
 import Activities from '../../../src/classes/character/Activities.js'
 import Health from '../../../src/classes/character/Health.js'
@@ -7,7 +7,7 @@ function персист_изучается() {
   const activities = new Activities()
   const ablilities = new Abilities(activities)
 
-  ablilities.learn(persistAbilityFabric('Defensive Persist', 1n))
+  ablilities.learn(abilityFabric('persist', 'Defensive Persist', 1n))
 
   console.assert(ablilities.persists.length === 1)
   activities.removeAll()
@@ -17,7 +17,7 @@ function персист_активируется() {
   const activities = new Activities()
   const ablilities = new Abilities(activities)
 
-  ablilities.learn(persistAbilityFabric('Defensive Persist', 1n))
+  ablilities.learn(abilityFabric('persist', 'Defensive Persist', 1n))
 
   console.assert(activities.persists.length === 1)
   activities.removeAll()
@@ -30,7 +30,7 @@ function персист_енфорсится() {
   let oldHPtotal = health.total
   let oldHPcurrent = health.current
 
-  ablilities.learn(persistAbilityFabric('Defensive Persist', 1n))
+  ablilities.learn(abilityFabric('persist', 'Defensive Persist', 1n))
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
   activities.removeAll()
@@ -41,7 +41,7 @@ function персист_пульсирует() {
   const ablilities = new Abilities(activities)
   const health = new Health(null, null, activities)
 
-  ablilities.learn(persistAbilityFabric('Defensive Persist', 1n))
+  ablilities.learn(abilityFabric('persist', 'Defensive Persist', 1n))
 
   let oldHPtotal = health.total
   let oldHPcurrent = health.current
@@ -64,7 +64,7 @@ function всё_сразу() {
   let oldHPtotal = health.total
   let oldHPcurrent = health.current
 
-  ablilities.learn(persistAbilityFabric('Defensive Persist', 1n))
+  ablilities.learn(abilityFabric('persist', 'Defensive Persist', 1n))
 
   console.assert(
     activities.persists.length === 1 &&

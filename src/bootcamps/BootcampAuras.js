@@ -1,4 +1,4 @@
-import auraAbilityFabric from '../abstract-fabric/abilities/fabrics/auraAbilityFabric.js'
+import abilityFabric from '../abstract-fabric/abilities/abilityFabric.js'
 import aurasAbilitiesList from '../abstract-fabric/abilities/lists/aurasAbilitiesList.js'
 import profAbilitiesCaptions from '../dicts/profAbilitiesCaptions.js'
 import profHierarhy from '../dicts/profHierarhy.js'
@@ -28,7 +28,7 @@ export default class BootcampAuras {
   }
 
   async train(caption, level) {
-    const aura = auraAbilityFabric(caption, level)
+    const aura = abilityFabric('aura', caption, level)
     if (aura.cost.sp > this.character.sp) return //console.log('low sp')
     this.character.sp -= aura.cost.sp
     await this.character.abilities.learn(aura)

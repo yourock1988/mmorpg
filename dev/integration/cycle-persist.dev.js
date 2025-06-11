@@ -1,4 +1,4 @@
-import persistAbilityFabric from '../../src/abstract-fabric/abilities/fabrics/persistAbilityFabric.js'
+import abilityFabric from '../../src/abstract-fabric/abilities/abilityFabric.js'
 import BootcampPersists from '../../src/bootcamps/BootcampPersists.js'
 import Abilities from '../../src/classes/character/Abilities.js'
 import Activities from '../../src/classes/character/Activities.js'
@@ -15,7 +15,7 @@ async function обновляется_ли_персист_активити_пр�
   const health = new Health(null, null, activities)
   const mana = new Mana(null, null, activities)
   const abilities = new Abilities(activities, target, health, mana)
-  const persist = persistAbilityFabric('Defensive Persist', 1n)
+  const persist = abilityFabric('persist', 'Defensive Persist', 1n)
 
   await abilities.learn(persist)
 

@@ -1,4 +1,4 @@
-import persistAbilityFabric from '../abstract-fabric/abilities/fabrics/persistAbilityFabric.js'
+import abilityFabric from '../abstract-fabric/abilities/abilityFabric.js'
 import persistsAbilitiesList from '../abstract-fabric/abilities/lists/persistsAbilitiesList.js'
 import profAbilitiesCaptions from '../dicts/profAbilitiesCaptions.js'
 import profHierarhy from '../dicts/profHierarhy.js'
@@ -28,7 +28,7 @@ export default class BootcampPersists {
   }
 
   async train(caption, level) {
-    const persist = persistAbilityFabric(caption, level)
+    const persist = abilityFabric('persist', caption, level)
     if (persist.cost.sp > this.character.sp) return //console.log('low sp')
     this.character.sp -= persist.cost.sp
     await this.character.abilities.learn(persist)

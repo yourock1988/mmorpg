@@ -1,4 +1,4 @@
-import auraAbilityFabric from '../../src/abstract-fabric/abilities/fabrics/auraAbilityFabric.js'
+import abilityFabric from '../../src/abstract-fabric/abilities/abilityFabric.js'
 import BootcampAuras from '../../src/bootcamps/BootcampAuras.js'
 import Abilities from '../../src/classes/character/Abilities.js'
 import Activities from '../../src/classes/character/Activities.js'
@@ -15,7 +15,7 @@ async function обновляется_ли_активити_при_актива�
   const health = new Health(null, null, activities)
   const mana = new Mana(null, null, activities)
   const abilities = new Abilities(activities, target, health, mana)
-  const aura = auraAbilityFabric('Concentration Aura', 1n)
+  const aura = abilityFabric('aura', 'Concentration Aura', 1n)
   await abilities.learn(aura)
 
   await abilities.cast(aura)

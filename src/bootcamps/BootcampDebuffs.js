@@ -1,4 +1,4 @@
-import debuffAbilityFabric from '../abstract-fabric/abilities/fabrics/debuffAbilityFabric.js'
+import abilityFabric from '../abstract-fabric/abilities/abilityFabric.js'
 import debuffsAbilitiesList from '../abstract-fabric/abilities/lists/debuffsAbilitiesList.js'
 import profAbilitiesCaptions from '../dicts/profAbilitiesCaptions.js'
 import profHierarhy from '../dicts/profHierarhy.js'
@@ -28,7 +28,7 @@ export default class BootcampDebuffs {
   }
 
   async train(caption, level) {
-    const debuff = debuffAbilityFabric(caption, level)
+    const debuff = abilityFabric('debuff', caption, level)
     if (debuff.cost.sp > this.character.sp) return //console.log('low sp')
     this.character.sp -= debuff.cost.sp
     await this.character.abilities.learn(debuff)

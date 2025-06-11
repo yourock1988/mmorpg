@@ -1,4 +1,4 @@
-import buffAbilityFabric from '../abstract-fabric/abilities/fabrics/buffAbilityFabric.js'
+import abilityFabric from '../abstract-fabric/abilities/abilityFabric.js'
 import buffsAbilitiesList from '../abstract-fabric/abilities/lists/buffsAbilitiesList.js'
 import profAbilitiesCaptions from '../dicts/profAbilitiesCaptions.js'
 import profHierarhy from '../dicts/profHierarhy.js'
@@ -28,7 +28,7 @@ export default class BootcampBuffs {
   }
 
   async train(caption, level) {
-    const buff = buffAbilityFabric(caption, level)
+    const buff = abilityFabric('buff', caption, level)
     if (buff.cost.sp > this.character.sp) return //console.log('low sp')
     this.character.sp -= buff.cost.sp
     await this.character.abilities.learn(buff)
