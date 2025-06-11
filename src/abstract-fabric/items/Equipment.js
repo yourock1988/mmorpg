@@ -1,4 +1,4 @@
-import equipmentActivityFabric from '../activities/fabrics/equipmentActivityFabric.js'
+import activityFabric from '../activities/activityFabric.js'
 import Item from './Item.js'
 
 export default class Equipment extends Item {
@@ -9,7 +9,7 @@ export default class Equipment extends Item {
     this.stats = stats ?? {}
     this.hasActivity = hasActivity
     if (hasActivity) {
-      this.activity = equipmentActivityFabric(caption, 1n)
+      this.activity = activityFabric('equipment', caption, 1n)
     }
   }
 }

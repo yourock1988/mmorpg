@@ -1,8 +1,5 @@
 import randomId from '../../functions/randomId.js'
-import auraActivityFabric from '../activities/fabrics/auraActivityFabric.js'
-import buffActivityFabric from '../activities/fabrics/buffActivityFabric.js'
-import debuffActivityFabric from '../activities/fabrics/debuffActivityFabric.js'
-import persistActivityFabric from '../activities/fabrics/persistActivityFabric.js'
+import activityFabric from '../activities/activityFabric.js'
 
 export default class Ability {
   constructor({ type, caption, level, cost, config, status }) {
@@ -29,15 +26,6 @@ export default class Ability {
   // }
 
   createActivity() {
-    switch (this.type) {
-      case 'persist':
-        return persistActivityFabric(this.caption, this.level)
-      case 'aura':
-        return auraActivityFabric(this.caption, this.level)
-      case 'buff':
-        return buffActivityFabric(this.caption, this.level)
-      case 'debuff':
-        return debuffActivityFabric(this.caption, this.level)
-    }
+    return activityFabric(this.type, this.caption, this.level)
   }
 }
