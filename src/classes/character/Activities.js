@@ -28,7 +28,7 @@ export default class Activities extends EventEmitter {
   add(activity) {
     if (!(activity instanceof Activity)) throw new Error('wrong activity inst')
     this[activity.type + 's'].push(activity)
-    if (!activity.config.canPulsing) return
+    if (!activity.config.isPulsing) return
     if (!this.health) return
     activity.pulseStart(this.combat, this.health, this.mana)
     if (activity.config.duration === Infinity) return

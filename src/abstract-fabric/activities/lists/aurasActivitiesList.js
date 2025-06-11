@@ -7,7 +7,7 @@ export default [
     desc: 'увеличивает точность и макс хп. потребляет хп',
     config: {
       isSeen: true,
-      canPulsing: true,
+      isPulsing: true,
       duration: Infinity,
       pulseIntervalDelay: 300,
     },
@@ -34,7 +34,7 @@ export default [
     desc: 'увеличивает скорость атаки и макс хп. потребляет мп',
     config: {
       isSeen: true,
-      canPulsing: true,
+      isPulsing: true,
       duration: Infinity,
       pulseIntervalDelay: 300,
     },

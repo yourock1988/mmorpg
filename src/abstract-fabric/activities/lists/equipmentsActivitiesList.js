@@ -7,7 +7,7 @@ export default [
     desc: 'увеличивает защиту, макс хп и реген хп',
     config: {
       isSeen: false,
-      canPulsing: true,
+      isPulsing: true,
       duration: Infinity,
       pulseIntervalDelay: 300,
     },

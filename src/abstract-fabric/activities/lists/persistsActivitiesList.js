@@ -6,9 +6,8 @@ export default [
     level: 1n,
     desc: 'увеличивает защиту, макс хп и реген хп',
     config: {
-      isCancelable: false,
       isSeen: false,
-      canPulsing: true,
+      isPulsing: true,
       duration: Infinity,
       pulseIntervalDelay: 300,
     },
