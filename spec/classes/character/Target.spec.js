@@ -16,8 +16,9 @@ async function прерывание_хотьбы_к_цели() {
   const anotherCharacter = new Character('Player1', 'Orc', 'Fighter')
   const coords = new Coords()
   const target = new Target(coords)
+  coords.teleportTo({ x: 15, y: 10 })
   target.set(anotherCharacter)
-  setTimeout(() => target.cancel(), 300)
+  setTimeout(() => target.cancel(), 500)
 
   let res = await target.goto()
 
@@ -28,8 +29,9 @@ async function прерывание_хотьбы_при_установке_др�
   const anotherCharacter2 = new Character('Player2', 'Orc', 'Fighter')
   const coords = new Coords()
   const target = new Target(coords)
+  coords.teleportTo({ x: 15, y: 10 })
   target.set(anotherCharacter)
-  setTimeout(() => target.set(anotherCharacter2), 300)
+  setTimeout(() => target.set(anotherCharacter2), 500)
 
   let res = await target.goto()
 

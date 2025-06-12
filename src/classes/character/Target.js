@@ -1,32 +1,33 @@
-import distance from '../../functions/distance.js'
-
 export default class Target {
+  #interrupt
+
   constructor(ownerCoords) {
     this.subject = null
     this.hasTarget = false
     this.ownerCoords = ownerCoords
-    Object.assign(this, Promise.withResolvers())
+    this.#interrupt = { break: false }
   }
 
   set(subject) {
     this.cancel()
     this.subject = subject
     this.hasTarget = true
-    Object.assign(this, Promise.withResolvers())
   }
 
   cancel() {
     this.subject = null
     this.hasTarget = false
-    this.resolve(false)
+    this.#interrupt.break = true
+    this.#interrupt = { break: false }
   }
 
   async goto() {
     if (!this.hasTarget) return false
-    return await this.ownerCoords.moveTo(this)
+    return await this.ownerCoords.moveTo(this.subject.coords, this.#interrupt)
   }
 
   get distance() {
-    if (this.hasTarget) return distance(this.ownerCoords, this.subject.coords)
+    if (this.hasTarget)
+      return this.ownerCoords.getDistanceTo(this.subject.coords)
   }
 }
