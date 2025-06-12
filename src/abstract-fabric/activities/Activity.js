@@ -22,6 +22,7 @@ export default class Activity {
   }
 
   pulseStart(combat, health, mana) {
+    // console.log(combat) //! пульс на combat stats не понятно зачем
     this.status.pulseIntervalId = setInterval(() => {
       this.pulse.toCombat?.(combat)
       this.pulse.toHealth?.(health)
