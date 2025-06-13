@@ -31,7 +31,7 @@ export default class Abilities {
     const { cost, config, status } = ability
     const { mana, health, target, activities, state } = this
     const cast = new Cast({ state, status, config, target, health, mana, cost })
-    await cast.run(activities, ability)
+    return await cast.run(activities, ability)
   }
 
   async learn(ability) {

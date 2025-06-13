@@ -10,11 +10,13 @@ export default class Cast {
   }
 
   async run(activities, ability) {
-    this.stage1(this.state, this.status) &&
+    return (
+      this.stage1(this.state, this.status) &&
       (await this.stage2(this.config, this.target)) &&
       this.stage3(this.health, this.mana, this.cost) &&
       (await this.stage4(this.config, this.target, this.state)) &&
       this.stage5(this.config, this.target, activities, ability)
+    )
   }
 
   stage1(state, status) {
@@ -30,12 +32,12 @@ export default class Cast {
     // console.log('stage2')
     if (config.isRequiresTarget) {
       if (!target.hasTarget) {
-        console.log('требуется цель')
+        // console.log('требуется цель')
         return false
       }
       if (target.distance > config.castRange) {
-        console.log('цель слишком далеко. преследую цель.')
-        return await target.goto()
+        // console.log('цель слишком далеко. преследую цель.')
+        return await target.goto(config.castRange)
       }
     }
     return true
@@ -75,9 +77,12 @@ export default class Cast {
     const activity = ability.createActivity()
     if (!config.isRequiresTarget) {
       activities.add(activity)
+      return true
     }
     if (config.isRequiresTarget && target.hasTarget) {
       target.subject.activities.add(activity)
+      return true
     }
+    return false
   }
 }

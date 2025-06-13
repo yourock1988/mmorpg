@@ -21,9 +21,13 @@ export default class Target {
     this.#interrupt = { break: false }
   }
 
-  async goto() {
+  async goto(gap = 1) {
     if (!this.hasTarget) return false
-    return await this.ownerCoords.moveTo(this.subject.coords, this.#interrupt)
+    return await this.ownerCoords.moveTo(
+      this.subject.coords,
+      this.#interrupt,
+      gap
+    )
   }
 
   get distance() {

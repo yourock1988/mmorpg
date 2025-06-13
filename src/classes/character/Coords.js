@@ -17,17 +17,19 @@ export default class Coords {
     this.y = coords.y
   }
 
-  async moveTo(coords, interrupt = { break: false }) {
+  async moveTo(coords, interrupt = { break: false }, gap = 1) {
     this.#interrupt.break = true
     this.#interrupt = interrupt
-    while (await this.stepTo(coords)) if (interrupt.break) return false
+    while ((await this.stepTo(coords)) > gap) if (interrupt.break) return false
     return true
   }
 
   async stepTo(coords) {
     await wait(100)
     Object.assign(this, step(this, coords, 88))
-    return this.getDistanceTo(coords) > 1
+    // console.log(this)
+    // console.log(this.getDistanceTo(coords))
+    return this.getDistanceTo(coords)
   }
 
   stop() {
