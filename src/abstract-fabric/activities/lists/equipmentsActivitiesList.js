@@ -6,10 +6,10 @@ export default [
     level: 1n,
     desc: 'увеличивает защиту, макс хп и реген хп',
     config: {
-      isSeen: false,
-      isPulsing: true,
-      duration: Infinity,
       pulseIntervalDelay: 300,
+      isPulsing: true,
+      isSeen: false,
+      duration: Infinity,
     },
     status: {
       pulseIntervalId: 0,
@@ -25,6 +25,25 @@ export default [
     pulse: {
       toHealth(health) {
         health.gain(7n)
+      },
+    },
+  },
+  {
+    caption: 'Gloves Of Monk',
+    level: 1n,
+    desc: 'увеличивает макс мп',
+    config: {
+      pulseIntervalDelay: 300,
+      isPulsing: true,
+      isSeen: false,
+      duration: Infinity,
+    },
+    status: {
+      pulseIntervalId: 0,
+    },
+    enforce: {
+      toMana(mana) {
+        mana.protoTotal += takePercent(10n)(mana.protoTotal)
       },
     },
   },

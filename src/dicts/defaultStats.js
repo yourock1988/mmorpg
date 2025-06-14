@@ -1,0 +1,16 @@
+export default {
+  hpTotal: 1000,
+  hpRegen: 10,
+  mpTotal: 800,
+  mpRegen: 8,
+  PAtk: 80,
+  PDef: 120,
+  Accuracy: 100,
+  CritRate: 100,
+  AtkSpd: 600,
+  MAtk: 80,
+  MDef: 120,
+  Evasion: 80,
+  Speed: 500,
+  CastSpd: 600,
+}

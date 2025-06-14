@@ -1,5 +1,8 @@
 require('../spec/spec.spec.js')
 
+require('./unit/classes/character/StatsCombat2.dev.js')
+require('./unit/functions/calcStatsCombat2.dev.js')
+
 require('./unit/functions/takePercent.dev.js')
 require('./unit/classes/character/Coords.dev.js')
 require('./unit/classes/character/Leveler.dev.js')
