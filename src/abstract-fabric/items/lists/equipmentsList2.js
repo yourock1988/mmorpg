@@ -20,7 +20,7 @@ export default [
     caption: 'Helmet Of Truth',
     grade: 'D',
     stats: { PDef: 33 },
-    hasActivity: true,
+    hasActivity: false,
   },
   {
     slotName: 'gloves',

@@ -1,4 +1,5 @@
 import takePercent from '../../../functions/takePercent.js'
+import { addPerc } from '../../../functions/utils.js'
 
 export default [
   {
@@ -43,7 +44,10 @@ export default [
     },
     enforce: {
       toMana(mana) {
-        mana.protoTotal += takePercent(10n)(mana.protoTotal)
+        mana.protoTotal = addPerc(mana.protoTotal, 10)
+      },
+      toHealth(health) {
+        health.protoTotal = addPerc(health.protoTotal, 10)
       },
     },
   },

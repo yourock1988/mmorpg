@@ -40,3 +40,6 @@ ABILITIES: (абилити наносит активити на цель)
 
 срочно создать фабрику для statsBasic 
 потому что базовые статы общие для всех персонажей что неприемлемо
+
+
+StatsCombat = StatsBasic + Leveler.lvl + Wear.stats + activities.toCombat()

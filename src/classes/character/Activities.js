@@ -15,14 +15,14 @@ export default class Activities extends EventEmitter {
   }
 
   interlinkedWithinHealth(health) {
-    if (!(health instanceof Health)) throw new Error('wrong health inst')
+    // if (!(health instanceof Health)) throw new Error('wrong health inst')
     this.health = health
     this.health.on('life-is-over', () =>
       this.removeAll(['auras', 'buffs', 'debuffs', 'consumeds'])
     )
   }
   interlinkedWithinMana(mana) {
-    if (!(mana instanceof Mana)) throw new Error('wrong mana inst')
+    // if (!(mana instanceof Mana)) throw new Error('wrong mana inst')
     this.mana = mana
     this.mana.on('mana-is-over', () => this.removeAll(['auras']))
   }
