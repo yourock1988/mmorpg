@@ -1,20 +1,20 @@
 export default {
   Orc: {
     Fighter: {
-      STR: 41n,
-      DEX: 25n,
-      CON: 55n,
-      INT: 7n,
-      WIT: 11n,
-      MEN: 15n,
+      STR: 40,
+      DEX: 26,
+      CON: 43,
+      INT: 18,
+      WIT: 12,
+      MEN: 21,
     },
     Mage: {
-      STR: 21n,
-      DEX: 35n,
-      CON: 35n,
-      INT: 27n,
-      WIT: 21n,
-      MEN: 45n,
+      STR: 21,
+      DEX: 35,
+      CON: 35,
+      INT: 27,
+      WIT: 21,
+      MEN: 45,
     },
   },
 }

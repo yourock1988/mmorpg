@@ -10,8 +10,8 @@ export default class FightHalf {
 
   get damage() {
     const d = calcDamage(
-      this.attacker.statsCombat.PAtk,
-      this.defender.statsCombat.PDef
+      this.attacker.statsCombat.current.PAtk,
+      this.defender.statsCombat.current.PDef
     )
     this.v && console.log(`${this.defender.nick} получает урон ${d}!`)
     return d
@@ -19,7 +19,7 @@ export default class FightHalf {
 
   autoAttack() {
     this.attack()
-    const delay = 100000 / Number(this.attacker.statsCombat.AtkSpd)
+    const delay = 100000 / Number(this.attacker.statsCombat.current.AtkSpd)
     this.interval = setInterval(this.attack.bind(this), delay)
   }
 

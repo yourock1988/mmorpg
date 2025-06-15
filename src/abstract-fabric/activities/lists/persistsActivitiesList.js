@@ -1,4 +1,4 @@
-import takePercent from '../../../functions/takePercent.js'
+import { addPercent } from '../../../functions/utils.js'
 
 export default [
   {
@@ -16,15 +16,15 @@ export default [
     },
     enforce: {
       toCombat(combat) {
-        combat.PDef += takePercent(10n)(combat.PDef)
+        combat.PDef = addPercent(combat.PDef, 10)
       },
       toHealth(health) {
-        health.protoTotal += takePercent(10n)(health.protoTotal)
+        health.protoTotal = addPercent(health.protoTotal, 10)
       },
     },
     pulse: {
       toHealth(health) {
-        health.gain(7n)
+        health.gain(7)
       },
     },
   },

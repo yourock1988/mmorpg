@@ -15,6 +15,6 @@ console.assert(
 console.assert(buff.cost !== srcBuff.cost)
 console.assert(buff.config !== srcBuff.status)
 console.assert(buff.status !== srcBuff.status)
-console.assert(buff.cost.hp === 0n)
+console.assert(buff.cost.hp === 0)
 console.assert(buff.config.massRange === 0)
 console.assert(buff.status.cooldownCurrent === 0)

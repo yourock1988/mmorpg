@@ -7,13 +7,16 @@ import Coords from '../../src/classes/character/Coords.js'
 import Target from '../../src/classes/character/Target.js'
 import Health from '../../src/classes/character/Health.js'
 import Mana from '../../src/classes/character/Mana.js'
+import Leveler from '../../src/classes/character/Leveler.js'
 
 async function обновляется_ли_активити_при_активации_ауры() {
+  const stats = { current: { hpTotal: 430 } }
+  const leveler = new Leveler()
   const coords = new Coords()
   const target = new Target(coords)
   const activities = new Activities()
-  const health = new Health(null, null, activities)
-  const mana = new Mana(null, null, activities)
+  const health = new Health(stats, leveler, activities)
+  const mana = new Mana(stats, leveler, activities)
   const abilities = new Abilities(activities, target, health, mana)
   const aura = abilityFabric('aura', 'Concentration Aura', 1n)
   await abilities.learn(aura)
@@ -30,7 +33,7 @@ async function обновляется_ли_активити_при_актива�
 async function работает_ли_энфорс() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
-  const oldAccuracy = player1.statsCombat.Accuracy
+  const oldAccuracy = player1.statsCombat.current.Accuracy
   const oldHpTotal = player1.health.total
   let oldHpCurrent = player1.health.current
   player1.sp = 505n
@@ -41,7 +44,7 @@ async function работает_ли_энфорс() {
 
   console.assert(
     player1.activities.auras.length === 1 &&
-      player1.statsCombat.Accuracy > oldAccuracy &&
+      player1.statsCombat.current.Accuracy > oldAccuracy &&
       player1.health.total > oldHpTotal &&
       player1.health.current === oldHpCurrent
   )
@@ -60,7 +63,7 @@ async function работает_ли_пульсирование() {
   const intervalId = setInterval(() => {
     console.assert(player1.health.current < oldHpCurrent)
     oldHpCurrent = player1.health.current
-    if (oldHpCurrent < 150n) {
+    if (oldHpCurrent < 421n) {
       clearInterval(intervalId)
       player1.activities.removeAll(['auras'])
     }
@@ -69,7 +72,7 @@ async function работает_ли_пульсирование() {
 async function без_сп_обучение_не_срабатывает() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
-  const oldAccuracy = player1.statsCombat.Accuracy
+  const oldAccuracy = player1.statsCombat.current.Accuracy
   const oldHpTotal = player1.health.total
   const oldHpCurrent = player1.health.current
   player1.sp = 55n
@@ -77,7 +80,7 @@ async function без_сп_обучение_не_срабатывает() {
 
   console.assert(
     player1.activities.auras.length === 0 &&
-      player1.statsCombat.Accuracy === oldAccuracy &&
+      player1.statsCombat.current.Accuracy === oldAccuracy &&
       player1.health.total === oldHpTotal &&
       player1.health.current === oldHpCurrent
   )

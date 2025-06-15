@@ -7,8 +7,8 @@ export default function viewCharacter(c) {
     hpTotal: c.health.total,
     hpCurrent: c.health.current,
     isLive: c.health.isLive,
-    PAtk: c.statsCombat.PAtk,
-    PDef: c.statsCombat.PDef,
-    AtkSpd: c.statsCombat.AtkSpd,
+    PAtk: c.statsCombat.current.PAtk,
+    PDef: c.statsCombat.current.PDef,
+    AtkSpd: c.statsCombat.current.AtkSpd,
   })
 }

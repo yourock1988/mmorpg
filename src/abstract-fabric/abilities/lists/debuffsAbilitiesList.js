@@ -4,8 +4,8 @@ export default [
     level: 1n,
     cost: {
       sp: 100n,
-      mp: 50n,
-      hp: 0n,
+      mp: 50,
+      hp: 0,
     },
     config: {
       castSpeed: 500,

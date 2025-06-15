@@ -1,6 +1,6 @@
-import calcStatsCombat2 from '../../functions/calcStatsCombat2.js'
+import calcStatsCombat from '../../functions/calcStatsCombat.js'
 
-export default class StatsCombat2 {
+export default class StatsCombat {
   constructor(statsBasic, leveler, wear, activities) {
     this.statsBasic = statsBasic
     this.leveler = leveler
@@ -15,7 +15,7 @@ export default class StatsCombat2 {
       wear: { stats },
       activities,
     } = this
-    const statsCombat = calcStatsCombat2(statsBasic, Number(lvl))
+    const statsCombat = calcStatsCombat(statsBasic, Number(lvl))
     Object.entries(stats).forEach(([key, value]) => (statsCombat[key] += value))
     activities.enforces.forEach(e => e.toCombat?.(statsCombat))
     return statsCombat

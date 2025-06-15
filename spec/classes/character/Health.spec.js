@@ -7,11 +7,13 @@ import Health from '../../../src/classes/character/Health.js'
 import Inventory from '../../../src/classes/character/Inventory.js'
 import Leveler from '../../../src/classes/character/Leveler.js'
 import Mana from '../../../src/classes/character/Mana.js'
+import StatsCombat from '../../../src/classes/character/StatsCombat.js'
 import Target from '../../../src/classes/character/Target.js'
-import statsBasic from '../../../src/dicts/statsBasic.js'
+import Wear from '../../../src/classes/character/Wear.js'
+import sb from '../../../src/dicts/statsBasic.js'
 
 function умрёт_ли_без_здоровья() {
-  const stats = statsBasic['Orc']['Fighter']
+  const stats = { current: { hpTotal: 430 } }
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
@@ -21,29 +23,29 @@ function умрёт_ли_без_здоровья() {
 
   console.assert(
     health.total === oldHPtotal &&
-      health.current === 0n &&
+      health.current === 0 &&
       health.isLive === false
   )
 }
 function повышается_ли_здоровье_при_увеличении_CON() {
-  const stats = statsBasic['Orc']['Mage']
+  const stats = { current: { hpTotal: 430 } }
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
 
-  stats.CON += 10n
+  stats.current.hpTotal += 50
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
-
-  stats.CON -= 10n
 }
 function повышается_ли_здоровье_при_левелапе() {
-  const stats = statsBasic['Orc']['Fighter']
-  const leveler = new Leveler()
   const activities = new Activities()
-  const health = new Health(stats, leveler, activities)
+  const statsBasic = sb.Orc.Fighter
+  const leveler = new Leveler()
+  const wear = new Wear(activities)
+  const statsCombat = new StatsCombat(statsBasic, leveler, wear, activities)
+  const health = new Health(statsCombat, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
 
@@ -52,11 +54,13 @@ function повышается_ли_здоровье_при_левелапе() {
   console.assert(health.total > oldHPtotal && health.current > oldHPcurrent)
 }
 async function повышается_ли_здоровье_при_персисте() {
+  const stats = { current: { hpTotal: 430, mpTotal: 130 } }
+  const leveler = new Leveler()
   const coords = new Coords()
   const target = new Target(coords)
   const activities = new Activities()
-  const health = new Health(null, null, activities)
-  const mana = new Mana(null, null, activities)
+  const health = new Health(stats, leveler, activities)
+  const mana = new Mana(stats, leveler, activities)
   const abilities = new Abilities(activities, target, health, mana)
   const persist = abilityFabric('persist', 'Defensive Persist', 1n)
 
@@ -69,11 +73,13 @@ async function повышается_ли_здоровье_при_персист�
   activities.removeAll()
 }
 async function повышается_ли_здоровье_при_ауре() {
+  const stats = { current: { hpTotal: 430, mpTotal: 130 } }
+  const leveler = new Leveler()
   const coords = new Coords()
   const target = new Target(coords)
   const activities = new Activities()
-  const health = new Health(null, null, activities)
-  const mana = new Mana(null, null, activities)
+  const health = new Health(stats, leveler, activities)
+  const mana = new Mana(stats, leveler, activities)
   const abilities = new Abilities(activities, target, health, mana)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
@@ -87,9 +93,10 @@ async function повышается_ли_здоровье_при_ауре() {
 }
 function повышается_ли_здоровье_при_снаряжении() {
   const activities = new Activities()
+  const stats = { current: { hpTotal: 430 } }
+  const leveler = new Leveler()
   const inventory = new Inventory(activities)
-  const health = new Health(null, null, activities)
-  const mana = new Mana(null, null, activities)
+  const health = new Health(stats, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
   const equipment = equipmentFabric('Helmet Of Truth')
@@ -101,7 +108,7 @@ function повышается_ли_здоровье_при_снаряжении(
   activities.removeAll(['equipments'])
 }
 function повышается_ли_здоровье_при_баффе() {
-  const stats = statsBasic['Orc']['Fighter']
+  const stats = { current: { hpTotal: 430 } }
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
@@ -113,7 +120,7 @@ function повышается_ли_здоровье_при_баффе() {
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
 }
 function понижается_ли_здоровье_при_дебаффе() {
-  const stats = statsBasic['Orc']['Fighter']
+  const stats = { current: { hpTotal: 430 } }
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
@@ -125,7 +132,7 @@ function понижается_ли_здоровье_при_дебаффе() {
   console.assert(health.total < oldHPtotal && health.current <= health.total)
 }
 function одновременно_статы_лвл_пасивка_активка_бафы_дебафы_эквип() {
-  const stats = statsBasic['Orc']['Fighter']
+  const stats = { current: { hpTotal: 430 } }
   const leveler = new Leveler()
   const ability = abilityFabric('aura', 'Defensive Aura', 1n)
   const abilities = new Abilities()
@@ -136,7 +143,7 @@ function одновременно_статы_лвл_пасивка_активк�
 
   oldHPtotal = health.total
   oldHPcurrent = health.current
-  stats.CON += 10n
+  stats.current.hpTotal += 50
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
 
   oldHPtotal = health.total

@@ -2,6 +2,7 @@ import Activities from '../../../src/classes/character/Activities.js'
 import Health from '../../../src/classes/character/Health.js'
 import Inventory from '../../../src/classes/character/Inventory.js'
 import equipmentFabric from '../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
+import Leveler from '../../../src/classes/character/Leveler.js'
 
 function tryToWearEquipment() {
   const inventory = new Inventory()
@@ -17,9 +18,9 @@ function tryToWearEquipment() {
   inventory.wearItemById(idToWear3)
 
   console.assert(
-    inventory.wear.stats.PAtk === 42n &&
-      inventory.wear.stats.AtkSpd === 11n &&
-      inventory.wear.stats.PDef === 55n &&
+    inventory.wear.stats.PAtk === 42 &&
+      inventory.wear.stats.AtkSpd === 11 &&
+      inventory.wear.stats.PDef === 55 &&
       inventory.cargo.items.length === 0
   )
 }
@@ -40,7 +41,7 @@ function tryToUnwearEquipment() {
   inventory.unwearItemBySlotName('weapon')
 
   console.assert(
-    inventory.wear.stats.PDef === 55n && inventory.cargo.items.length === 1
+    inventory.wear.stats.PDef === 55 && inventory.cargo.items.length === 1
   )
 }
 
@@ -62,16 +63,18 @@ function tryToChangeWearEquipment() {
   inventory.wearItemById(idToWear1)
 
   console.assert(
-    inventory.wear.stats.PAtk === 33n &&
-      inventory.wear.stats.PDef === 55n &&
+    inventory.wear.stats.PAtk === 33 &&
+      inventory.wear.stats.PDef === 55 &&
       inventory.cargo.items.length === 1
   )
 }
 
 function проверка_пульсирования_при_надетом_шлеме() {
+  const stats = { current: { hpTotal: 430 } }
+  const leveler = new Leveler()
   const activities = new Activities()
   const inventory = new Inventory(activities)
-  const health = new Health(null, null, activities)
+  const health = new Health(stats, leveler, activities)
   const equipment = equipmentFabric('Helmet Of Truth')
   let oldHpTotal = health.total
   let oldHpCurrent = health.current

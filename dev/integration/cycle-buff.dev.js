@@ -4,7 +4,7 @@ import Character from '../../src/classes/character/Character.js'
 async function баф_не_выучивается_при_недостатке_сп() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
-  const oldAccuracy = player1.statsCombat.Accuracy
+  const oldAccuracy = player1.statsCombat.current.Accuracy
   const oldHpTotal = player1.health.total
   player1.sp = 55n
 
@@ -12,14 +12,14 @@ async function баф_не_выучивается_при_недостатке_с
 
   console.assert(
     player1.abilities.buffs.length === 0 &&
-      player1.statsCombat.Accuracy === oldAccuracy &&
+      player1.statsCombat.current.Accuracy === oldAccuracy &&
       player1.health.total === oldHpTotal
   )
 }
 async function баф_выучивается_при_наличии_сп() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
-  const oldAccuracy = player1.statsCombat.Accuracy
+  const oldAccuracy = player1.statsCombat.current.Accuracy
   const oldHpTotal = player1.health.total
   player1.sp = 505n
 
@@ -27,7 +27,7 @@ async function баф_выучивается_при_наличии_сп() {
 
   console.assert(
     player1.activities.persists.length === 0 &&
-      player1.statsCombat.Accuracy === oldAccuracy &&
+      player1.statsCombat.current.Accuracy === oldAccuracy &&
       player1.health.total === oldHpTotal
   )
 }
@@ -38,7 +38,7 @@ async function баф_кастуется_на_самого_себя() {
   player1.sp = 505n
   await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
-  const oldAccuracy = player1.statsCombat.Accuracy
+  const oldAccuracy = player1.statsCombat.current.Accuracy
   const oldHpTotal = player1.health.total
   player1.target.set(player1)
 
@@ -46,7 +46,7 @@ async function баф_кастуется_на_самого_себя() {
 
   console.assert(
     player1.activities.buffs.length === 1 &&
-      player1.statsCombat.Accuracy > oldAccuracy &&
+      player1.statsCombat.current.Accuracy > oldAccuracy &&
       player1.health.total > oldHpTotal
   )
   player1.activities.removeAll(['buffs'])
@@ -75,13 +75,13 @@ async function энфорс_действует_после_завершения_�
   player1.leveler.forceSetLevel(5n)
   await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
-  const oldAccuracy = player2.statsCombat.Accuracy
+  const oldAccuracy = player2.statsCombat.current.Accuracy
   const oldHpTotal = player2.health.total
 
   await player1.abilities.cast(buff)
 
   console.assert(
-    player2.statsCombat.Accuracy > oldAccuracy &&
+    player2.statsCombat.current.Accuracy > oldAccuracy &&
       player2.health.total > oldHpTotal
   )
   player2.activities.removeAll(['buffs'])
@@ -94,7 +94,7 @@ async function пульсация_действует_после_завершен
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
   player2.leveler.forceSetLevel(5n)
-  player2.health.lose(200n)
+  player2.health.lose(200)
   await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
   let oldHpCurrent = player2.health.current
@@ -119,13 +119,13 @@ async function энфорс_до_завершения_каста_не_дейст
   player1.leveler.forceSetLevel(5n)
   await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
-  const oldAccuracy = player2.statsCombat.Accuracy
+  const oldAccuracy = player2.statsCombat.current.Accuracy
   const oldHpTotal = player2.health.total
 
   const cast = player1.abilities.cast(buff)
 
   console.assert(
-    player2.statsCombat.Accuracy === oldAccuracy &&
+    player2.statsCombat.current.Accuracy === oldAccuracy &&
       player2.health.total === oldHpTotal
   )
 
@@ -140,7 +140,7 @@ async function пульсация_до_завершения_каста_не_де
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
   player2.leveler.forceSetLevel(5n)
-  player2.health.lose(200n)
+  player2.health.lose(200)
   await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
   let oldHpCurrent = player2.health.current

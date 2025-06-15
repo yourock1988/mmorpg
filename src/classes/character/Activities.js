@@ -48,7 +48,9 @@ export default class Activities extends EventEmitter {
   }
   removeAll(list) {
     let l = ['persists', 'auras', 'buffs', 'debuffs', 'consumeds', 'equipments']
-    ;(list ?? l).forEach(key => this[key].forEach(this.remove.bind(this)))
+    // ;(list ?? l).forEach(key => this[key].forEach(this.remove.bind(this)))
+    const self = this
+    ;(list ?? l).forEach(key => self[key].forEach(x => self.remove(x)))
   }
   removeById(activityId) {}
 

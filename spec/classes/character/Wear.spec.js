@@ -9,9 +9,7 @@ function checkStatsCalculations() {
 
   const stats = wear.stats
 
-  console.assert(
-    stats.PAtk === 42n && stats.AtkSpd === 11n && stats.PDef === 55n
-  )
+  console.assert(stats.PAtk === 42 && stats.AtkSpd === 11 && stats.PDef === 55)
 }
 
 function checkStatsAfterChangeEquipment() {
@@ -21,7 +19,7 @@ function checkStatsAfterChangeEquipment() {
 
   const stats = wear.stats
 
-  console.assert(stats.PAtk === 33n && stats.AtkSpd === undefined)
+  console.assert(stats.PAtk === 33 && stats.AtkSpd === undefined)
 }
 
 function вычисляется_ли_listActivities() {

@@ -23,5 +23,5 @@ fightHalf1.autoAttack()
 fightHalf2.autoAttack()
 
 setTimeout(() => {
-  console.assert(P1.health.isLive && !P2.health.isLive)
-}, 5500)
+  console.assert(!P1.health.isLive && P2.health.isLive)
+}, 5800)

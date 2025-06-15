@@ -1,4 +1,4 @@
-import takePercent from '../../../functions/takePercent.js'
+import { addPercent } from '../../../functions/utils.js'
 
 export default [
   {
@@ -16,15 +16,15 @@ export default [
     },
     enforce: {
       toCombat(combat) {
-        combat.Accuracy += takePercent(10n)(combat.PDef)
+        combat.Accuracy = addPercent(combat.Accuracy, 10)
       },
       toHealth(health) {
-        health.protoTotal += takePercent(10n)(health.protoTotal)
+        health.protoTotal = addPercent(health.protoTotal, 10)
       },
     },
     pulse: {
       toHealth(health) {
-        health.lose(3n)
+        health.lose(3)
       },
     },
   },
@@ -43,15 +43,15 @@ export default [
     },
     enforce: {
       toCombat(combat) {
-        combat.AtkSpd += takePercent(10n)(combat.PDef)
+        combat.AtkSpd = addPercent(combat.AtkSpd, 10)
       },
       toHealth(health) {
-        health.protoTotal += takePercent(10n)(health.protoTotal)
+        health.protoTotal = addPercent(health.protoTotal, 10)
       },
     },
     pulse: {
       toMana(mana) {
-        mana.lose(7n)
+        mana.lose(7)
       },
     },
   },

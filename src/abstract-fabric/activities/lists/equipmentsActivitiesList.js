@@ -1,5 +1,4 @@
-import takePercent from '../../../functions/takePercent.js'
-import { addPerc } from '../../../functions/utils.js'
+import { addPercent } from '../../../functions/utils.js'
 
 export default [
   {
@@ -17,15 +16,15 @@ export default [
     },
     enforce: {
       toCombat(combat) {
-        combat.PDef += takePercent(10n)(combat.PDef)
+        combat.PDef = addPercent(combat.PDef, 10)
       },
       toHealth(health) {
-        health.protoTotal += takePercent(10n)(health.protoTotal)
+        health.protoTotal = addPercent(health.protoTotal, 10)
       },
     },
     pulse: {
       toHealth(health) {
-        health.gain(7n)
+        health.gain(7)
       },
     },
   },
@@ -35,7 +34,7 @@ export default [
     desc: 'увеличивает макс мп',
     config: {
       pulseIntervalDelay: 300,
-      isPulsing: true,
+      isPulsing: false,
       isSeen: false,
       duration: Infinity,
     },
@@ -44,10 +43,10 @@ export default [
     },
     enforce: {
       toMana(mana) {
-        mana.protoTotal = addPerc(mana.protoTotal, 10)
+        mana.protoTotal = addPercent(mana.protoTotal, 10)
       },
       toHealth(health) {
-        health.protoTotal = addPerc(health.protoTotal, 10)
+        health.protoTotal = addPercent(health.protoTotal, 10)
       },
     },
   },

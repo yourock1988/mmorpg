@@ -1,35 +1,35 @@
 import EventEmitter from 'node:events'
 
 export default class Health extends EventEmitter {
-  constructor(statsBasic, leveler, activities) {
+  constructor(statsCombat, leveler, activities) {
     super()
-    this.statsBasic = statsBasic ?? { CON: 50n }
-    this.leveler = leveler ?? { lvl: 5n }
+    this.statsCombat = statsCombat
+    this.leveler = leveler
     this.leveler.on?.('update:lvl', this.restore.bind(this))
     this.activities = activities
     this.activities.interlinkedWithinHealth(this)
     this.current = this.total
-    this.protoTotal = 0n
+    this.protoTotal = 0
   }
 
   get total() {
-    this.protoTotal = this.statsBasic.CON * 3n * this.leveler.lvl
+    this.protoTotal = this.statsCombat.current.hpTotal
     this.activities.enforces.forEach(e => e.toHealth?.(this))
     if (this.current > this.protoTotal) this.current = this.protoTotal
     return this.protoTotal
   }
 
   lose(hp) {
-    if (hp <= 0n) return
+    if (hp <= 0) return
     this.current -= hp
-    if (this.current <= 0n) {
-      this.current = 0n
+    if (this.current <= 0) {
+      this.current = 0
       this.emit('life-is-over')
     }
   }
 
   gain(hp) {
-    if (hp <= 0n) return
+    if (hp <= 0) return
     this.current += hp
     if (this.current > this.total) this.current = this.total
   }
@@ -43,6 +43,6 @@ export default class Health extends EventEmitter {
   }
 
   get isLive() {
-    return this.current > 0n
+    return this.current > 0
   }
 }

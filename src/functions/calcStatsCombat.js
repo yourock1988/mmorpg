@@ -1,16 +1,23 @@
-const calc = (sb, c, l, se) => sb * c * l + se
+import ds from '../dicts/defaultStats.js'
+import { addPercent } from './utils.js'
 
-export default function calcStatsCombat(statsBasic, lvl, statsEquip) {
+const calc = (k, sb, l, v = 10) => addPercent(ds[k] * (sb / 100), (l - 1) * v)
+
+export default function calcStatsCombat(statsBasic, lvl) {
   return {
-    PAtk: calc(statsBasic.STR, 1n, lvl, statsEquip.PAtk ?? 0n),
-    PDef: calc(statsBasic.CON, 2n, lvl, statsEquip.PDef ?? 0n),
-    Accuracy: calc(statsBasic.DEX, 2n, lvl, statsEquip.Accuracy ?? 0n),
-    CritRate: calc(statsBasic.STR, 2n, lvl, statsEquip.CritRate ?? 0n),
-    AtkSpd: calc(statsBasic.DEX, 3n, lvl, statsEquip.AtkSpd ?? 0n),
-    MAtk: calc(statsBasic.INT, 2n, lvl, statsEquip.MAtk ?? 0n),
-    MDef: calc(statsBasic.MEN, 3n, lvl, statsEquip.MDef ?? 0n),
-    Evasion: calc(statsBasic.DEX, 3n, lvl, statsEquip.Evasion ?? 0n),
-    Speed: calc(statsBasic.DEX, 3n, lvl, statsEquip.Speed ?? 0n),
-    CastSpd: calc(statsBasic.WIT, 3n, lvl, statsEquip.CastSpd ?? 0n),
+    hpTotal: calc('hpTotal', statsBasic.CON, lvl),
+    hpRegen: calc('hpRegen', statsBasic.CON, lvl),
+    mpTotal: calc('mpTotal', statsBasic.MEN, lvl),
+    mpRegen: calc('mpRegen', statsBasic.MEN, lvl),
+    PAtk: calc('PAtk', statsBasic.STR, lvl),
+    PDef: calc('PDef', statsBasic.CON, lvl),
+    Accuracy: calc('Accuracy', statsBasic.DEX, lvl, 5),
+    CritRate: calc('CritRate', statsBasic.STR, lvl, 2),
+    AtkSpd: calc('AtkSpd', statsBasic.DEX, lvl, 1),
+    MAtk: calc('MAtk', statsBasic.INT, lvl),
+    MDef: calc('MDef', statsBasic.MEN, lvl),
+    Evasion: calc('Evasion', statsBasic.DEX, lvl, 5),
+    Speed: calc('Speed', statsBasic.DEX, lvl, 1),
+    CastSpd: calc('CastSpd', statsBasic.WIT, lvl, 1),
   }
 }

@@ -1,4 +1,4 @@
-import takePercent from '../../../functions/takePercent.js'
+import { subPercent } from '../../../functions/utils.js'
 
 export default [
   {
@@ -16,12 +16,12 @@ export default [
     },
     enforce: {
       toHealth(health) {
-        health.protoTotal -= takePercent(10n)(health.protoTotal)
+        health.protoTotal = subPercent(health.protoTotal, 10)
       },
     },
     pulse: {
       toHealth(health) {
-        health.lose(6n)
+        health.lose(6)
       },
     },
   },

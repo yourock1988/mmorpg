@@ -15,21 +15,21 @@ function characterDieWithKillingDamage() {
 function increaseStatsWhenLevelUp() {
   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
   characterGood.leveler.exp = 1n
-  const oldStats = { ...characterGood.statsCombat }
+  const oldStats = { ...characterGood.statsCombat.current }
 
   characterGood.leveler.exp = characterGood.leveler.nextLvlExp
 
   console.assert(
-    oldStats.PAtk < characterGood.statsCombat.PAtk &&
-      oldStats.PDef < characterGood.statsCombat.PDef &&
-      oldStats.Accuracy < characterGood.statsCombat.Accuracy &&
-      oldStats.CritRate < characterGood.statsCombat.CritRate &&
-      oldStats.AtkSpd < characterGood.statsCombat.AtkSpd &&
-      oldStats.MAtk < characterGood.statsCombat.MAtk &&
-      oldStats.MDef < characterGood.statsCombat.MDef &&
-      oldStats.Evasion < characterGood.statsCombat.Evasion &&
-      oldStats.Speed < characterGood.statsCombat.Speed &&
-      oldStats.CastSpd < characterGood.statsCombat.CastSpd
+    oldStats.PAtk < characterGood.statsCombat.current.PAtk &&
+      oldStats.PDef < characterGood.statsCombat.current.PDef &&
+      oldStats.Accuracy < characterGood.statsCombat.current.Accuracy &&
+      oldStats.CritRate < characterGood.statsCombat.current.CritRate &&
+      oldStats.AtkSpd < characterGood.statsCombat.current.AtkSpd &&
+      oldStats.MAtk < characterGood.statsCombat.current.MAtk &&
+      oldStats.MDef < characterGood.statsCombat.current.MDef &&
+      oldStats.Evasion < characterGood.statsCombat.current.Evasion &&
+      oldStats.Speed < characterGood.statsCombat.current.Speed &&
+      oldStats.CastSpd < characterGood.statsCombat.current.CastSpd
   )
 }
 
@@ -38,11 +38,11 @@ function увеличатся_ли_статы_при_надетом_снаряж
   const weapon = equipmentFabric('Axe Of Glory')
   characterGood.inventory.cargo.addItem(weapon)
   const idToWear = characterGood.inventory.cargo.items[0].id
-  const oldStats = { ...characterGood.statsCombat }
+  const oldStats = { ...characterGood.statsCombat.current }
 
   characterGood.inventory.wearItemById(idToWear)
 
-  console.assert(characterGood.statsCombat.PAtk > oldStats.PAtk)
+  console.assert(characterGood.statsCombat.current.PAtk > oldStats.PAtk)
 }
 
 function уменьшатся_ли_статы_при_снятии_снаряжения() {
@@ -51,32 +51,32 @@ function уменьшатся_ли_статы_при_снятии_снаряже
   characterGood.inventory.cargo.addItem(weapon)
   const idToWear = characterGood.inventory.cargo.items[0].id
   characterGood.inventory.wearItemById(idToWear)
-  const oldStats = { ...characterGood.statsCombat }
+  const oldStats = { ...characterGood.statsCombat.current }
 
   characterGood.inventory.unwearItemBySlotName('weapon')
 
-  console.assert(characterGood.statsCombat.PAtk < oldStats.PAtk)
+  console.assert(characterGood.statsCombat.current.PAtk < oldStats.PAtk)
 }
 
 // function увеличатся_ли_статы_при_бафе() {
 //   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
-//   const oldStats = { ...characterGood.statsCombat }
+//   const oldStats = { ...characterGood.statsCombat.current }
 //   const haste = buffsFabric('Haste', 1n)
 
 //   characterGood.activities.add(haste)
 
-//   console.assert(characterGood.statsCombat.Speed > oldStats.Speed)
+//   console.assert(characterGood.statsCombat.current.Speed > oldStats.Speed)
 // }
 
 // function умешьшатся_ли_статы_при_снятии_бафа() {
 //   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
 //   const haste = buffsFabric('Haste', 1n)
 //   characterGood.activities.add(haste)
-//   const oldStats = { ...characterGood.statsCombat }
+//   const oldStats = { ...characterGood.statsCombat.current }
 
 //   characterGood.activities.buffs = []
 
-//   console.assert(characterGood.statsCombat.Speed < oldStats.Speed)
+//   console.assert(characterGood.statsCombat.current.Speed < oldStats.Speed)
 // }
 
 // characterDieWithKillingDamage()

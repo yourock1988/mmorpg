@@ -1,5 +1,6 @@
 const round = n => +n.toFixed(2)
-const perc = (n, p) => (n / 100) * p
-const addPerc = (n, p) => round(n + perc(n, p))
+const percent = (n, p) => round((n / 100) * p)
+const addPercent = (n, p) => round(n + percent(n, p))
+const subPercent = (n, p) => round(n - percent(n, p))
 
-export { round, perc, addPerc }
+export { round, percent, addPercent, subPercent }
