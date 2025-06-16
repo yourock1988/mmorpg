@@ -22,7 +22,7 @@ async function обновляется_ли_персист_активити_пр�
 
   await abilities.learn(persist)
 
-  console.assert(activities.persists.length === 2)
+  console.assert(activities.persists.length === 3)
 
   activities.removeAll()
 }
@@ -51,7 +51,7 @@ async function без_сп_обучение_не_срабатывает() {
 
   await bootcamp.train('persist', 'Defensive Persist', 1n)
 
-  console.assert(player1.activities.persists.length === 1)
+  console.assert(player1.activities.persists.length === 2)
 
   player1.activities.removeAll()
 }

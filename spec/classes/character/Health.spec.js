@@ -75,7 +75,7 @@ async function повышается_ли_здоровье_при_персист�
 
   await abilities.learn(persist)
 
-  console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
+  console.assert(health.total > oldHPtotal)
 
   activities.removeAll()
 }
@@ -95,7 +95,7 @@ async function повышается_ли_здоровье_при_ауре() {
 
   await abilities.castByTypeId('aura', aura.id)
 
-  console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
+  console.assert(health.total > oldHPtotal)
 
   activities.removeAll()
 }

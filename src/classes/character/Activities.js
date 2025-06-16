@@ -17,6 +17,7 @@ export default class Activities extends EventEmitter {
   interlinkedWithinHealth(health) {
     // if (!(health instanceof Health)) throw new Error('wrong health inst')
     this.health = health
+    //! непонятно как удалять активитис при лайф овере ?
     this.health.on('life-is-over', () =>
       this.removeAll(['auras', 'buffs', 'debuffs', 'consumeds'])
     )
@@ -24,6 +25,7 @@ export default class Activities extends EventEmitter {
   interlinkedWithinMana(mana) {
     // if (!(mana instanceof Mana)) throw new Error('wrong mana inst')
     this.mana = mana
+    //! непонятно как удалять активитис при мана овере ?
     this.mana.on('mana-is-over', () => this.removeAll(['auras']))
   }
 
@@ -33,8 +35,7 @@ export default class Activities extends EventEmitter {
     if (activity.config.duration !== Infinity) {
       setTimeout(() => this.remove(activity), activity.config.duration)
     }
-    if (activity.config.isPulsing && this.health) {
-      //! добавить проверку маны
+    if (activity.config.isPulsing) {
       activity.pulseStart(this.combat, this.health, this.mana)
     }
   }

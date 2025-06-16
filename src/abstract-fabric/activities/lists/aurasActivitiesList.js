@@ -24,7 +24,7 @@ export default [
     },
     pulse: {
       toHealth(health) {
-        health.lose(3)
+        health.lose(7)
       },
     },
   },

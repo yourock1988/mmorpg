@@ -1,7 +1,7 @@
 import Activity from './Activity.js'
 import activityDict from './activityDict.js'
 
-export default function activityFabric(type, caption, level) {
+export default function activityFabric(type, caption, level = 1n) {
   const findFn = a => a.caption === caption && a.level === level
   const activitiesList = activityDict[type + 's']
   const findedActivity = activitiesList.find(findFn)

@@ -61,7 +61,7 @@ async function работает_ли_пульсирование() {
   const intervalId = setInterval(() => {
     console.assert(player1.health.current < oldHpCurrent)
     oldHpCurrent = player1.health.current
-    if (oldHpCurrent < 421n) {
+    if (oldHpCurrent < 411n) {
       clearInterval(intervalId)
       player1.activities.removeAll()
     }

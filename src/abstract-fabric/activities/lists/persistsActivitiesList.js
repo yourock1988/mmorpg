@@ -36,7 +36,7 @@ export default [
       isSeen: false,
       isPulsing: true,
       duration: Infinity,
-      pulseIntervalDelay: 3000,
+      pulseIntervalDelay: 1000,
     },
     status: {
       pulseIntervalId: 0,
@@ -44,6 +44,25 @@ export default [
     pulse: {
       toHealth(health) {
         health.gain(health.statsCombat.current.hpRegen)
+      },
+    },
+  },
+  {
+    caption: 'Natural MP Regeneration',
+    level: 1n,
+    desc: 'естественная регенерация маны',
+    config: {
+      isSeen: false,
+      isPulsing: true,
+      duration: Infinity,
+      pulseIntervalDelay: 1000,
+    },
+    status: {
+      pulseIntervalId: 0,
+    },
+    pulse: {
+      toMana(mana) {
+        mana.gain(mana.statsCombat.current.mpRegen)
       },
     },
   },
