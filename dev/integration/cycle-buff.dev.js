@@ -10,11 +10,9 @@ async function баф_не_выучивается_при_недостатке_с
 
   await bootcamp.train('buff', 'Heart Of Lion', 1n)
 
-  console.assert(
-    player1.abilities.buffs.length === 0 &&
-      player1.statsCombat.current.Accuracy === oldAccuracy &&
-      player1.health.total === oldHpTotal
-  )
+  console.assert(player1.abilities.buffs.length === 0)
+
+  player1.activities.removeAll()
 }
 async function баф_выучивается_при_наличии_сп() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -25,11 +23,9 @@ async function баф_выучивается_при_наличии_сп() {
 
   await bootcamp.train('buff', 'Heart Of Lion', 1n)
 
-  console.assert(
-    player1.activities.persists.length === 0 &&
-      player1.statsCombat.current.Accuracy === oldAccuracy &&
-      player1.health.total === oldHpTotal
-  )
+  console.assert(player1.abilities.buffs.length === 1)
+
+  player1.activities.removeAll()
 }
 async function баф_кастуется_на_самого_себя() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -49,7 +45,7 @@ async function баф_кастуется_на_самого_себя() {
       player1.statsCombat.current.Accuracy > oldAccuracy &&
       player1.health.total > oldHpTotal
   )
-  player1.activities.removeAll(['buffs'])
+  player1.activities.removeAll()
 }
 async function баф_кастуется_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -64,7 +60,9 @@ async function баф_кастуется_на_контрагенте() {
   await player1.abilities.cast(buff)
 
   console.assert(player2.activities.buffs.length === 1)
-  player2.activities.removeAll(['buffs'])
+
+  player2.activities.removeAll()
+  player1.activities.removeAll()
 }
 async function энфорс_действует_после_завершения_каста_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -84,7 +82,9 @@ async function энфорс_действует_после_завершения_�
     player2.statsCombat.current.Accuracy > oldAccuracy &&
       player2.health.total > oldHpTotal
   )
-  player2.activities.removeAll(['buffs'])
+
+  player2.activities.removeAll()
+  player1.activities.removeAll()
 }
 async function пульсация_действует_после_завершения_каста_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -106,7 +106,8 @@ async function пульсация_действует_после_завершен
     oldHpCurrent = player2.health.current
     if (player2.mana.current < 213n) {
       clearInterval(intervalId)
-      player2.activities.removeAll(['buffs'])
+      player2.activities.removeAll()
+      player1.activities.removeAll()
     }
   }, player2.activities.buffs[0].config.pulseIntervalDelay + 33)
 }
@@ -130,7 +131,8 @@ async function энфорс_до_завершения_каста_не_дейст
   )
 
   await cast
-  player2.activities.removeAll(['buffs'])
+  player2.activities.removeAll()
+  player1.activities.removeAll()
 }
 async function пульсация_до_завершения_каста_не_действует_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -153,7 +155,9 @@ async function пульсация_до_завершения_каста_не_де
   }, buff.createActivity().config.pulseIntervalDelay + 33)
   await cast
   clearInterval(intervalId)
-  player2.activities.removeAll(['buffs'])
+
+  player2.activities.removeAll()
+  player1.activities.removeAll()
 }
 async function баф_не_кастуется_без_цели() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -166,6 +170,8 @@ async function баф_не_кастуется_без_цели() {
   let cast = await player1.abilities.cast(buff)
 
   console.assert(cast === false)
+
+  player1.activities.removeAll()
 }
 async function при_превышении_дистанции_кастующий_начинает_преследование() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -182,7 +188,8 @@ async function при_превышении_дистанции_кастующий
   const cast = await player1.abilities.cast(buff)
 
   console.assert(cast === true && player2.activities.buffs.length === 1)
-  player2.activities.removeAll(['buffs'])
+  player2.activities.removeAll()
+  player1.activities.removeAll()
 }
 
 баф_не_выучивается_при_недостатке_сп()

@@ -24,4 +24,6 @@ fightHalf2.autoAttack()
 
 setTimeout(() => {
   console.assert(!P1.health.isLive && P2.health.isLive)
+  P1.activities.removeAll()
+  P2.activities.removeAll()
 }, 5800)

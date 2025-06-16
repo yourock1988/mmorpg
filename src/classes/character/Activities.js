@@ -46,11 +46,9 @@ export default class Activities extends EventEmitter {
     this[activity.type + 's'].splice(idx, 1)
     if (activity.type === 'aura') this.emit('removed-aura', activity)
   }
-  removeAll(list) {
+  removeAll() {
     let l = ['persists', 'auras', 'buffs', 'debuffs', 'consumeds', 'equipments']
-    // ;(list ?? l).forEach(key => this[key].forEach(this.remove.bind(this)))
-    const self = this
-    ;(list ?? l).forEach(key => self[key].forEach(x => self.remove(x)))
+    l.forEach(key => this[key].map(a => a).forEach(this.remove.bind(this)))
   }
   removeById(activityId) {}
 

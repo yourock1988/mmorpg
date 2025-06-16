@@ -70,7 +70,7 @@ function tryToChangeWearEquipment() {
 }
 
 function проверка_пульсирования_при_надетом_шлеме() {
-  const stats = { current: { hpTotal: 430 } }
+  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
   const leveler = new Leveler()
   const activities = new Activities()
   const inventory = new Inventory(activities)
@@ -91,6 +91,7 @@ function проверка_пульсирования_при_надетом_шл�
   setTimeout(() => {
     clearInterval(intervalId)
     inventory.unwearItemBySlotName('helmet')
+    activities.removeAll()
   }, 2000)
 }
 

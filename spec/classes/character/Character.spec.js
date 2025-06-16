@@ -31,6 +31,8 @@ function increaseStatsWhenLevelUp() {
       oldStats.Speed < characterGood.statsCombat.current.Speed &&
       oldStats.CastSpd < characterGood.statsCombat.current.CastSpd
   )
+
+  characterGood.activities.removeAll()
 }
 
 function увеличатся_ли_статы_при_надетом_снаряжении() {
@@ -43,6 +45,8 @@ function увеличатся_ли_статы_при_надетом_снаряж
   characterGood.inventory.wearItemById(idToWear)
 
   console.assert(characterGood.statsCombat.current.PAtk > oldStats.PAtk)
+
+  characterGood.activities.removeAll()
 }
 
 function уменьшатся_ли_статы_при_снятии_снаряжения() {
@@ -56,6 +60,8 @@ function уменьшатся_ли_статы_при_снятии_снаряже
   characterGood.inventory.unwearItemBySlotName('weapon')
 
   console.assert(characterGood.statsCombat.current.PAtk < oldStats.PAtk)
+
+  characterGood.activities.removeAll()
 }
 
 // function увеличатся_ли_статы_при_бафе() {

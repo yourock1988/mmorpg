@@ -9,16 +9,8 @@ export default class Activity {
     this.desc = desc
     this.config = config
     this.status = status
-    this.enforce = enforce ?? {
-      toCombat(combat) {},
-      toHealth(health) {},
-      toMana(mana) {},
-    }
-    this.pulse = pulse ?? {
-      toCombat(combat) {},
-      toHealth(health) {},
-      toMana(mana) {},
-    }
+    this.enforce = enforce
+    this.pulse = pulse
   }
 
   pulseStart(combat, health, mana) {

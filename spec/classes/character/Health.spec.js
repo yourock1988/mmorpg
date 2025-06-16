@@ -13,7 +13,7 @@ import Wear from '../../../src/classes/character/Wear.js'
 import sb from '../../../src/dicts/statsBasic.js'
 
 function умрёт_ли_без_здоровья() {
-  const stats = { current: { hpTotal: 430 } }
+  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
@@ -26,9 +26,11 @@ function умрёт_ли_без_здоровья() {
       health.current === 0 &&
       health.isLive === false
   )
+
+  activities.removeAll()
 }
 function повышается_ли_здоровье_при_увеличении_CON() {
-  const stats = { current: { hpTotal: 430 } }
+  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
@@ -38,6 +40,8 @@ function повышается_ли_здоровье_при_увеличении_
   stats.current.hpTotal += 50
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
+
+  activities.removeAll()
 }
 function повышается_ли_здоровье_при_левелапе() {
   const activities = new Activities()
@@ -52,6 +56,8 @@ function повышается_ли_здоровье_при_левелапе() {
   leveler.forceLevelUp()
 
   console.assert(health.total > oldHPtotal && health.current > oldHPcurrent)
+
+  activities.removeAll()
 }
 async function повышается_ли_здоровье_при_персисте() {
   const stats = { current: { hpTotal: 430, mpTotal: 130 } }
@@ -70,6 +76,7 @@ async function повышается_ли_здоровье_при_персист�
   await abilities.learn(persist)
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
+
   activities.removeAll()
 }
 async function повышается_ли_здоровье_при_ауре() {
@@ -89,11 +96,12 @@ async function повышается_ли_здоровье_при_ауре() {
   await abilities.castByTypeId('aura', aura.id)
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
+
   activities.removeAll()
 }
 function повышается_ли_здоровье_при_снаряжении() {
   const activities = new Activities()
-  const stats = { current: { hpTotal: 430 } }
+  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
   const leveler = new Leveler()
   const inventory = new Inventory(activities)
   const health = new Health(stats, leveler, activities)
@@ -105,10 +113,11 @@ function повышается_ли_здоровье_при_снаряжении(
   inventory.wearItemById(equipment.id)
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
-  activities.removeAll(['equipments'])
+
+  activities.removeAll()
 }
 function повышается_ли_здоровье_при_баффе() {
-  const stats = { current: { hpTotal: 430 } }
+  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
@@ -118,9 +127,11 @@ function повышается_ли_здоровье_при_баффе() {
   activities.add(buffsFabric('Heart Of Lion', 1n))
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
+
+  activities.removeAll()
 }
 function понижается_ли_здоровье_при_дебаффе() {
-  const stats = { current: { hpTotal: 430 } }
+  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
   const leveler = new Leveler()
   const activities = new Activities()
   const health = new Health(stats, leveler, activities)
@@ -132,7 +143,7 @@ function понижается_ли_здоровье_при_дебаффе() {
   console.assert(health.total < oldHPtotal && health.current <= health.total)
 }
 function одновременно_статы_лвл_пасивка_активка_бафы_дебафы_эквип() {
-  const stats = { current: { hpTotal: 430 } }
+  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
   const leveler = new Leveler()
   const ability = abilityFabric('aura', 'Defensive Aura', 1n)
   const abilities = new Abilities()
@@ -178,6 +189,8 @@ function одновременно_статы_лвл_пасивка_активк�
   activities.add(equipmentFabric('Helmet Of Truth').activity)
   ///?????
   console.assert(health.total > oldHPtotal && health.current <= oldHPcurrent)
+
+  activities.removeAll()
 }
 
 умрёт_ли_без_здоровья()

@@ -1,4 +1,5 @@
 import EventEmitter from 'node:events'
+import activityFabric from '../../abstract-fabric/activities/activityFabric.js'
 
 export default class Health extends EventEmitter {
   constructor(statsCombat, leveler, activities) {
@@ -10,6 +11,9 @@ export default class Health extends EventEmitter {
     this.activities.interlinkedWithinHealth(this)
     this.current = this.total
     this.protoTotal = 0
+    this.activities.add(
+      activityFabric('persist', 'Natural HP Regeneration', 1n)
+    )
   }
 
   get total() {

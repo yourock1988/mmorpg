@@ -28,4 +28,23 @@ export default [
       },
     },
   },
+  {
+    caption: 'Natural HP Regeneration',
+    level: 1n,
+    desc: 'естественная регенерация здоровья',
+    config: {
+      isSeen: false,
+      isPulsing: true,
+      duration: Infinity,
+      pulseIntervalDelay: 3000,
+    },
+    status: {
+      pulseIntervalId: 0,
+    },
+    pulse: {
+      toHealth(health) {
+        health.gain(health.statsCombat.current.hpRegen)
+      },
+    },
+  },
 ]

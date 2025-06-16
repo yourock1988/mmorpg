@@ -11,6 +11,8 @@ async function хотьба_к_цели() {
   let res = await target.goto()
 
   console.assert(res === true)
+
+  anotherCharacter.activities.removeAll()
 }
 async function прерывание_хотьбы_к_цели() {
   const anotherCharacter = new Character('Player1', 'Orc', 'Fighter')
@@ -23,6 +25,8 @@ async function прерывание_хотьбы_к_цели() {
   let res = await target.goto()
 
   console.assert(res === false)
+
+  anotherCharacter.activities.removeAll()
 }
 async function прерывание_хотьбы_при_установке_другой_цели() {
   const anotherCharacter = new Character('Player1', 'Orc', 'Fighter')
@@ -36,6 +40,9 @@ async function прерывание_хотьбы_при_установке_др�
   let res = await target.goto()
 
   console.assert(res === false)
+
+  anotherCharacter.activities.removeAll()
+  anotherCharacter2.activities.removeAll()
 }
 function правильно_ли_вычисляется_дистанция() {
   const anotherCharacter = new Character('Player1', 'Orc', 'Fighter')
@@ -47,6 +54,8 @@ function правильно_ли_вычисляется_дистанция() {
   coords.teleportTo({ x: -1, y: 1 })
 
   console.assert(target.distance.toFixed(2) === '2.83')
+
+  anotherCharacter.activities.removeAll()
 }
 
 хотьба_к_цели()

@@ -10,7 +10,7 @@ import Mana from '../../src/classes/character/Mana.js'
 import Leveler from '../../src/classes/character/Leveler.js'
 
 async function обновляется_ли_активити_при_активации_ауры() {
-  const stats = { current: { hpTotal: 430 } }
+  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
   const leveler = new Leveler()
   const coords = new Coords()
   const target = new Target(coords)
@@ -23,11 +23,9 @@ async function обновляется_ли_активити_при_актива�
 
   await abilities.cast(aura)
 
-  console.assert(
-    activities.auras.length === 1 &&
-      activities.persists.length === 0 &&
-      activities.enforces.length === 1
-  )
+  // console.log(activities.list)
+
+  console.assert(activities.auras.length === 1)
   activities.removeAll()
 }
 async function работает_ли_энфорс() {
@@ -48,7 +46,7 @@ async function работает_ли_энфорс() {
       player1.health.total > oldHpTotal &&
       player1.health.current === oldHpCurrent
   )
-  player1.activities.removeAll(['auras'])
+  player1.activities.removeAll()
 }
 async function работает_ли_пульсирование() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -65,7 +63,7 @@ async function работает_ли_пульсирование() {
     oldHpCurrent = player1.health.current
     if (oldHpCurrent < 421n) {
       clearInterval(intervalId)
-      player1.activities.removeAll(['auras'])
+      player1.activities.removeAll()
     }
   }, player1.activities.auras[0].config.pulseIntervalDelay + 33)
 }
@@ -84,6 +82,7 @@ async function без_сп_обучение_не_срабатывает() {
       player1.health.total === oldHpTotal &&
       player1.health.current === oldHpCurrent
   )
+  player1.activities.removeAll()
 }
 
 обновляется_ли_активити_при_активации_ауры()

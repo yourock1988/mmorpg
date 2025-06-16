@@ -9,6 +9,8 @@ async function дебаф_не_выучивается_при_недостатк�
   await bootcamp.train('debuff', 'Curse Poison', 1n)
 
   console.assert(player1.abilities.debuffs.length === 0)
+
+  player1.activities.removeAll()
 }
 async function дебаф_выучивается_при_наличии_сп() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -18,6 +20,8 @@ async function дебаф_выучивается_при_наличии_сп() {
   await bootcamp.train('debuff', 'Curse Poison', 1n)
 
   console.assert(player1.abilities.debuffs.length === 1)
+
+  player1.activities.removeAll()
 }
 async function дебаф_кастуется_на_самого_себя() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -31,7 +35,8 @@ async function дебаф_кастуется_на_самого_себя() {
   await player1.abilities.cast(debuff)
 
   console.assert(player1.activities.debuffs.length === 1)
-  player1.activities.removeAll(['debuffs'])
+
+  player1.activities.removeAll()
 }
 async function дебаф_кастуется_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -46,7 +51,9 @@ async function дебаф_кастуется_на_контрагенте() {
   await player1.abilities.cast(debuff)
 
   console.assert(player2.activities.debuffs.length === 1)
-  player2.activities.removeAll(['debuffs'])
+
+  player2.activities.removeAll()
+  player1.activities.removeAll()
 }
 async function энфорс_действует_после_завершения_каста_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -62,7 +69,9 @@ async function энфорс_действует_после_завершения_�
   await player1.abilities.cast(debuff)
 
   console.assert(player2.health.total < oldHpTotal)
-  player2.activities.removeAll(['debuffs'])
+
+  player2.activities.removeAll()
+  player1.activities.removeAll()
 }
 async function пульсация_действует_после_завершения_каста_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -83,7 +92,8 @@ async function пульсация_действует_после_завершен
     oldHpCurrent = player2.health.current
     if (oldHpCurrent < 802n) {
       clearInterval(intervalId)
-      player2.activities.removeAll(['debuffs'])
+      player2.activities.removeAll()
+      player1.activities.removeAll()
     }
   }, player2.activities.debuffs[0].config.pulseIntervalDelay + 33)
 }
@@ -103,7 +113,8 @@ async function энфорс_до_завершения_каста_не_дейст
   console.assert(player2.health.total === oldHpTotal)
 
   await cast
-  player2.activities.removeAll(['debuffs'])
+  player2.activities.removeAll()
+  player1.activities.removeAll()
 }
 async function пульсация_до_завершения_каста_не_действует_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -123,9 +134,11 @@ async function пульсация_до_завершения_каста_не_де
     console.assert(player2.health.current === oldHpCurrent)
     oldHpCurrent = player2.health.current
   }, debuff.createActivity().config.pulseIntervalDelay + 33)
+
   await cast
   clearInterval(intervalId)
-  player2.activities.removeAll(['debuffs'])
+  player2.activities.removeAll()
+  player1.activities.removeAll()
 }
 
 дебаф_не_выучивается_при_недостатке_сп()
