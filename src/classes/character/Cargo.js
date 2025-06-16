@@ -1,6 +1,15 @@
+import Consumable from '../../abstract-fabric/items/Consumable.js'
+
 export default class Cargo {
-  constructor() {
+  constructor(activities) {
     this.items = []
+    this.activities = activities
+  }
+
+  consumeItem(item) {
+    if (!(item instanceof Consumable)) return
+    this.activities.add(item.activity)
+    this.removeItemById(item.id)
   }
 
   get groupedItems() {

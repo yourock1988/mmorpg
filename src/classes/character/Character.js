@@ -1,15 +1,14 @@
-import randomId from '../../functions/randomId.js'
-import calcStatsCombat from '../../functions/calcStatsCombat.js'
+import StatsCombat from './StatsCombat.js'
 import statsBasic from '../../dicts/statsBasic.js'
-import Leveler from './Leveler.js'
 import Activities from './Activities.js'
-import Inventory from './Inventory.js'
 import Abilities from './Abilities.js'
-import Health from './Health.js'
-import Mana from './Mana.js'
+import Inventory from './Inventory.js'
+import randomId from '../../functions/randomId.js'
+import Leveler from './Leveler.js'
 import Target from './Target.js'
 import Coords from './Coords.js'
-import StatsCombat from './StatsCombat.js'
+import Health from './Health.js'
+import Mana from './Mana.js'
 
 export default class Character {
   constructor(nick, race, kind, prof) {
@@ -19,10 +18,14 @@ export default class Character {
     this.race = race
     this.kind = kind
     this.prof = prof
+    this.partyId = 0n
+    this.clanId = 0n
+    this.money = 0n
+    this.sp = 0n
+    this.activities = new Activities()
+    this.leveler = new Leveler()
     this.coords = new Coords()
     this.target = new Target(this.coords)
-    this.leveler = new Leveler()
-    this.activities = new Activities()
     this.inventory = new Inventory(this.activities)
     this.statsCombat = new StatsCombat(
       this.statsBasic,
@@ -38,13 +41,6 @@ export default class Character {
       this.health,
       this.mana
     )
-    this.partyId = 0n
-    this.clanId = 0n
-    this.money = 0n
-    this.sp = 0n
-    // this.leveler.on('update:lvl', lvl =>
-    //   console.log(`${this.nick} перешел на уровень ${lvl}`)
-    // )
   }
 
   get statsBasic() {

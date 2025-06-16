@@ -10,7 +10,7 @@ export default class Activities extends EventEmitter {
     this.auras = []
     this.buffs = []
     this.debuffs = []
-    this.consumeds = []
+    this.consumables = []
     this.equipments = []
   }
 
@@ -19,7 +19,7 @@ export default class Activities extends EventEmitter {
     this.health = health
     //! непонятно как удалять активитис при лайф овере ?
     this.health.on('life-is-over', () =>
-      this.removeAll(['auras', 'buffs', 'debuffs', 'consumeds'])
+      this.removeAll(['auras', 'buffs', 'debuffs', 'consumables'])
     )
   }
   interlinkedWithinMana(mana) {
@@ -33,7 +33,10 @@ export default class Activities extends EventEmitter {
     if (!(activity instanceof Activity)) throw new Error('wrong activity inst')
     this[activity.type + 's'].push(activity)
     if (activity.config.duration !== Infinity) {
-      setTimeout(() => this.remove(activity), activity.config.duration)
+      activity.status.durationTimeoutId = setTimeout(
+        () => this.remove(activity),
+        activity.config.duration
+      )
     }
     if (activity.config.isPulsing) {
       activity.pulseStart(this.combat, this.health, this.mana)
@@ -48,8 +51,14 @@ export default class Activities extends EventEmitter {
     if (activity.type === 'aura') this.emit('removed-aura', activity)
   }
   removeAll() {
-    let l = ['persists', 'auras', 'buffs', 'debuffs', 'consumeds', 'equipments']
-    l.forEach(key => this[key].map(a => a).forEach(this.remove.bind(this)))
+    ;[
+      'persists',
+      'auras',
+      'buffs',
+      'debuffs',
+      'consumables',
+      'equipments',
+    ].forEach(key => this[key].map(a => a).forEach(this.remove.bind(this)))
   }
   removeById(activityId) {}
 
@@ -63,7 +72,7 @@ export default class Activities extends EventEmitter {
       ...this.buffs,
       ...this.debuffs,
       ...this.equipments,
-      ...this.consumeds,
+      ...this.consumables,
     ]
   }
 }

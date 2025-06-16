@@ -1,0 +1,25 @@
+import { addPercent } from '../../../functions/utils.js'
+
+export default [
+  {
+    caption: 'Healing Potion',
+    level: 1n,
+    desc: 'временно увеличивает регенерацию здоровья',
+    config: {
+      isSeen: true,
+      isPulsing: true,
+      duration: 15000,
+      pulseIntervalDelay: 300,
+    },
+    status: {
+      pulseIntervalId: 0,
+      durationTimeoutId: 0,
+    },
+    pulse: {
+      toHealth(health) {
+        const hp = addPercent(health.statsCombat.current.hpRegen, 50)
+        health.gain(hp)
+      },
+    },
+  },
+]

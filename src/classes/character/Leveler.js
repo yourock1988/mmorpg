@@ -6,6 +6,9 @@ export default class Leveler extends EventEmitter {
     super()
     this.exp = 1n // не может быть меньше 1n
     this.algBase = 3n
+    // this.leveler.on('update:lvl', lvl =>
+    //   console.log(`${this.nick} перешел на уровень ${lvl}`)
+    // )
   }
 
   get lvl() {

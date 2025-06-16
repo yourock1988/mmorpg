@@ -43,3 +43,12 @@ ABILITIES: (абилити наносит активити на цель)
 
 
 StatsCombat = StatsBasic + Leveler.lvl + Wear.stats + activities.toCombat()
+
+
+судя по всему раз у equipmentEntity есть поле hasActivity
+то такое же поле hasActivity должно быть и у abilityEntity
+и у всех остальных итемов. потому что не только абилки наносят активити, 
+а и многие другие штуки
+и тогда получится что абилки на мгновенный физический/магический урон будут
+hasActivity: false  
+вот и всё решение всех проблем.

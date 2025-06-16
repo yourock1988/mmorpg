@@ -5,7 +5,7 @@ import Wear from './Wear.js'
 export default class Inventory {
   constructor(activities) {
     this.wear = new Wear(activities)
-    this.cargo = new Cargo()
+    this.cargo = new Cargo(activities)
   }
 
   wearItemById(id) {

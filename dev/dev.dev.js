@@ -7,6 +7,7 @@ require('./unit/classes/character/Coords.dev.js')
 require('./unit/classes/character/Leveler.dev.js')
 require('./unit/abstract-fabric/abilities/abilityFabric.dev.js')
 require('./unit/abstract-fabric/activities/actitvityFabric.dev.js')
+require('./unit/abstract-fabric/items/Consumable.dev.js')
 
 require('./integration/cycle-aura.dev.js')
 require('./integration/cycle-buff.dev.js')

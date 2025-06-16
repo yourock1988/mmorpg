@@ -24,6 +24,7 @@ export default class Activity {
 
   pulseStop() {
     clearInterval(this.status.pulseIntervalId)
+    clearTimeout(this.status.durationTimeoutId)
     this.status.pulseIntervalId = 0
     // console.log('pulseStop', this.id)
   }
