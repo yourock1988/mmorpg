@@ -14,8 +14,8 @@ export default class Cargo {
 
   get groupedItems() {
     const groupFn = item => (item.isCountable ? item.caption : item.id)
-    const groupedItems = Object.groupBy(this.items, groupFn)
-    return Object.entries(groupedItems).map(([_, val]) => val)
+    const groupedItems = Map.groupBy(this.items, groupFn)
+    return [...groupedItems.entries()].map(([_, val]) => val)
   }
 
   addItem(item) {

@@ -1,6 +1,5 @@
-import itemFabric from '../../../src/abstract-fabric/items/fabrics/itemFabric.js'
-import Item from '../../../src/abstract-fabric/items/Item.js'
-import Cargo from '../../../src/classes/character/Cargo.js'
+import Cargo from '../../../../src/classes/character/Cargo.js'
+import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
 
 function добавление_итемов_и_группировка_итемов() {
   const cargo = new Cargo()
@@ -9,9 +8,10 @@ function добавление_итемов_и_группировка_итемо�
   cargo.addItem(itemFabric('Powder'))
   cargo.addItem(itemFabric('Skel'))
   cargo.addItem(itemFabric('Skel'))
+
   console.assert(cargo.items.length === 5 && cargo.groupedItems.length === 4)
 }
-function удаление_несгрупированного_итема() {
+function удаление_несгруппированного_итема() {
   const cargo = new Cargo()
   cargo.addItem(itemFabric('Bone'))
   cargo.addItem(itemFabric('Bone'))
@@ -19,10 +19,12 @@ function удаление_несгрупированного_итема() {
   cargo.addItem(itemFabric('Skel'))
   cargo.addItem(itemFabric('Skel'))
   const idToRemove = cargo.groupedItems.at(-1)[0].id
+
   cargo.removeItemById(idToRemove)
+
   console.assert(cargo.items.length === 4 && cargo.groupedItems.length === 3)
 }
-function удаление_сгрупированного_итема() {
+function удаление_сгруппированного_итема() {
   const cargo = new Cargo()
   cargo.addItem(itemFabric('Bone'))
   cargo.addItem(itemFabric('Bone'))
@@ -30,11 +32,9 @@ function удаление_сгрупированного_итема() {
   cargo.addItem(itemFabric('Skel'))
   cargo.addItem(itemFabric('Skel'))
   const idToRemove = cargo.groupedItems.at(0)[0].id
-  console.log(cargo.groupedItems[0][0].caption)
-  // ПИЗДАНУТАЯ ХУЕТА: группирует в разном порядке
-  // console.log(cargo.items.map(i => i.caption))
+
   cargo.removeItemById(idToRemove)
-  // console.log(cargo.items.map(i => i.caption))
+
   console.assert(cargo.items.length === 4 && cargo.groupedItems.length === 4)
 }
 function добавление_клонов_итемов_выбрасывает_ошибку() {
@@ -45,8 +45,8 @@ function добавление_клонов_итемов_выбрасывает_�
 }
 
 добавление_итемов_и_группировка_итемов()
-удаление_несгрупированного_итема()
+удаление_несгруппированного_итема()
 добавление_итемов_и_группировка_итемов()
+удаление_сгруппированного_итема()
 
-// удаление_сгрупированного_итема()
 // добавление_клонов_итемов_выбрасывает_ошибку()
