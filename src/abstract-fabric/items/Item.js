@@ -1,11 +1,10 @@
 import randomId from '../../functions/randomId.js'
 
 export default class Item {
-  constructor({ caption, isCountable, count, type }) {
+  constructor({ type, kind, caption }) {
     this.id = randomId()
+    this.type = type ?? 'item'
+    this.kind = kind // single|groupable|countable
     this.caption = caption
-    this.isCountable = isCountable
-    this.count = count
-    this.type = type ?? this.constructor.name
   }
 }

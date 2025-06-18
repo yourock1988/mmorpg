@@ -3,7 +3,7 @@ import Item from './Item.js'
 
 export default class Consumable extends Item {
   constructor({ caption, hasActivity }) {
-    super({ caption })
+    super({ caption, type: 'consumable', kind: 'groupable' })
     this.hasActivity = hasActivity
     if (hasActivity) {
       this.activity = activityFabric('consumable', caption, 1n)

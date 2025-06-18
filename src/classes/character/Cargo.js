@@ -13,14 +13,25 @@ export default class Cargo {
   }
 
   get groupedItems() {
-    const groupFn = item => (item.isCountable ? item.caption : item.id)
+    const groupFn = item => (item.kind === 'groupable' ? item.caption : item.id)
     const groupedItems = Map.groupBy(this.items, groupFn)
     return [...groupedItems.entries()].map(([_, val]) => val)
   }
 
   addItem(item) {
     if (this.findItemById(item.id)) throw new Error('added item clone')
+    if (item.kind === 'countable') {
+      const findedItem = this.findItemByCaption(item.caption)
+      if (findedItem) {
+        findedItem.count += item.count
+        return
+      }
+    }
     this.items.push(item)
+  }
+
+  findItemByCaption(caption) {
+    return this.items.find(item => item.caption === caption)
   }
 
   findItemById(id) {
@@ -29,6 +40,16 @@ export default class Cargo {
 
   removeItemById(id) {
     const idx = this.items.findIndex(item => item.id === id)
-    this.items.splice(idx, 1)
+    if (idx > -1) this.items.splice(idx, 1)
+  }
+
+  dropItemById(id, count = 1) {
+    let findedItem = this.findItemById(id)
+    if (!findedItem) return null
+    if (findedItem.kind === 'countable') {
+      return findedItem.drop(count)
+    }
+    this.removeItemById(id)
+    return findedItem
   }
 }

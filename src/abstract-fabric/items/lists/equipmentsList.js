@@ -1,7 +1,6 @@
 export default [
   {
     caption: 'Axe Of Glory',
-    isCountable: false,
     hasActivity: false,
     slotName: 'weapon',
     grade: 'D',
@@ -9,7 +8,6 @@ export default [
   },
   {
     caption: 'Blade Of Blood',
-    isCountable: false,
     hasActivity: false,
     slotName: 'weapon',
     grade: 'D',
@@ -17,7 +15,6 @@ export default [
   },
   {
     caption: 'Helmet Of Truth',
-    isCountable: false,
     hasActivity: true,
     slotName: 'helmet',
     grade: 'D',
@@ -25,7 +22,6 @@ export default [
   },
   {
     caption: 'Gloves Of Monk',
-    isCountable: false,
     hasActivity: true,
     slotName: 'gloves',
     grade: 'D',

@@ -12,6 +12,7 @@ require('./unit/classes/character/Cargo.dev.js')
 require('./unit/abstract-fabric/abilities/abilityFabric.dev.js')
 require('./unit/abstract-fabric/activities/actitvityFabric.dev.js')
 require('./unit/abstract-fabric/items/Consumable.dev.js')
+require('./unit/abstract-fabric/items/Fake.dev.js')
 
 require('./integration/cycle-aura.dev.js')
 require('./integration/cycle-buff.dev.js')

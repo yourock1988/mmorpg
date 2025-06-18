@@ -1,22 +1,22 @@
 export default [
   {
     caption: 'Powder',
-    isCountable: true,
+    kind: 'groupable',
   },
   {
     caption: 'Skel',
-    isCountable: false,
+    kind: 'single',
   },
   {
     caption: 'Bone',
-    isCountable: true,
+    kind: 'groupable',
   },
   {
     caption: 'Heart',
-    isCountable: false,
+    kind: 'single',
   },
   {
     caption: 'Art',
-    isCountable: false,
+    kind: 'single',
   },
 ]
