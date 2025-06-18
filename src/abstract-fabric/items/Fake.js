@@ -9,7 +9,7 @@ import Item from './Item.js'
 
 export default class Fake extends Item {
   constructor({ caption, count }) {
-    super({ caption, type: 'fake', kind: 'countable' })
+    super({ caption, type: 'fake', kind: 'countable', hasActivity: false })
     this.count = count ?? 0
   }
 

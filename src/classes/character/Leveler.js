@@ -1,5 +1,7 @@
 import logBigInt from '../../functions/logBigInt.js'
 import EventEmitter from 'node:events'
+import calcLevelProgress from '../../functions/calcLevelProgress.js'
+import { round } from '../../functions/utils.js'
 
 export default class Leveler extends EventEmitter {
   constructor() {
@@ -24,12 +26,7 @@ export default class Leveler extends EventEmitter {
   }
 
   get progress() {
-    return +(
-      Number(
-        ((this.exp - this.prevLvlExp - 1n) * 10000n) /
-          (this.nextLvlExp - this.prevLvlExp)
-      ) / 100
-    ).toFixed(2)
+    return round(calcLevelProgress(this.exp, this.prevLvlExp, this.nextLvlExp))
   }
 
   receiveExp(exp) {

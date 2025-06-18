@@ -1,10 +1,8 @@
-import EventEmitter from 'node:events'
 import activityFabric from '../../abstract-fabric/activities/activityFabric.js'
 import { round } from '../../functions/utils.js'
 
-export default class Health extends EventEmitter {
+export default class Health {
   constructor(statsCombat, leveler, activities) {
-    super()
     this.statsCombat = statsCombat
     this.leveler = leveler
     this.activities = activities
@@ -14,9 +12,9 @@ export default class Health extends EventEmitter {
   }
 
   init() {
-    this.leveler.on?.('update:lvl', this.restore.bind(this))
-    this.activities.interlinkedWithinHealth(this)
+    this.activities.health = this
     this.activities.add(activityFabric('persist', 'Natural HP Regeneration'))
+    this.leveler.on?.('update:lvl', this.forceRestore.bind(this))
   }
 
   get total() {
@@ -28,23 +26,21 @@ export default class Health extends EventEmitter {
   }
 
   lose(hp) {
-    if (hp <= 0) return
-    this.current -= hp
-    this.current = round(this.current)
+    if (hp > 0) this.current = round(this.current - hp)
     if (this.current <= 0) {
       this.current = 0
-      this.emit('life-is-over')
+      this.activities.removeAll()
+      return false
     }
+    return true
   }
 
   gain(hp) {
-    if (hp <= 0) return
-    this.current += hp
-    this.current = round(this.current)
+    if (hp > 0) this.current = round(this.current + hp)
     if (this.current > this.total) this.current = this.total
   }
 
-  restore() {
+  forceRestore() {
     this.current = this.total
   }
 

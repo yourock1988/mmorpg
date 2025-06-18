@@ -1,54 +1,31 @@
-import EventEmitter from 'node:events'
-import Activity from '../../abstract-fabric/activities/Activity.js'
-import Health from './Health.js'
-import Mana from './Mana.js'
-
-export default class Activities extends EventEmitter {
+export default class Activities {
   constructor() {
-    super()
     this.persists = []
     this.auras = []
     this.buffs = []
     this.debuffs = []
-    this.consumables = []
     this.equipments = []
-  }
-
-  interlinkedWithinHealth(health) {
-    // if (!(health instanceof Health)) throw new Error('wrong health inst')
-    this.health = health
-    //! непонятно как удалять активитис при лайф овере ?
-    this.health.on('life-is-over', () =>
-      this.removeAll(['auras', 'buffs', 'debuffs', 'consumables'])
-    )
-  }
-  interlinkedWithinMana(mana) {
-    // if (!(mana instanceof Mana)) throw new Error('wrong mana inst')
-    this.mana = mana
-    //! непонятно как удалять активитис при мана овере ?
-    this.mana.on('mana-is-over', () => this.removeAll(['auras']))
+    this.consumables = []
+    this.statsCombat = null
+    this.health = null
+    this.mana = null
   }
 
   add(activity) {
-    if (!(activity instanceof Activity)) throw new Error('wrong activity inst')
     this[activity.type + 's'].push(activity)
     if (activity.config.duration !== Infinity) {
-      activity.status.durationTimeoutId = setTimeout(
-        () => this.remove(activity),
-        activity.config.duration
-      )
+      let timeoutArgs = [() => this.remove(activity), activity.config.duration]
+      activity.status.durationTimeoutId = setTimeout(...timeoutArgs)
     }
     if (activity.config.isPulsing) {
-      activity.pulseStart(this.combat, this.health, this.mana)
+      activity.pulseStart(this.statsCombat, this.health, this.mana)
     }
   }
 
   remove(activity) {
-    if (!(activity instanceof Activity)) throw new Error('wrong activity inst')
     const idx = this[activity.type + 's'].indexOf(activity)
     activity.pulseStop()
     this[activity.type + 's'].splice(idx, 1)
-    if (activity.type === 'aura') this.emit('removed-aura', activity)
   }
   removeAll() {
     ;[
@@ -56,11 +33,17 @@ export default class Activities extends EventEmitter {
       'auras',
       'buffs',
       'debuffs',
-      'consumables',
       'equipments',
-    ].forEach(key => this[key].map(a => a).forEach(this.remove.bind(this)))
+      'consumables',
+    ].forEach(t => this[t].map(a => a).forEach(this.remove.bind(this)))
   }
-  removeById(activityId) {}
+  removeByTypes(types) {
+    types.forEach(t => this[t].map(a => a).forEach(this.remove.bind(this)))
+  }
+  removeByTypeId(type, activityId) {
+    const findedActivity = this[type + 's'].find(a => a.id === activityId)
+    if (findedActivity) this.remove(findedActivity)
+  }
 
   get enforces() {
     return this.list.map(activity => activity.enforce)

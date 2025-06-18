@@ -1,10 +1,8 @@
-import EventEmitter from 'node:events'
 import activityFabric from '../../abstract-fabric/activities/activityFabric.js'
 import { round } from '../../functions/utils.js'
 
-export default class Mana extends EventEmitter {
+export default class Mana {
   constructor(statsCombat, leveler, activities) {
-    super()
     this.statsCombat = statsCombat
     this.leveler = leveler
     this.activities = activities
@@ -14,9 +12,9 @@ export default class Mana extends EventEmitter {
   }
 
   init() {
-    this.leveler.on?.('update:lvl', this.restore.bind(this))
-    this.activities.interlinkedWithinMana(this)
+    this.activities.mana = this
     this.activities.add(activityFabric('persist', 'Natural MP Regeneration'))
+    this.leveler.on?.('update:lvl', this.forceRestore.bind(this))
   }
 
   get total() {
@@ -28,23 +26,21 @@ export default class Mana extends EventEmitter {
   }
 
   lose(mp) {
-    if (mp <= 0) return
-    this.current -= mp
-    this.current = round(this.current)
+    if (mp > 0) this.current = round(this.current - mp)
     if (this.current <= 0) {
       this.current = 0
-      this.emit('mana-is-over')
+      this.activities.removeByTypes(['auras'])
+      return false
     }
+    return true
   }
 
   gain(mp) {
-    if (mp <= 0) return
-    this.current += mp
-    this.current = round(this.current)
+    if (mp > 0) this.current = round(this.current + mp)
     if (this.current > this.total) this.current = this.total
   }
 
-  restore() {
+  forceRestore() {
     this.current = this.total
   }
 

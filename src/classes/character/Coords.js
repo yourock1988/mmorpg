@@ -1,6 +1,7 @@
 import wait from '../../functions/wait.js'
-import step from '../../functions/step.js'
-import distance from '../../functions/distance.js'
+import calcStep from '../../functions/calcStep.js'
+import calcDistance from '../../functions/calcDistance.js'
+import { round } from '../../functions/utils.js'
 
 export default class Coords {
   #interrupt
@@ -26,9 +27,7 @@ export default class Coords {
 
   async stepTo(coords) {
     await wait(100)
-    Object.assign(this, step(this, coords, 88))
-    // console.log(this)
-    // console.log(this.getDistanceTo(coords))
+    Object.assign(this, calcStep(this, coords, 88))
     return this.getDistanceTo(coords)
   }
 
@@ -38,6 +37,6 @@ export default class Coords {
   }
 
   getDistanceTo(coords) {
-    return +distance(this, coords).toFixed(2)
+    return round(calcDistance(this, coords))
   }
 }

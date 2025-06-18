@@ -6,6 +6,11 @@ export default class StatsCombat {
     this.leveler = leveler
     this.wear = wear
     this.activities = activities
+    this.init()
+  }
+
+  init() {
+    this.activities.statsCombat = this
   }
 
   get current() {

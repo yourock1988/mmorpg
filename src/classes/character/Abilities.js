@@ -7,8 +7,8 @@ export default class Abilities {
     this.auras = []
     this.buffs = []
     this.debuffs = []
-    this.physes = []
-    this.conjurs = []
+    this.skills = []
+    this.spells = []
     this.mana = mana
     this.health = health
     this.target = target

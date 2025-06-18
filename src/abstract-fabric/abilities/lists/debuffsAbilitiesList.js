@@ -12,7 +12,7 @@ export default [
       castRange: 5000,
       massRange: 0,
       abortRange: 8000,
-      cooldownTotal: 15000,
+      cooldownTotal: 3000,
       isMassive: false,
       isAbortable: true,
       isRequiresTarget: true,
