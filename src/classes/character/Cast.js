@@ -14,6 +14,7 @@ export default class Cast {
       this.stage1(this.state, this.status) &&
       (await this.stage2(this.config, this.target)) &&
       this.stage3(this.health, this.mana, this.cost) &&
+      this.stage35(this.config, this.status) &&
       (await this.stage4(this.config, this.target, this.state)) &&
       this.stage5(this.config, this.target, activities, ability)
     )
@@ -48,6 +49,20 @@ export default class Cast {
     if (health.current < cost.hp || mana.current < cost.mp) return false
     health.lose(cost.hp)
     mana.lose(cost.mp)
+    return true
+  }
+
+  stage35(config, status) {
+    // console.log('stage35')
+    status.cooldownCurrent = config.cooldownTotal
+    const frequency = 100
+    const intervalId = setInterval(() => {
+      status.cooldownCurrent -= frequency
+      if (status.cooldownCurrent <= 0) {
+        status.cooldownCurrent = 0
+        clearInterval(intervalId)
+      }
+    }, frequency)
     return true
   }
 
