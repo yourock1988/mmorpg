@@ -14,8 +14,6 @@ export default [
       abortRange: 8000,
       cooldownTotal: 3000,
       isMassive: false,
-      isAbortable: true,
-      isRequiresTarget: true,
     },
   },
 ]

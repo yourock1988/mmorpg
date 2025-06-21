@@ -1,5 +1,6 @@
 import randomId from '../../functions/randomId.js'
 import activityFabric from '../activities/activityFabric.js'
+import abilityDefaultConfigs from './abilityDefaultConfigs.js'
 
 export default class Ability {
   constructor({ type, caption, level, cost, config }) {
@@ -8,10 +9,8 @@ export default class Ability {
     this.level = level
     this.type = type
     this.cost = cost
-    this.config = config
-    this.status = {
-      cooldownCurrent: 0,
-    }
+    this.config = { ...abilityDefaultConfigs[type + 's'], ...config }
+    this.status = { cooldownCurrent: 0 }
     this.desc = this.createActivity().desc
   }
 

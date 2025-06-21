@@ -7,16 +7,6 @@ export default [
       mp: 5,
       hp: 0,
     },
-    config: {
-      castSpeed: 0,
-      castRange: 0,
-      massRange: 0,
-      abortRange: 0,
-      cooldownTotal: 1000,
-      isMassive: false,
-      isAbortable: false,
-      isRequiresTarget: false,
-    },
   },
   {
     caption: 'Breathe Aura',
@@ -25,16 +15,6 @@ export default [
       sp: 100n,
       mp: 0,
       hp: 7,
-    },
-    config: {
-      castSpeed: 0,
-      castRange: 0,
-      massRange: 0,
-      abortRange: 0,
-      cooldownTotal: 1000,
-      isMassive: false,
-      isAbortable: false,
-      isRequiresTarget: false,
     },
   },
 ]
