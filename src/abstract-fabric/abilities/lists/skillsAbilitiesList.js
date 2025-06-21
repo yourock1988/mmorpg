@@ -17,8 +17,5 @@ export default [
       isAbortable: false,
       isRequiresTarget: true,
     },
-    status: {
-      cooldownCurrent: 0,
-    },
   },
 ]

@@ -17,9 +17,6 @@ export default [
       isAbortable: false,
       isRequiresTarget: false,
     },
-    status: {
-      cooldownCurrent: 0,
-    },
   },
   {
     caption: 'Breathe Aura',
@@ -38,9 +35,6 @@ export default [
       isMassive: false,
       isAbortable: false,
       isRequiresTarget: false,
-    },
-    status: {
-      cooldownCurrent: 0,
     },
   },
 ]

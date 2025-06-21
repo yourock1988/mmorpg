@@ -17,9 +17,6 @@ export default [
       isAbortable: true,
       isRequiresTarget: true,
     },
-    status: {
-      cooldownCurrent: 0,
-    },
   },
   {
     caption: 'Haste',
@@ -38,9 +35,6 @@ export default [
       isMassive: false,
       isAbortable: true,
       isRequiresTarget: true,
-    },
-    status: {
-      cooldownCurrent: 0,
     },
   },
 ]
