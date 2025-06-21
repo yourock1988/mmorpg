@@ -15,7 +15,7 @@ export default [
       cooldownTotal: 3000,
       isMassive: false,
       isAbortable: false,
-      isRequiresTarget: false,
+      isRequiresTarget: true,
     },
     status: {
       cooldownCurrent: 0,

@@ -17,7 +17,7 @@ export default [
     },
     once: {
       toFight(fight) {
-        fight.sendDamage('phys', 123)
+        fight.receiveDamage('phys', 123)
       },
     },
   },
