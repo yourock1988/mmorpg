@@ -6,8 +6,8 @@ export default [
     level: 1n,
     desc: 'увеличивает точность, макс хп и реген. потребляет мп',
     enforce: {
-      toCombat(combat) {
-        combat.Accuracy = addPercent(combat.Accuracy, 10)
+      toStatsCombat(statsCombat) {
+        statsCombat.Accuracy = addPercent(statsCombat.Accuracy, 10)
       },
       toHealth(health) {
         health.protoTotal = addPercent(health.protoTotal, 10)
@@ -27,8 +27,8 @@ export default [
     level: 1n,
     desc: 'увеличивает скорость передвижения',
     enforce: {
-      toCombat(combat) {
-        combat.Speed = addPercent(combat.Speed, 10)
+      toStatsCombat(statsCombat) {
+        statsCombat.Speed = addPercent(statsCombat.Speed, 10)
       },
     },
   },

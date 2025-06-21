@@ -42,7 +42,7 @@ ABILITIES: (абилити наносит активити на цель)
 потому что базовые статы общие для всех персонажей что неприемлемо
 
 
-StatsCombat = StatsBasic + Leveler.lvl + Wear.stats + activities.toCombat()
+StatsCombat = StatsBasic + Leveler.lvl + Wear.stats + activities.toStatsCombat()
 
 
 судя по всему раз у equipmentEntity есть поле hasActivity

@@ -6,8 +6,8 @@ export default [
     level: 1n,
     desc: 'увеличивает защиту, макс хп и реген хп',
     enforce: {
-      toCombat(combat) {
-        combat.PDef = addPercent(combat.PDef, 10)
+      toStatsCombat(statsCombat) {
+        statsCombat.PDef = addPercent(statsCombat.PDef, 10)
       },
       toHealth(health) {
         health.protoTotal = addPercent(health.protoTotal, 10)

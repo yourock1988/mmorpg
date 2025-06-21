@@ -22,7 +22,7 @@ export default class StatsCombat {
     } = this
     const statsCombat = calcStatsCombat(statsBasic, Number(lvl))
     Object.entries(stats).forEach(([key, value]) => (statsCombat[key] += value))
-    activities.enforces.forEach(e => e.toCombat?.(statsCombat))
+    activities.enforces.forEach(e => e.toStatsCombat?.(statsCombat))
     return statsCombat
   }
 }
