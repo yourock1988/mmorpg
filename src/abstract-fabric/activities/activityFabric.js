@@ -12,6 +12,7 @@ export default function activityFabric(type, caption, level = 1n) {
     status: { ...findedActivity.status },
     enforce: { ...findedActivity.enforce },
     pulse: { ...findedActivity.pulse },
+    once: { ...findedActivity.once },
     type,
   }
   return new Activity(activityClone)

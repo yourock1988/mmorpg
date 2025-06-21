@@ -9,6 +9,7 @@ import Target from './Target.js'
 import Coords from './Coords.js'
 import Health from './Health.js'
 import Mana from './Mana.js'
+import Fight from './Fight.js'
 
 export default class Character {
   constructor(nick, race, kind, prof) {
@@ -35,6 +36,12 @@ export default class Character {
     )
     this.health = new Health(this.statsCombat, this.leveler, this.activities)
     this.mana = new Mana(this.statsCombat, this.leveler, this.activities)
+    this.fight = new Fight(
+      this.activities,
+      this.statsCombat,
+      this.target,
+      this.health
+    )
     this.abilities = new Abilities(
       this.activities,
       this.target,

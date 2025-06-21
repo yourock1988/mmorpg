@@ -1,7 +1,17 @@
 import randomId from '../../functions/randomId.js'
 
 export default class Activity {
-  constructor({ type, caption, level, desc, config, status, enforce, pulse }) {
+  constructor({
+    type,
+    caption,
+    level,
+    desc,
+    config,
+    status,
+    enforce,
+    pulse,
+    once,
+  }) {
     this.id = randomId()
     this.type = type
     this.caption = caption
@@ -11,6 +21,14 @@ export default class Activity {
     this.status = status
     this.enforce = enforce
     this.pulse = pulse
+    this.once = once
+  }
+
+  justOnce(combat, health, mana, fight) {
+    if (combat) this.once.toCombat?.(combat)
+    if (health) this.once.toHealth?.(health)
+    if (mana) this.once.toMana?.(mana)
+    if (fight) this.once.toFight?.(fight)
   }
 
   pulseStart(combat, health, mana) {

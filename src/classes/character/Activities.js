@@ -9,16 +9,23 @@ export default class Activities {
     this.statsCombat = null
     this.health = null
     this.mana = null
+    this.fight = null
   }
 
   add(activity) {
-    this[activity.type + 's'].push(activity)
-    if (activity.config.duration !== Infinity) {
-      let timeoutArgs = [() => this.remove(activity), activity.config.duration]
+    const { duration, isPulsing, isOnce } = activity.config
+    if (duration > 0) {
+      this[activity.type + 's'].push(activity)
+    }
+    if (0 < duration && duration < Infinity) {
+      let timeoutArgs = [() => this.remove(activity), duration]
       activity.status.durationTimeoutId = setTimeout(...timeoutArgs)
     }
-    if (activity.config.isPulsing) {
+    if (isPulsing) {
       activity.pulseStart(this.statsCombat, this.health, this.mana)
+    }
+    if (isOnce) {
+      activity.justOnce(this.statsCombat, this.health, this.mana, this.fight)
     }
   }
 
