@@ -7,7 +7,6 @@ export default [
     desc: 'уменьшает макс хп',
     config: {
       isSeen: true,
-      isPulsing: true,
       duration: Infinity,
       pulseIntervalDelay: 300,
     },

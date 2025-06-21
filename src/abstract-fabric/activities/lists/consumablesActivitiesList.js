@@ -7,7 +7,6 @@ export default [
     desc: 'временно увеличивает регенерацию здоровья',
     config: {
       isSeen: true,
-      isPulsing: true,
       duration: 15000,
       pulseIntervalDelay: 300,
     },

@@ -18,6 +18,7 @@ export default class Activity {
   }
 
   justOnce(combat, health, mana, fight) {
+    if (!this.once) return
     if (combat) this.once.toCombat?.(combat)
     if (health) this.once.toHealth?.(health)
     if (mana) this.once.toMana?.(mana)
@@ -26,6 +27,7 @@ export default class Activity {
 
   pulseStart(combat, health, mana) {
     // console.log(combat) //! пульс на combat stats не понятно зачем
+    if (!this.pulse) return
     this.status.pulseIntervalId = setInterval(() => {
       if (combat) this.pulse.toCombat?.(combat)
       if (health) this.pulse.toHealth?.(health)

@@ -7,8 +7,6 @@ export default [
     desc: 'наносит мощный физический удар',
     config: {
       isSeen: false,
-      isPulsing: false,
-      isOnce: true,
       duration: 0,
       pulseIntervalDelay: 0,
     },

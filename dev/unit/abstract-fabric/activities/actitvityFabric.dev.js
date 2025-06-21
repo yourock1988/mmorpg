@@ -14,11 +14,11 @@ console.assert(
   buff.desc === 'увеличивает точность, макс хп и реген. потребляет мп'
 )
 
-console.assert(buff.config !== srcBuff.status)
+console.assert(buff.config !== srcBuff.config)
 console.assert(buff.status !== srcBuff.status)
-console.assert(buff.enforce !== srcBuff.status)
-console.assert(buff.pulse !== srcBuff.status)
-console.assert(buff.type !== srcBuff.status)
+console.assert(buff.enforce !== srcBuff.enforce)
+console.assert(buff.pulse !== srcBuff.pulse)
+console.assert(buff.type !== srcBuff.type)
 console.assert(buff.status.pulseIntervalId === 0)
 
 buff.pulseStart({}, { gain: mock.fn() }, { lose: mock.fn() })

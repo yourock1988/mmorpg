@@ -7,7 +7,6 @@ export default [
     desc: 'увеличивает защиту, макс хп и реген хп',
     config: {
       pulseIntervalDelay: 300,
-      isPulsing: true,
       isSeen: false,
       duration: Infinity,
     },
@@ -31,7 +30,6 @@ export default [
     desc: 'увеличивает макс мп',
     config: {
       pulseIntervalDelay: 300,
-      isPulsing: false,
       isSeen: false,
       duration: Infinity,
     },

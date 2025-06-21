@@ -7,7 +7,6 @@ export default [
     desc: 'увеличивает защиту, макс хп и реген хп',
     config: {
       isSeen: false,
-      isPulsing: true,
       duration: Infinity,
       pulseIntervalDelay: 300,
     },
@@ -31,7 +30,6 @@ export default [
     desc: 'естественная регенерация здоровья',
     config: {
       isSeen: false,
-      isPulsing: true,
       duration: Infinity,
       pulseIntervalDelay: 1000,
     },
@@ -47,7 +45,6 @@ export default [
     desc: 'естественная регенерация маны',
     config: {
       isSeen: false,
-      isPulsing: true,
       duration: Infinity,
       pulseIntervalDelay: 1000,
     },
