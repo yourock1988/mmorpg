@@ -1,24 +1,17 @@
 import randomId from '../../functions/randomId.js'
 
 export default class Activity {
-  constructor({
-    type,
-    caption,
-    level,
-    desc,
-    config,
-    status,
-    enforce,
-    pulse,
-    once,
-  }) {
+  constructor({ type, caption, level, desc, config, enforce, pulse, once }) {
     this.id = randomId()
     this.type = type
     this.caption = caption
     this.level = level
     this.desc = desc
     this.config = config
-    this.status = status
+    this.status = {
+      pulseIntervalId: 0,
+      durationTimeoutId: 0,
+    }
     this.enforce = enforce
     this.pulse = pulse
     this.once = once

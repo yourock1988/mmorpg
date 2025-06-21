@@ -11,9 +11,6 @@ export default [
       isSeen: false,
       duration: Infinity,
     },
-    status: {
-      pulseIntervalId: 0,
-    },
     enforce: {
       toCombat(combat) {
         combat.PDef = addPercent(combat.PDef, 10)
@@ -37,9 +34,6 @@ export default [
       isPulsing: false,
       isSeen: false,
       duration: Infinity,
-    },
-    status: {
-      pulseIntervalId: 0,
     },
     enforce: {
       toMana(mana) {

@@ -11,9 +11,6 @@ export default [
       duration: Infinity,
       pulseIntervalDelay: 300,
     },
-    status: {
-      pulseIntervalId: 0,
-    },
     enforce: {
       toCombat(combat) {
         combat.PDef = addPercent(combat.PDef, 10)
@@ -38,9 +35,6 @@ export default [
       duration: Infinity,
       pulseIntervalDelay: 1000,
     },
-    status: {
-      pulseIntervalId: 0,
-    },
     pulse: {
       toHealth(health) {
         health.gain(health.statsCombat.current.hpRegen)
@@ -56,9 +50,6 @@ export default [
       isPulsing: true,
       duration: Infinity,
       pulseIntervalDelay: 1000,
-    },
-    status: {
-      pulseIntervalId: 0,
     },
     pulse: {
       toMana(mana) {

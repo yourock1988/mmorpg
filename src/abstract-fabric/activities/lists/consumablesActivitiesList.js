@@ -11,10 +11,6 @@ export default [
       duration: 15000,
       pulseIntervalDelay: 300,
     },
-    status: {
-      pulseIntervalId: 0,
-      durationTimeoutId: 0,
-    },
     pulse: {
       toHealth(health) {
         const hp = addPercent(health.statsCombat.current.hpRegen, 50)

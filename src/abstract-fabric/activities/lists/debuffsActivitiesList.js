@@ -11,9 +11,6 @@ export default [
       duration: Infinity,
       pulseIntervalDelay: 300,
     },
-    status: {
-      pulseIntervalId: 0,
-    },
     enforce: {
       toHealth(health) {
         health.protoTotal = subPercent(health.protoTotal, 10)

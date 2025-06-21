@@ -11,9 +11,6 @@ export default [
       duration: Infinity,
       pulseIntervalDelay: 300,
     },
-    status: {
-      pulseIntervalId: 0,
-    },
     enforce: {
       toCombat(combat) {
         combat.Accuracy = addPercent(combat.Accuracy, 10)
@@ -40,9 +37,6 @@ export default [
       isPulsing: false,
       duration: Infinity,
       pulseIntervalDelay: 0,
-    },
-    status: {
-      pulseIntervalId: 0,
     },
     enforce: {
       toCombat(combat) {
