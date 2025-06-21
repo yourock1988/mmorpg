@@ -4,12 +4,7 @@ export default [
   {
     caption: 'Curse Poison',
     level: 1n,
-    desc: 'уменьшает макс хп',
-    config: {
-      isSeen: true,
-      duration: Infinity,
-      pulseIntervalDelay: 300,
-    },
+    desc: 'уменьшает макс хп и реген хп',
     enforce: {
       toHealth(health) {
         health.protoTotal = subPercent(health.protoTotal, 10)

@@ -1,4 +1,5 @@
 import randomId from '../../functions/randomId.js'
+import activityDefaultConfigs from './activityDefaultConfigs.js'
 
 export default class Activity {
   constructor({ type, caption, level, desc, config, enforce, pulse, once }) {
@@ -7,7 +8,7 @@ export default class Activity {
     this.caption = caption
     this.level = level
     this.desc = desc
-    this.config = config
+    this.config = { ...activityDefaultConfigs[type + 's'], ...config }
     this.status = {
       pulseIntervalId: 0,
       durationTimeoutId: 0,

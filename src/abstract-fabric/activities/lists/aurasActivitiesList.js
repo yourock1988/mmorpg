@@ -5,11 +5,6 @@ export default [
     caption: 'Concentration Aura',
     level: 1n,
     desc: 'увеличивает точность и макс хп. потребляет хп',
-    config: {
-      isSeen: true,
-      duration: Infinity,
-      pulseIntervalDelay: 300,
-    },
     enforce: {
       toCombat(combat) {
         combat.Accuracy = addPercent(combat.Accuracy, 10)
@@ -28,11 +23,6 @@ export default [
     caption: 'Breathe Aura',
     level: 1n,
     desc: 'увеличивает скорость атаки и макс хп. потребляет мп',
-    config: {
-      isSeen: true,
-      duration: Infinity,
-      pulseIntervalDelay: 300,
-    },
     enforce: {
       toCombat(combat) {
         combat.AtkSpd = addPercent(combat.AtkSpd, 10)

@@ -5,11 +5,6 @@ export default [
     caption: 'Heart Of Lion',
     level: 1n,
     desc: 'увеличивает точность, макс хп и реген. потребляет мп',
-    config: {
-      isSeen: true,
-      duration: Infinity,
-      pulseIntervalDelay: 300,
-    },
     enforce: {
       toCombat(combat) {
         combat.Accuracy = addPercent(combat.Accuracy, 10)
@@ -23,7 +18,7 @@ export default [
         health.gain(3)
       },
       toMana(mana) {
-        mana.lose(3)
+        mana.lose(7)
       },
     },
   },
@@ -31,11 +26,6 @@ export default [
     caption: 'Haste',
     level: 1n,
     desc: 'увеличивает скорость передвижения',
-    config: {
-      isSeen: true,
-      duration: Infinity,
-      pulseIntervalDelay: 0,
-    },
     enforce: {
       toCombat(combat) {
         combat.Speed = addPercent(combat.Speed, 10)
