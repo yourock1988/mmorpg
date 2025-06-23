@@ -36,6 +36,10 @@ export default class Cast {
         // console.log('требуется цель')
         return false
       }
+      if (target.hasTarget && !target.subject.health?.isLive) {
+        // console.log('цель должна быть живая');
+        return false
+      }
       if (target.distance > config.castRange) {
         // console.log('цель слишком далеко. преследую цель.')
         return await target.goto(config.castRange)
