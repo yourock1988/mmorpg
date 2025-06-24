@@ -51,7 +51,7 @@ export default class Fight {
     }
     if (status === 'killed_now') {
       this.leveler.receiveExp(100n)
-      // this.sp += 50n
+      // this.social.sp += 50n
       // console.log(`${defender.nick} погибнул!`)
       // console.log(`${attacker.nick} получает ${100n} опыта и ${50n} очков`)
     }

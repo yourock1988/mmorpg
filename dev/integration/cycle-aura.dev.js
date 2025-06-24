@@ -34,7 +34,7 @@ async function работает_ли_энфорс() {
   const oldAccuracy = player1.statsCombat.current.Accuracy
   const oldHpTotal = player1.health.total
   let oldHpCurrent = player1.health.current
-  player1.sp = 505n
+  player1.social.sp = 505n
   await bootcamp.train('aura', 'Concentration Aura', 1n)
   const aura = player1.abilities.auras[0]
 
@@ -52,7 +52,7 @@ async function работает_ли_пульсирование() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   let oldHpCurrent = player1.health.current
-  player1.sp = 505n
+  player1.social.sp = 505n
   await bootcamp.train('aura', 'Concentration Aura', 1n)
   const aura = player1.abilities.auras[0]
 
@@ -73,7 +73,7 @@ async function без_сп_обучение_не_срабатывает() {
   const oldAccuracy = player1.statsCombat.current.Accuracy
   const oldHpTotal = player1.health.total
   const oldHpCurrent = player1.health.current
-  player1.sp = 55n
+  player1.social.sp = 55n
   await bootcamp.train('aura', 'Concentration Aura', 1n)
 
   console.assert(

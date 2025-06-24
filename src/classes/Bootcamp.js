@@ -23,14 +23,14 @@ export default class Bootcamp {
 
   get availableAbilitiesSP() {
     return this.availableAbilities.map(a =>
-      a.cost > this.character.sp ? (a.disabled = true) && a : a
+      a.cost > this.character.social.sp ? (a.disabled = true) && a : a
     )
   }
 
   async train(type, caption, level) {
     const ability = abilityFabric(type, caption, level)
-    if (ability.cost.sp > this.character.sp) return //console.log('low sp')
-    this.character.sp -= ability.cost.sp
+    if (ability.cost.sp > this.character.social.sp) return //console.log('low sp')
+    this.character.social.sp -= ability.cost.sp
     await this.character.abilities.learn(ability)
   }
 }

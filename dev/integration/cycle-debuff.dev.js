@@ -4,7 +4,7 @@ import Character from '../../src/classes/character/Character.js'
 async function дебаф_не_выучивается_при_недостатке_сп() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
-  player1.sp = 55n
+  player1.social.sp = 55n
 
   await bootcamp.train('debuff', 'Curse Poison', 1n)
 
@@ -15,7 +15,7 @@ async function дебаф_не_выучивается_при_недостатк�
 async function дебаф_выучивается_при_наличии_сп() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
-  player1.sp = 505n
+  player1.social.sp = 505n
 
   await bootcamp.train('debuff', 'Curse Poison', 1n)
 
@@ -27,7 +27,7 @@ async function дебаф_кастуется_на_самого_себя() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.leveler.forceSetLevel(5n)
-  player1.sp = 505n
+  player1.social.sp = 505n
   await bootcamp.train('debuff', 'Curse Poison', 1n)
   const debuff = player1.abilities.debuffs[0]
   player1.target.set(player1)
@@ -42,7 +42,7 @@ async function дебаф_кастуется_на_контрагенте() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
-  player1.sp = 505n
+  player1.social.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
   await bootcamp.train('debuff', 'Curse Poison', 1n)
@@ -59,7 +59,7 @@ async function энфорс_действует_после_завершения_�
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
-  player1.sp = 505n
+  player1.social.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
   await bootcamp.train('debuff', 'Curse Poison', 1n)
@@ -77,7 +77,7 @@ async function пульсация_действует_после_завершен
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
-  player1.sp = 505n
+  player1.social.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
   player2.leveler.forceSetLevel(5n)
@@ -101,7 +101,7 @@ async function энфорс_до_завершения_каста_не_дейст
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
-  player1.sp = 505n
+  player1.social.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
   await bootcamp.train('debuff', 'Curse Poison', 1n)
@@ -120,7 +120,7 @@ async function пульсация_до_завершения_каста_не_де
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
-  player1.sp = 505n
+  player1.social.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
   player2.leveler.forceSetLevel(5n)

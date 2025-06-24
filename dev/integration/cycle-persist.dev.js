@@ -32,7 +32,7 @@ async function действует_ли_выученный_персист_на_п
   const oldPDef = player1.statsCombat.current.PDef
   const oldHpTotal = player1.health.total
   const oldHpCurrent = player1.health.current
-  player1.sp = 505n
+  player1.social.sp = 505n
 
   await bootcamp.train('persist', 'Defensive Persist', 1n)
 
@@ -47,7 +47,7 @@ async function действует_ли_выученный_персист_на_п
 async function без_сп_обучение_не_срабатывает() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
-  player1.sp = 55n
+  player1.social.sp = 55n
 
   await bootcamp.train('persist', 'Defensive Persist', 1n)
 
@@ -59,7 +59,7 @@ async function проверка_пульсирования_персиста() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   let oldHpCurrent = player1.health.current
-  player1.sp = 505n
+  player1.social.sp = 505n
 
   await bootcamp.train('persist', 'Defensive Persist', 1n)
 

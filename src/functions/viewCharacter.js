@@ -3,7 +3,7 @@ export default function viewCharacter(c) {
     nick: c.nick,
     progress: c.leveler.progress + '%',
     lvl: c.leveler.lvl,
-    sp: c.sp,
+    sp: c.social.sp,
     hpTotal: c.health.total,
     hpCurrent: c.health.current,
     isLive: c.health.isLive,
