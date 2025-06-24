@@ -15,9 +15,9 @@ export default class Abilities {
     this.activities = activities
     this.state = {
       castProgress: 0,
-      get isCastInProcess() {
-        this.castProgress !== 0
-      },
+      // get isCastInProcess() {
+      //   this.castProgress !== 0
+      // },
     }
   }
 

@@ -23,8 +23,8 @@ export default class Cast {
   stage1(state, status) {
     // console.log('stage1')
     if (state.castProgress !== 0) return false
-    if (state.isCastInProcess) return false
-    if (status.isSwitchedOn) return false
+    // if (state.isCastInProcess) return false
+    // if (status.isSwitchedOn) return false
     if (status.cooldownCurrent !== 0) return false
     return true
   }
@@ -59,12 +59,15 @@ export default class Cast {
   stage35(config, status) {
     // console.log('stage35')
     status.cooldownCurrent = config.cooldownTotal
-    const frequency = 100
+    const { promise, resolve } = Promise.withResolvers()
+    status.cdAwaiter = promise
+    const frequency = 100 //! CastSpd
     const intervalId = setInterval(() => {
       status.cooldownCurrent -= frequency
       if (status.cooldownCurrent <= 0) {
         status.cooldownCurrent = 0
         clearInterval(intervalId)
+        resolve()
       }
     }, frequency)
     return true
@@ -99,6 +102,7 @@ export default class Cast {
       return true
     }
     if (config.isRequiresTarget && target.hasTarget) {
+      activity.attacker.social = activities.fight.social
       target.subject.activities.add(activity)
       return true
     }

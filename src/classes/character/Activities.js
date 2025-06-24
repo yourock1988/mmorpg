@@ -13,6 +13,10 @@ export default class Activities {
   }
 
   add(activity) {
+    //! только если не селф баф
+    activity.self.health = this.health
+    activity.self.social = this.fight?.social
+    //
     const { duration } = activity.config
     if (duration > 0) {
       this[activity.type + 's'].push(activity)

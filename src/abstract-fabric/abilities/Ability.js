@@ -10,7 +10,7 @@ export default class Ability {
     this.type = type
     this.cost = cost
     this.config = { ...abilityDefaultConfigs[type + 's'], ...config }
-    this.status = { cooldownCurrent: 0 }
+    this.status = { cooldownCurrent: 0, cdAwaiter: Promise.resolve() }
     this.desc = this.createActivity().desc
   }
 

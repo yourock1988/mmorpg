@@ -13,9 +13,17 @@ export default class Activity {
       pulseIntervalId: 0,
       durationTimeoutId: 0,
     }
+    this.attacker = {}
+    this.self = {}
     this.enforce = enforce
     this.pulse = pulse
-    this.once = once
+    this.once = { ...once, executor: this.executor.bind(this) }
+  }
+
+  executor(statusHealth) {
+    if (statusHealth === 'killed_now') {
+      this.attacker.social.postmortem(this.self.social, this.self.health.total)
+    }
   }
 
   justOnce(statsCombat, health, mana, fight) {

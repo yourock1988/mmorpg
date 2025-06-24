@@ -26,13 +26,14 @@ export default class Health {
   }
 
   lose(hp) {
+    if (!this.isLive) return 'already_dead'
     if (hp > 0) this.current = round(this.current - hp)
     if (this.current <= 0) {
       this.current = 0
       this.activities.removeAll()
-      return false
+      return 'killed_now'
     }
-    return true
+    return 'damage_taken'
   }
 
   gain(hp) {

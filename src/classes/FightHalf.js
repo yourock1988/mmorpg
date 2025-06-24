@@ -42,7 +42,7 @@ export default class FightHalf {
     this.v &&
       console.log(`${this.attacker.nick} получает ${100n} опыта и ${50n} очков`)
     this.attacker.leveler.receiveExp(100n)
-    this.attacker.sp += 50n
+    this.attacker.social.sp += 50n
   }
 
   get isWrongAttacker() {

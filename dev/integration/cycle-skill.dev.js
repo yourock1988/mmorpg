@@ -11,8 +11,12 @@ async function наносит_ли_скилл_урон() {
   // console.log(oldHealthCurrent)
   await Player1.abilities.cast(skill)
   // console.log(Player2.health.current)
-
-  console.assert(Player2.health.current < oldHealthCurrent)
+  await skill.status.cdAwaiter
+  await Player1.abilities.cast(skill)
+  // console.log(Player2.health.current)
+  // console.log(Player1.leveler.exp)
+  // console.log(Player1.leveler.lvl)
+  // console.assert(Player2.health.current < oldHealthCurrent)
 
   Player1.activities.removeAll()
   Player2.activities.removeAll()

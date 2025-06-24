@@ -7,6 +7,7 @@ import randomId from '../../functions/randomId.js'
 import Leveler from './Leveler.js'
 import Target from './Target.js'
 import Coords from './Coords.js'
+import Social from './Social.js'
 import Health from './Health.js'
 import Mana from './Mana.js'
 import Fight from './Fight.js'
@@ -22,11 +23,11 @@ export default class Character {
     this.partyId = 0n
     this.clanId = 0n
     this.money = 0n
-    this.sp = 0n
     this.activities = new Activities()
     this.leveler = new Leveler()
     this.coords = new Coords()
     this.target = new Target(this.coords)
+    this.social = new Social(this.leveler)
     this.inventory = new Inventory(this.activities)
     this.statsCombat = new StatsCombat(
       this.statsBasic,
@@ -40,7 +41,8 @@ export default class Character {
       this.activities,
       this.statsCombat,
       this.target,
-      this.health
+      this.health,
+      this.social
     )
     this.abilities = new Abilities(
       this.activities,

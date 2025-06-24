@@ -7,7 +7,8 @@ export default [
     desc: 'наносит мощный физический удар',
     once: {
       toFight(fight) {
-        fight.receiveDamage('phys', 123)
+        const statusHealth = fight.receiveDamage('phys', 123)
+        this.executor(statusHealth)
       },
     },
   },
