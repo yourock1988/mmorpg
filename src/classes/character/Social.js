@@ -17,10 +17,13 @@ export default class Social {
     targetHpTotal = BigInt(targetHpTotal)
     this.receiveExp(targetHpTotal)
     this.receiveSp(targetHpTotal / 10n)
+    // console.log(`${defender.nick} погибнул!`)
+    // console.log(`${attacker.nick} получает ${100n} опыта и ${50n} очков`)
     if (!targetSocial) {
       this.mob += 1
       this.receiveKarma(-10n)
     } else {
+      this.isFighting = true
       if (targetSocial.isFighting || targetSocial.isPlayerKiller) {
         this.pvp += 1n
       } else {

@@ -1,5 +1,7 @@
-import calcDamage from '../../functions/calcDamage.js'
 import wait from '../../functions/wait.js'
+import calcIsHit from '../../functions/calcIsHit.js'
+import calcDamage from '../../functions/calcDamage.js'
+import calcDelayAttack from '../../functions/calcDelayAttack.js'
 
 export default class Fight {
   constructor(activities, statsCombat, target, health, social) {
@@ -16,16 +18,16 @@ export default class Fight {
     this.activities.fight = this
   }
 
-  async sendDamage(type = 'phys', value = this.statsCombat.current.PAtk) {
-    await wait(Math.trunc(1000 / this.statsCombat.AtkSpd))
+  sendDamage(type = 'phys', value = this.statsCombat.current.PAtk) {
     if (this.checkAttacker && this.checkDefender) {
-      // console.log(`${this.attacker.nick} атакует!`)
-      const status = this.target.subject.fight.receiveDamage(type, value)
-      if (status === 'killed_now') {
-        //
-        social.kill(targetSocial, targetHpTotal)
+      const isHit = calcIsHit(this.statsCombat, this.target.subject.statsCombat)
+      if (!isHit) {
+        // console.log('промах')
+        return
       }
-      this.result(status)
+      // console.log(`${this.attacker.nick} атакует!`)
+      const statusHealth = this.target.subject.fight.receiveDamage(type, value)
+      this.result(statusHealth)
     }
   }
 
@@ -37,23 +39,33 @@ export default class Fight {
 
   async attack() {
     // console.log(`${this.attacker.nick}хочет атаковать${this.defender.nick}`)
-    if (!this.checkDefender) return
-    await this.target.goto()
-    await this.sendDamage()
+    if (this.checkAttacker && this.checkDefender) {
+      await this.target.goto()
+      await wait(calcDelayAttack(this.statsCombat))
+      this.sendDamage()
+      return true
+    }
+    return false
   }
 
-  result(status) {
-    if (status === 'damage_taken') return
-    if (status === 'already_dead') {
+  async autoAttack() {
+    if (await this.attack()) await this.autoAttack()
+  }
+
+  result(statusHealth) {
+    if (statusHealth === 'damage_taken') {
+      this.social.isFighting = true
+    }
+    if (statusHealth === 'killed_now') {
+      clearInterval(this.intervalId)
+      // console.log('погибнул')
+      const subject = this.target.subject
+      this.social.postmortem(subject.social, subject.health.total)
+    }
+    if (statusHealth === 'already_dead') {
       clearInterval(this.intervalId)
       // console.log('неправильная цель')
       return
-    }
-    if (status === 'killed_now') {
-      this.leveler.receiveExp(100n)
-      // this.social.sp += 50n
-      // console.log(`${defender.nick} погибнул!`)
-      // console.log(`${attacker.nick} получает ${100n} опыта и ${50n} очков`)
     }
   }
 
