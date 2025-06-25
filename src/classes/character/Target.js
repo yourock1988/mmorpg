@@ -23,6 +23,7 @@ export default class Target {
 
   async goto(gap = 1) {
     if (!this.hasTarget) return false
+    if (this.distance < gap) return true
     return await this.ownerCoords.moveTo(
       this.subject.coords,
       this.#interrupt,
