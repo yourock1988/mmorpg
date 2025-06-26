@@ -8,7 +8,7 @@ export default class Cargo {
 
   consumeItem(item) {
     if (!(item instanceof Consumable)) return
-    this.activities.add(item.activity)
+    this.activities.add(item.activity) //! item.createActivity()
     this.removeItemById(item.id)
   }
 

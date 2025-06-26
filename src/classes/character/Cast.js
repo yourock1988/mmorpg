@@ -14,9 +14,9 @@ export default class Cast {
       this.stage1(this.state, this.status) &&
       (await this.stage2(this.config, this.target)) &&
       this.stage3(this.health, this.mana, this.cost) &&
-      this.stage35(this.config, this.status) &&
-      (await this.stage4(this.config, this.target, this.state)) &&
-      this.stage5(this.config, this.target, activities, ability)
+      this.stage4(this.config, this.status) &&
+      (await this.stage5(this.config, this.target, this.state)) &&
+      this.stage6(this.config, this.target, activities, ability)
     )
   }
 
@@ -54,8 +54,8 @@ export default class Cast {
     return true
   }
 
-  stage35(config, status) {
-    // console.log('stage35')
+  stage4(config, status) {
+    // console.log('stage4')
     status.cooldownCurrent = config.cooldownTotal
     const { promise, resolve } = Promise.withResolvers()
     status.cdAwaiter = promise
@@ -71,7 +71,7 @@ export default class Cast {
     return true
   }
 
-  async stage4(config, target, state) {
+  async stage5(config, target, state) {
     // console.log('stage4')
     return await new Promise(resolve => {
       const intervalId = setInterval(() => {
@@ -92,7 +92,7 @@ export default class Cast {
     })
   }
 
-  stage5(config, target, activities, ability) {
+  stage6(config, target, activities, ability) {
     // console.log('stage5')
     const activity = ability.createActivity()
     if (!config.isRequiresTarget) {

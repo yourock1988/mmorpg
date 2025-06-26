@@ -1,5 +1,6 @@
 import calcStatsCombat from '../../functions/calcStatsCombat.js'
 
+//! может лучше просто Stats ??
 export default class StatsCombat {
   constructor(statsBasic, leveler, wear, activities) {
     this.statsBasic = statsBasic

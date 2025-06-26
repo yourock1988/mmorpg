@@ -14,6 +14,7 @@ export default class Activities {
 
   add(activity) {
     //! только если не селф баф
+    // возможно гораздо лучше это передвинуть в Cast.stage6
     activity.self.health = this.health
     activity.self.social = this.fight?.social
     //

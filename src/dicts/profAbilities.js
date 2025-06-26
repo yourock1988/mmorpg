@@ -1,5 +1,5 @@
 export default {
-  OrkFighter: {
+  OrcFighter: {
     5: { 'Def Aura': 1n },
     10: { 'Def Aura': 3n },
     15: { 'Def Aura': 5n },

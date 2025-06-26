@@ -1,13 +1,25 @@
 export default {
-  OrkFighter: {
-    Raider: {
-      Destroyer: {
-        Titan: null,
+  Orc: {
+    OrcFighter: {
+      Raider: {
+        Destroyer: {
+          Titan: null,
+        },
+      },
+      Monk: {
+        Tyrant: {
+          GrandKhawatari: null,
+        },
       },
     },
-    Monk: {
-      Tyrant: {
-        GrandKhawatari: null,
+    OrcMystic: {
+      Shaman: {
+        Warcryer: {
+          Doomcryer: null,
+        },
+        Overlord: {
+          Dominator: null,
+        },
       },
     },
   },

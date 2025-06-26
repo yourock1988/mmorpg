@@ -1,6 +1,6 @@
 import calcDistance from './calcDistance.js'
 
-export default function step(selfCoords, otherCoords, speed) {
+export default function calcStep(selfCoords, otherCoords, speed) {
   const hyp = calcDistance(selfCoords, otherCoords)
   const dx = otherCoords.x - selfCoords.x
   const dy = otherCoords.y - selfCoords.y

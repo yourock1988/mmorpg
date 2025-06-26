@@ -6,7 +6,7 @@ function работоспособность_откатов() {
   const cast = new Cast({})
   const { config, status } = ability
   if (config.cooldownTotal === 0) return
-  cast.stage35(config, status)
+  cast.stage4(config, status)
   let oldCooldownCurrent = status.cooldownCurrent
   const intervalId = setInterval(() => {
     console.assert(status.cooldownCurrent < oldCooldownCurrent)
