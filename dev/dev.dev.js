@@ -1,4 +1,3 @@
-require('./unit/classes/character/StatsCombat.dev.js')
 require('./unit/functions/calcStatsCombat.dev.js')
 
 require('./unit/classes/character/Abilities.dev.js')
@@ -10,7 +9,7 @@ require('./unit/classes/character/Health.dev.js')
 require('./unit/classes/character/Inventory.dev.js')
 require('./unit/classes/character/Leveler.dev.js')
 require('./unit/classes/character/Mana.dev.js')
-//
+require('./unit/classes/character/StatsCombat.dev.js')
 require('./unit/classes/character/Target.dev.js')
 require('./unit/classes/character/Wear.dev.js')
 

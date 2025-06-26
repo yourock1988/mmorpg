@@ -4,36 +4,67 @@ import Leveler from '../../../../src/classes/character/Leveler.js'
 import Activities from '../../../../src/classes/character/Activities.js'
 import StatsCombat from '../../../../src/classes/character/StatsCombat.js'
 import equipmentFabric from '../../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
-import Health from '../../../../src/classes/character/Health.js'
-import Mana from '../../../../src/classes/character/Mana.js'
 import activityFabric from '../../../../src/abstract-fabric/activities/activityFabric.js'
 
-const statsBasic = { ...sb2.Orc.Fighter }
-const activities = new Activities()
-const leveler = new Leveler()
-const wear = new Wear(activities)
-const statsCombat = new StatsCombat(statsBasic, leveler, wear, activities)
-const health = new Health(statsCombat, leveler, activities)
-const mana = new Mana(statsCombat, leveler, activities)
-// console.log(activities)
-// activities.interlinkedWithinHealth(health)
-// activities.add(activityFabric('buff', 'Heart Of Lion', 1n))
+function увеличиваются_ли_статы_при_повышении_левела() {
+  const statsBasic = { ...sb2.Orc.Fighter }
+  const activities = new Activities()
+  const leveler = new Leveler()
+  const wear = new Wear(activities)
+  const statsCombat = new StatsCombat(statsBasic, leveler, wear, activities)
+  const oldStats = statsCombat.current
 
-leveler.forceSetLevel(1n)
+  leveler.forceSetLevel(2n)
 
-wear.mount(equipmentFabric('Axe Of Glory'))
-wear.mount(equipmentFabric('Blade Of Blood'))
+  console.assert(
+    statsCombat.current.hpTotal > oldStats.hpTotal &&
+      statsCombat.current.hpRegen > oldStats.hpRegen &&
+      statsCombat.current.mpTotal > oldStats.mpTotal &&
+      statsCombat.current.mpRegen > oldStats.mpRegen &&
+      statsCombat.current.PAtk > oldStats.PAtk &&
+      statsCombat.current.PDef > oldStats.PDef &&
+      statsCombat.current.Accuracy > oldStats.Accuracy &&
+      statsCombat.current.CritRate > oldStats.CritRate &&
+      statsCombat.current.AtkSpd > oldStats.AtkSpd &&
+      statsCombat.current.MAtk > oldStats.MAtk &&
+      statsCombat.current.MDef > oldStats.MDef &&
+      statsCombat.current.Evasion > oldStats.Evasion &&
+      statsCombat.current.Speed > oldStats.Speed &&
+      statsCombat.current.CastSpd > oldStats.CastSpd
+  )
+}
 
-// console.log(statsCombat.current)
-// console.log(health.total)
-// console.log(mana.total)
-wear.mount(equipmentFabric('Helmet Of Truth'))
-wear.mount(equipmentFabric('Gloves Of Monk'))
-// console.log(health.total)
-// console.log(mana.total)
-// console.log(statsCombat.current)
+function увеличиваются_ли_статы_при_надевании_шмота() {
+  const statsBasic = { ...sb2.Orc.Fighter }
+  const activities = new Activities()
+  const leveler = new Leveler()
+  const wear = new Wear(activities)
+  const statsCombat = new StatsCombat(statsBasic, leveler, wear, activities)
+  const oldStats = statsCombat.current
 
-setTimeout(() => {
+  wear.mount(equipmentFabric('Axe Of Glory'))
+
+  console.assert(
+    statsCombat.current.PAtk > oldStats.PAtk &&
+      statsCombat.current.AtkSpd > oldStats.AtkSpd
+  )
+}
+
+function увеличиваются_ли_статы_при_бафе() {
+  const statsBasic = { ...sb2.Orc.Fighter }
+  const activities = new Activities()
+  const leveler = new Leveler()
+  const wear = new Wear(activities)
+  const statsCombat = new StatsCombat(statsBasic, leveler, wear, activities)
+  const oldStats = statsCombat.current
+
+  activities.add(activityFabric('buff', 'Haste', 1n))
+
+  console.assert(statsCombat.current.Speed > oldStats.Speed)
+
   activities.removeAll()
-  // console.log(activities.equipments)
-}, 500)
+}
+
+увеличиваются_ли_статы_при_повышении_левела()
+увеличиваются_ли_статы_при_надевании_шмота()
+увеличиваются_ли_статы_при_бафе()
