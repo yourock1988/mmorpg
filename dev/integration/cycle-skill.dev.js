@@ -18,6 +18,8 @@ async function наносит_ли_скилл_урон() {
   // console.log(Player1.leveler.lvl)
   // console.assert(Player2.health.current < oldHealthCurrent)
 
+  Player1.social.destroy()
+  Player2.social.destroy()
   Player1.activities.removeAll()
   Player2.activities.removeAll()
 }

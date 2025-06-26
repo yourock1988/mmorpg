@@ -1,4 +1,3 @@
-import Ability from '../../abstract-fabric/abilities/Ability.js'
 import Cast from './Cast.js'
 
 export default class Abilities {
@@ -15,9 +14,6 @@ export default class Abilities {
     this.activities = activities
     this.state = {
       castProgress: 0,
-      // get isCastInProcess() {
-      //   this.castProgress !== 0
-      // },
     }
   }
 
@@ -27,11 +23,17 @@ export default class Abilities {
   }
 
   async cast(ability) {
-    if (!(ability instanceof Ability)) return
-    const { cost, config, status } = ability
+    const { cost, config, status, type } = ability
     const { mana, health, target, activities, state } = this
     const cast = new Cast({ state, status, config, target, health, mana, cost })
-    return await cast.run(activities, ability)
+    const result = await cast.run(activities, ability)
+    const social = activities.fight?.social
+    const badAbilities = ['debuff', 'skill', 'spell']
+    if (result && config.isRequiresTarget && badAbilities.includes(type)) {
+      if (target.subject.social) social.activateModePvP()
+      if (!target.subject.social) social.activateModePvE()
+    }
+    return result
   }
 
   async learn(ability) {

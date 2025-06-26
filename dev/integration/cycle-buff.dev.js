@@ -12,6 +12,7 @@ async function баф_не_выучивается_при_недостатке_с
 
   console.assert(player1.abilities.buffs.length === 0)
 
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function баф_выучивается_при_наличии_сп() {
@@ -25,6 +26,7 @@ async function баф_выучивается_при_наличии_сп() {
 
   console.assert(player1.abilities.buffs.length === 1)
 
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function баф_кастуется_на_самого_себя() {
@@ -45,6 +47,7 @@ async function баф_кастуется_на_самого_себя() {
       player1.statsCombat.current.Accuracy > oldAccuracy &&
       player1.health.total > oldHpTotal
   )
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function баф_кастуется_на_контрагенте() {
@@ -62,6 +65,7 @@ async function баф_кастуется_на_контрагенте() {
   console.assert(player2.activities.buffs.length === 1)
 
   player2.activities.removeAll()
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function энфорс_действует_после_завершения_каста_на_контрагенте() {
@@ -84,6 +88,7 @@ async function энфорс_действует_после_завершения_�
   )
 
   player2.activities.removeAll()
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function пульсация_действует_после_завершения_каста_на_контрагенте() {
@@ -107,6 +112,7 @@ async function пульсация_действует_после_завершен
     if (player2.mana.current < 213n) {
       clearInterval(intervalId)
       player2.activities.removeAll()
+      player1.social.destroy()
       player1.activities.removeAll()
     }
   }, player2.activities.buffs[0].config.pulseIntervalDelay + 33)
@@ -132,6 +138,7 @@ async function энфорс_до_завершения_каста_не_дейст
 
   await cast
   player2.activities.removeAll()
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function пульсация_до_завершения_каста_не_действует_на_контрагенте() {
@@ -157,6 +164,7 @@ async function пульсация_до_завершения_каста_не_де
   clearInterval(intervalId)
 
   player2.activities.removeAll()
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function баф_не_кастуется_без_цели() {
@@ -171,6 +179,7 @@ async function баф_не_кастуется_без_цели() {
 
   console.assert(cast === false)
 
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function при_превышении_дистанции_кастующий_начинает_преследование() {
@@ -189,6 +198,7 @@ async function при_превышении_дистанции_кастующий
 
   console.assert(cast === true && player2.activities.buffs.length === 1)
   player2.activities.removeAll()
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 

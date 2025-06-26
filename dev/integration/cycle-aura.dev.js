@@ -46,6 +46,7 @@ async function работает_ли_энфорс() {
       player1.health.total > oldHpTotal &&
       player1.health.current === oldHpCurrent
   )
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function работает_ли_пульсирование() {
@@ -63,6 +64,7 @@ async function работает_ли_пульсирование() {
     oldHpCurrent = player1.health.current
     if (oldHpCurrent < 411n) {
       clearInterval(intervalId)
+      player1.social.destroy()
       player1.activities.removeAll()
     }
   }, player1.activities.auras[0].config.pulseIntervalDelay + 33)
@@ -82,6 +84,7 @@ async function без_сп_обучение_не_срабатывает() {
       player1.health.total === oldHpTotal &&
       player1.health.current === oldHpCurrent
   )
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 

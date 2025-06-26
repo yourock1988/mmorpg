@@ -10,6 +10,7 @@ async function дебаф_не_выучивается_при_недостатк�
 
   console.assert(player1.abilities.debuffs.length === 0)
 
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function дебаф_выучивается_при_наличии_сп() {
@@ -21,6 +22,7 @@ async function дебаф_выучивается_при_наличии_сп() {
 
   console.assert(player1.abilities.debuffs.length === 1)
 
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function дебаф_кастуется_на_самого_себя() {
@@ -36,6 +38,7 @@ async function дебаф_кастуется_на_самого_себя() {
 
   console.assert(player1.activities.debuffs.length === 1)
 
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function дебаф_кастуется_на_контрагенте() {
@@ -53,6 +56,7 @@ async function дебаф_кастуется_на_контрагенте() {
   console.assert(player2.activities.debuffs.length === 1)
 
   player2.activities.removeAll()
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function энфорс_действует_после_завершения_каста_на_контрагенте() {
@@ -71,6 +75,7 @@ async function энфорс_действует_после_завершения_�
   console.assert(player2.health.total < oldHpTotal)
 
   player2.activities.removeAll()
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function пульсация_действует_после_завершения_каста_на_контрагенте() {
@@ -93,6 +98,7 @@ async function пульсация_действует_после_завершен
     if (oldHpCurrent < 802n) {
       clearInterval(intervalId)
       player2.activities.removeAll()
+      player1.social.destroy()
       player1.activities.removeAll()
     }
   }, player2.activities.debuffs[0].config.pulseIntervalDelay + 33)
@@ -114,6 +120,7 @@ async function энфорс_до_завершения_каста_не_дейст
 
   await cast
   player2.activities.removeAll()
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function пульсация_до_завершения_каста_не_действует_на_контрагенте() {
@@ -138,6 +145,7 @@ async function пульсация_до_завершения_каста_не_де
   await cast
   clearInterval(intervalId)
   player2.activities.removeAll()
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 

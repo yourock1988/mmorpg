@@ -12,6 +12,7 @@ async function хотьба_к_цели() {
 
   console.assert(res === true)
 
+  anotherCharacter.social.destroy()
   anotherCharacter.activities.removeAll()
 }
 async function прерывание_хотьбы_к_цели() {
@@ -26,6 +27,7 @@ async function прерывание_хотьбы_к_цели() {
 
   console.assert(res === false)
 
+  anotherCharacter.social.destroy()
   anotherCharacter.activities.removeAll()
 }
 async function прерывание_хотьбы_при_установке_другой_цели() {
@@ -41,6 +43,8 @@ async function прерывание_хотьбы_при_установке_др�
 
   console.assert(res === false)
 
+  anotherCharacter.social.destroy()
+  anotherCharacter2.social.destroy()
   anotherCharacter.activities.removeAll()
   anotherCharacter2.activities.removeAll()
 }
@@ -55,6 +59,7 @@ function правильно_ли_вычисляется_дистанция() {
 
   console.assert(target.distance.toFixed(2) === '2.83')
 
+  anotherCharacter.social.destroy()
   anotherCharacter.activities.removeAll()
 }
 

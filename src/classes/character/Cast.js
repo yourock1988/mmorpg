@@ -23,8 +23,6 @@ export default class Cast {
   stage1(state, status) {
     // console.log('stage1')
     if (state.castProgress !== 0) return false
-    // if (state.isCastInProcess) return false
-    // if (status.isSwitchedOn) return false
     if (status.cooldownCurrent !== 0) return false
     return true
   }

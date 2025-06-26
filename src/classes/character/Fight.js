@@ -19,67 +19,54 @@ export default class Fight {
   }
 
   sendDamage(type = 'phys', value = this.statsCombat.current.PAtk) {
-    if (this.checkAttacker && this.checkDefender) {
-      const isHit = calcIsHit(this.statsCombat, this.target.subject.statsCombat)
-      if (!isHit) {
-        // console.log('промах')
-        return
-      }
-      // console.log(`${this.attacker.nick} атакует!`)
-      const statusHealth = this.target.subject.fight.receiveDamage(type, value)
-      this.result(statusHealth)
-    }
+    const { subject } = this.target
+    if (!this.checkAttacker || !this.checkDefender) return false
+    if (!calcIsHit(this.statsCombat, subject.statsCombat)) return true
+    const statusHealth = subject.fight.receiveDamage(type, value)
+    return this.checkDamage(statusHealth)
   }
 
   receiveDamage(type, value) {
     const dmg = calcDamage(value, this.statsCombat.current.PDef)
-    // console.log('получено урона', dmg)
     return this.health.lose(dmg)
   }
 
   async attack() {
-    // console.log(`${this.attacker.nick}хочет атаковать${this.defender.nick}`)
-    if (this.checkAttacker && this.checkDefender) {
-      await this.target.goto()
-      await wait(calcDelayAttack(this.statsCombat))
-      this.sendDamage()
-      return true
-    }
-    return false
+    if (!this.checkAttacker || !this.checkDefender) return false
+    await this.target.goto()
+    await wait(calcDelayAttack(this.statsCombat))
+    return this.sendDamage()
   }
 
   async autoAttack() {
     if (await this.attack()) await this.autoAttack()
   }
 
-  result(statusHealth) {
-    if (statusHealth === 'damage_taken') {
-      this.social.isFighting = true
+  checkDamage(statusHealth) {
+    const subject = this.target.subject
+    if (statusHealth !== 'already_dead') {
+      if (subject.social) this.social.activateModePvP()
+      if (!subject.social) this.social.activateModePvE()
     }
     if (statusHealth === 'killed_now') {
-      clearInterval(this.intervalId)
-      // console.log('погибнул')
-      const subject = this.target.subject
       this.social.postmortem(subject.social, subject.health.total)
     }
-    if (statusHealth === 'already_dead') {
-      clearInterval(this.intervalId)
-      // console.log('неправильная цель')
-      return
+    if (statusHealth === 'damage_taken') {
+      return true
     }
+    clearInterval(this.intervalId)
+    return false
   }
 
   get checkAttacker() {
     if (this.health.isLive) return true
     clearInterval(this.intervalId)
-    // console.log('мертвые не могут атаковать')
     return false
   }
 
   get checkDefender() {
     if (this.target.hasTarget && this.target.subject.health?.isLive) return true
     clearInterval(this.intervalId)
-    // console.log('неправильная цель')
     return false
   }
 }

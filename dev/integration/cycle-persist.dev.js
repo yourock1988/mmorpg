@@ -42,6 +42,7 @@ async function действует_ли_выученный_персист_на_п
       player1.health.current === oldHpCurrent
   )
 
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function без_сп_обучение_не_срабатывает() {
@@ -53,6 +54,7 @@ async function без_сп_обучение_не_срабатывает() {
 
   console.assert(player1.activities.persists.length === 2)
 
+  player1.social.destroy()
   player1.activities.removeAll()
 }
 async function проверка_пульсирования_персиста() {
@@ -72,6 +74,7 @@ async function проверка_пульсирования_персиста() {
     oldHpCurrent = player1.health.current
     if (player1.health.current === player1.health.total) {
       clearInterval(intervalId)
+      player1.social.destroy()
       player1.activities.removeAll()
     }
   }, p.config.pulseIntervalDelay + 33)

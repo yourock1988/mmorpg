@@ -6,29 +6,39 @@ export default class Social {
     this.pvp = 0n
     this.pk = 0n
     this.karma = 0n
-    this.isFighting = false
+    this.isModeFight = false
+    this.isModePvE = false
+    this.isModePvP = false
+    this.timeoutModeFight = null
+    this.timeoutModePvE = null
+    this.timeoutModePvP = null
   }
 
-  get isPlayerKiller() {
+  get isModePK() {
     return this.karma > 0n
   }
 
   postmortem(targetSocial, targetHpTotal) {
-    targetHpTotal = BigInt(targetHpTotal)
-    this.receiveExp(targetHpTotal)
-    this.receiveSp(targetHpTotal / 10n)
-    // console.log(`${defender.nick} погибнул!`)
-    // console.log(`${attacker.nick} получает ${100n} опыта и ${50n} очков`)
-    if (!targetSocial) {
-      this.mob += 1
-      this.receiveKarma(-10n)
-    } else {
-      this.isFighting = true
-      if (targetSocial.isFighting || targetSocial.isPlayerKiller) {
-        this.pvp += 1n
+    if (this.isModePK) {
+      if (!targetSocial) {
+        this.receiveKarma(-10n)
       } else {
         this.pk += 1n
         this.receiveKarma(1000n)
+      }
+    } else {
+      targetHpTotal = BigInt(targetHpTotal)
+      this.receiveExp(targetHpTotal)
+      this.receiveSp(targetHpTotal / 10n)
+      if (!targetSocial) {
+        this.mob += 1
+      } else {
+        if (targetSocial.isModePvP || targetSocial.isModePK) {
+          this.pvp += 1n
+        } else {
+          this.pk += 1n
+          this.receiveKarma(1000n)
+        }
       }
     }
   }
@@ -44,5 +54,33 @@ export default class Social {
   receiveKarma(karma) {
     this.karma += karma
     if (this.karma <= 0n) this.karma = 0n
+  }
+
+  activateModeFight() {
+    this.activateMode('isModeFight', 'timeoutModeFight', 5000)
+  }
+
+  activateModePvE() {
+    this.activateModeFight()
+    this.activateMode('isModePvE', 'timeoutModePvE', 15000)
+  }
+
+  activateModePvP() {
+    this.activateModeFight()
+    this.activateMode('isModePvP', 'timeoutModePvP', 25000)
+  }
+
+  activateMode(modeProp, timeoutProp, ms) {
+    this[modeProp] = true
+    clearTimeout(this[timeoutProp])
+    this[timeoutProp] = setTimeout(() => {
+      this[modeProp] = false
+    }, ms)
+  }
+
+  destroy() {
+    clearTimeout(this.timeoutModeFight)
+    clearTimeout(this.timeoutModePvE)
+    clearTimeout(this.timeoutModePvP)
   }
 }

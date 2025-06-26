@@ -8,6 +8,8 @@ function characterDieWithKillingDamage() {
 
   characterBad.sendDamageToTarget(characterGood, killingDamage)
 
+  characterGood.social.destroy()
+  characterBad.social.destroy()
   console.assert(characterGood.isLive === false)
   console.assert(characterGood.hp === 0)
 }
@@ -32,6 +34,7 @@ function increaseStatsWhenLevelUp() {
       oldStats.CastSpd < characterGood.statsCombat.current.CastSpd
   )
 
+  characterGood.social.destroy()
   characterGood.activities.removeAll()
 }
 
@@ -46,6 +49,7 @@ function увеличатся_ли_статы_при_надетом_снаряж
 
   console.assert(characterGood.statsCombat.current.PAtk > oldStats.PAtk)
 
+  characterGood.social.destroy()
   characterGood.activities.removeAll()
 }
 
@@ -61,6 +65,7 @@ function уменьшатся_ли_статы_при_снятии_снаряже
 
   console.assert(characterGood.statsCombat.current.PAtk < oldStats.PAtk)
 
+  characterGood.social.destroy()
   characterGood.activities.removeAll()
 }
 
