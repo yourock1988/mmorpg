@@ -1,47 +1,75 @@
 import abilityFabric from '../../../../src/abstract-fabric/abilities/abilityFabric.js'
 import Abilities from '../../../../src/classes/character/Abilities.js'
 import Activities from '../../../../src/classes/character/Activities.js'
+import Coords from '../../../../src/classes/character/Coords.js'
 import Health from '../../../../src/classes/character/Health.js'
+import Leveler from '../../../../src/classes/character/Leveler.js'
+import Mana from '../../../../src/classes/character/Mana.js'
+import Target from '../../../../src/classes/character/Target.js'
 
-function персист_изучается() {
+async function персист_изучается() {
+  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
+  const leveler = new Leveler()
+  const coords = new Coords()
+  const target = new Target(coords)
   const activities = new Activities()
-  const ablilities = new Abilities(activities)
+  const health = new Health(stats, leveler, activities)
+  const mana = new Mana(stats, leveler, activities)
+  const abilities = new Abilities(activities, target, health, mana)
 
-  ablilities.learn(abilityFabric('persist', 'Defensive Persist', 1n))
+  await abilities.learn(abilityFabric('persist', 'Defensive Persist', 1n))
 
-  console.assert(ablilities.persists.length === 1)
+  console.assert(abilities.persists.length === 1)
+
   activities.removeAll()
 }
 
-function персист_активируется() {
+async function персист_активируется() {
+  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
+  const leveler = new Leveler()
+  const coords = new Coords()
+  const target = new Target(coords)
   const activities = new Activities()
-  const ablilities = new Abilities(activities)
+  const health = new Health(stats, leveler, activities)
+  const mana = new Mana(stats, leveler, activities)
+  const abilities = new Abilities(activities, target, health, mana)
 
-  ablilities.learn(abilityFabric('persist', 'Defensive Persist', 1n))
+  await abilities.learn(abilityFabric('persist', 'Defensive Persist', 1n))
 
-  console.assert(activities.persists.length === 1)
+  console.assert(activities.persists.length === 3)
+
   activities.removeAll()
 }
 
-function персист_енфорсится() {
+async function персист_енфорсится() {
+  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
+  const leveler = new Leveler()
+  const coords = new Coords()
+  const target = new Target(coords)
   const activities = new Activities()
-  const ablilities = new Abilities(activities)
-  const health = new Health(null, null, activities)
+  const health = new Health(stats, leveler, activities)
+  const mana = new Mana(stats, leveler, activities)
+  const abilities = new Abilities(activities, target, health, mana)
   let oldHPtotal = health.total
   let oldHPcurrent = health.current
 
-  ablilities.learn(abilityFabric('persist', 'Defensive Persist', 1n))
+  await abilities.learn(abilityFabric('persist', 'Defensive Persist', 1n))
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
   activities.removeAll()
 }
 
-function персист_пульсирует() {
+async function персист_пульсирует() {
+  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
+  const leveler = new Leveler()
+  const coords = new Coords()
+  const target = new Target(coords)
   const activities = new Activities()
-  const ablilities = new Abilities(activities)
-  const health = new Health(null, null, activities)
+  const health = new Health(stats, leveler, activities)
+  const mana = new Mana(stats, leveler, activities)
+  const abilities = new Abilities(activities, target, health, mana)
 
-  ablilities.learn(abilityFabric('persist', 'Defensive Persist', 1n))
+  await abilities.learn(abilityFabric('persist', 'Defensive Persist', 1n))
 
   let oldHPtotal = health.total
   let oldHPcurrent = health.current
@@ -49,17 +77,18 @@ function персист_пульсирует() {
     console.assert(health.total === oldHPtotal && health.current > oldHPcurrent)
     oldHPtotal = health.total
     oldHPcurrent = health.current
-  }, 333)
+  }, 1030)
 
   setTimeout(() => {
     clearInterval(intervalId)
-    health.forceDeath()
-  }, 2000)
+    activities.removeAll()
+    // health.forceDeath()
+  }, 3300)
 }
 
 function всё_сразу() {
   const activities = new Activities()
-  const ablilities = new Abilities(activities)
+  const abilities = new Abilities(activities, target, health, mana)
   const health = new Health(null, null, activities)
   let oldHPtotal = health.total
   let oldHPcurrent = health.current
@@ -91,4 +120,4 @@ function всё_сразу() {
 персист_активируется()
 персист_енфорсится()
 персист_пульсирует()
-всё_сразу()
+// всё_сразу()
