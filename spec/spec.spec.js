@@ -1,5 +1,0 @@
-require('./classes/character/Character.spec.js')
-require('./classes/character/Health.spec.js')
-require('./classes/character/Inventory.spec.js')
-require('./classes/character/Wear.spec.js')
-require('./classes/character/Target.spec.js')

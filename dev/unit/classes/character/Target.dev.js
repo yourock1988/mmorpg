@@ -1,6 +1,6 @@
-import Character from '../../../src/classes/character/Character.js'
-import Coords from '../../../src/classes/character/Coords.js'
-import Target from '../../../src/classes/character/Target.js'
+import Character from '../../../../src/classes/character/Character.js'
+import Coords from '../../../../src/classes/character/Coords.js'
+import Target from '../../../../src/classes/character/Target.js'
 
 async function хотьба_к_цели() {
   const anotherCharacter = new Character('Player1', 'Orc', 'Fighter')

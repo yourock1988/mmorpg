@@ -1,5 +1,5 @@
-import Wear from '../../../src/classes/character/Wear.js'
-import equipmentFabric from '../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
+import Wear from '../../../../src/classes/character/Wear.js'
+import equipmentFabric from '../../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
 
 function checkStatsCalculations() {
   const wear = new Wear()

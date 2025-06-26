@@ -1,7 +1,7 @@
-import abilityFabric from '../../../src/abstract-fabric/abilities/abilityFabric.js'
-import Abilities from '../../../src/classes/character/Abilities.js'
-import Activities from '../../../src/classes/character/Activities.js'
-import Health from '../../../src/classes/character/Health.js'
+import abilityFabric from '../../../../src/abstract-fabric/abilities/abilityFabric.js'
+import Abilities from '../../../../src/classes/character/Abilities.js'
+import Activities from '../../../../src/classes/character/Activities.js'
+import Health from '../../../../src/classes/character/Health.js'
 
 function персист_изучается() {
   const activities = new Activities()
