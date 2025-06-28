@@ -22,17 +22,17 @@ function checkStatsAfterChangeEquipment() {
   console.assert(stats.PAtk === 33 && stats.AtkSpd === undefined)
 }
 
-function вычисляется_ли_listActivities() {
-  const wear = new Wear()
+// function вычисляется_ли_listActivities() {
+//   const wear = new Wear()
 
-  wear.mount(equipmentFabric('Helmet Of Truth'))
+//   wear.mount(equipmentFabric('Helmet Of Truth'))
 
-  console.assert(
-    wear.listActivities.length === 1 &&
-      typeof wear.listActivities[0].enforce.toHealth === 'function'
-  )
-}
+//   console.assert(
+//     wear.listActivities.length === 1 &&
+//       typeof wear.listActivities[0].enforce.toHealth === 'function'
+//   )
+// }
 
 checkStatsCalculations()
 checkStatsAfterChangeEquipment()
-вычисляется_ли_listActivities()
+// вычисляется_ли_listActivities()

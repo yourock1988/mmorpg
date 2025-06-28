@@ -52,6 +52,10 @@ export default class Activities {
     const findedActivity = this[type + 's'].find(a => a.id === activityId)
     if (findedActivity) this.remove(findedActivity)
   }
+  removeByTypeCaption(type, caption) {
+    const findedActivity = this[type + 's'].find(a => a.caption === caption)
+    if (findedActivity) this.remove(findedActivity)
+  }
 
   get enforces() {
     return this.list.map(activity => activity.enforce)

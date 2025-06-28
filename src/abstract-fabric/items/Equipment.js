@@ -7,8 +7,9 @@ export default class Equipment extends Item {
     this.slotName = slotName ?? 'weapon'
     this.grade = grade ?? 'no-grade'
     this.stats = stats ?? {}
-    if (hasActivity) {
-      this.activity = activityFabric('equipment', caption, 1n)
-    }
+  }
+
+  createActivity() {
+    return activityFabric(this.type, this.caption, 1n)
   }
 }

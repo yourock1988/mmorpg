@@ -33,18 +33,23 @@ export default class Wear {
       )
   }
 
-  get listActivities() {
-    return Object.values(this)
-      .filter(v => v?.activity)
-      .map(v => v.activity)
-  }
+  // get listActivities() {
+  //   return Object.values(this)
+  //     .filter(v => v?.activity)
+  //     .map(v => v.activity)
+  // }
 
   mount(equipment) {
     const oldEquip = this[equipment.slotName]
     this[equipment.slotName] = equipment
     if (!this.#activities) return oldEquip
-    if (oldEquip?.hasActivity) this.#activities.remove(oldEquip.activity)
-    if (equipment?.hasActivity) this.#activities.add(equipment.activity)
+    if (oldEquip?.hasActivity) {
+      this.#activities.removeByTypeCaption('equipment', oldEquip.caption)
+    }
+    if (equipment?.hasActivity) {
+      const activity = equipment.createActivity()
+      this.#activities.add(activity)
+    }
     return oldEquip
   }
 
@@ -52,7 +57,9 @@ export default class Wear {
     const oldEquip = this[slotName]
     this[slotName] = null
     if (!this.#activities) return oldEquip
-    if (oldEquip?.hasActivity) this.#activities.remove(oldEquip.activity)
+    if (oldEquip?.hasActivity) {
+      this.#activities.removeByTypeCaption('equipment', oldEquip.caption)
+    }
     return oldEquip
   }
 }

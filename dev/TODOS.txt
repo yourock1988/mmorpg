@@ -4,8 +4,7 @@
 ✅ реализовать spells
 
 
-сделать чтоб activity у item->consumable и у item->equipment
-создавалось через функцию createActivity так же как и у ability
+✅ сделать чтоб activity у item->consumable и у item->equipment создавалось через функцию createActivity так же как и у ability
 
 
 придумать каким образом сделать чтоб у raw activity не было функций

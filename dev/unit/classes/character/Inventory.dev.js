@@ -95,7 +95,7 @@ function проверка_пульсирования_при_надетом_шл�
     console.assert(health.total > oldHpTotal)
     console.assert(health.current > oldHpCurrent)
     oldHpCurrent = health.current
-  }, equipment.activity.config.pulseIntervalDelay + 33)
+  }, equipment.createActivity().config.pulseIntervalDelay + 33)
 
   setTimeout(() => {
     clearInterval(intervalId)
