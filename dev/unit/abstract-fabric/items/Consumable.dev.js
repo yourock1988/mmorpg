@@ -23,7 +23,9 @@ let oldHpCurrent = health.current
 const intervalId = setInterval(() => {
   console.assert(health.current > oldHpCurrent)
   oldHpCurrent = health.current
-}, consumableItem.activity.config.pulseIntervalDelay + 10)
+}, consumableItem.createActivity().config.pulseIntervalDelay + 10)
+
+// activities.findByTypeId('consumable', 'Healing Potion')
 
 setTimeout(() => {
   clearInterval(intervalId)
