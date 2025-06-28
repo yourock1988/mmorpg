@@ -28,6 +28,7 @@ export default class Coords {
   async stepTo(coords) {
     await wait(100)
     Object.assign(this, calcStep(this, coords, 88))
+    // console.log(this)
     return this.getDistanceTo(coords)
   }
 

@@ -17,3 +17,5 @@ console.assert(delayer.spd2hold('AtkSpd', 100) === 781)
 
 console.assert(statsCombat.current.CastSpd === 72)
 console.assert(delayer.spd2hold('CastSpd', 100) === 1162)
+
+console.assert(delayer.spd2hold('CastSpd', Infinity) === 0)

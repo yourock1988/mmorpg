@@ -60,7 +60,7 @@ export default class Cast {
     // console.log('stage4')
     const { promise, resolve } = Promise.withResolvers()
     status.cdAwaiter = promise
-    const msHold = delayer.spd2hold('CastSpd', config.cooldownTotal)
+    const msHold = delayer.spd2hold('CastSpd', config.cooldownSpd)
     progressive(msHold, 33, progress => {
       status.cooldownCurrent = progress
       // console.log('>>', status.cooldownCurrent)

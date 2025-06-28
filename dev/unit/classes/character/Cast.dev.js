@@ -17,7 +17,7 @@ function работоспособность_откатов() {
   const ability = abilityFabric('buff', 'Heart Of Lion', 1n)
   const cast = new Cast({})
   const { config, status } = ability
-  if (config.cooldownTotal === 0) return
+  if (config.cooldownSpd === Infinity) return
   cast.stage4(config, status, delayer)
   let oldCooldownCurrent = status.cooldownCurrent
   const intervalId = setInterval(() => {

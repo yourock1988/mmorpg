@@ -1,7 +1,7 @@
 !!ПЛАН:
 
 
-реализовать spells
+✅ реализовать spells
 
 
 сделать чтоб activity у item->consumable и у item->equipment

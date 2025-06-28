@@ -189,12 +189,18 @@ async function при_превышении_дистанции_кастующий
   player1.social.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
-  player1.coords.teleportTo({ x: 2500, y: 2500 })
-  player2.coords.teleportTo({ x: -1000, y: -1100 })
+  player1.coords.teleportTo({ x: 25, y: 25 })
+  player2.coords.teleportTo({ x: -10, y: -10 })
   await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
 
-  const cast = await player1.abilities.cast(buff)
+  let cast = player1.abilities.cast(buff)
+
+  // setTimeout(() => {
+  //   player2.coords.teleportTo({ x: -30, y: 30 })
+  // }, 2500)
+
+  cast = await cast
 
   console.assert(cast === true && player2.activities.buffs.length === 1)
   player2.activities.removeAll()

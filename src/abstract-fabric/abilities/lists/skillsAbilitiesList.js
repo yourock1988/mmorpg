@@ -8,13 +8,10 @@ export default [
       hp: 0,
     },
     config: {
-      cooldownTotal: 100,
+      cooldownSpd: 100,
       castSpeed: 150,
       castRange: 1, // в плотную
       abortRange: 3,
-      massRange: 0,
-      isMassive: false,
-      isRequiresTarget: true,
     },
   },
 ]

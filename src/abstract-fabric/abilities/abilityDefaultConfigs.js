@@ -1,41 +1,51 @@
 export default {
   auras: {
-    castSpeed: 0,
+    cooldownSpd: Infinity,
+    castSpeed: Infinity,
     castRange: 0,
-    massRange: 0,
     abortRange: 0,
-    cooldownTotal: 1000,
+    massRange: 0,
     isMassive: false,
     isAbortable: false,
     isRequiresTarget: false,
   },
 
   persists: {
-    castSpeed: 0,
+    cooldownSpd: Infinity,
+    castSpeed: Infinity,
     castRange: 0,
-    massRange: 0,
     abortRange: 0,
-    cooldownTotal: 0,
+    massRange: 0,
     isMassive: false,
     isAbortable: false,
     isRequiresTarget: false,
   },
 
   buffs: {
+    massRange: 0,
+    isMassive: false,
     isAbortable: true,
     isRequiresTarget: true,
   },
 
   debuffs: {
+    massRange: 0,
+    isMassive: false,
     isAbortable: true,
     isRequiresTarget: true,
   },
 
   skills: {
+    massRange: 0,
+    isMassive: false,
     isAbortable: false,
+    isRequiresTarget: true,
   },
 
   spells: {
+    massRange: 0,
+    isMassive: false,
     isAbortable: true,
+    isRequiresTarget: true,
   },
 }
