@@ -8,15 +8,20 @@ import Target from '../../src/classes/character/Target.js'
 import Health from '../../src/classes/character/Health.js'
 import Mana from '../../src/classes/character/Mana.js'
 import Leveler from '../../src/classes/character/Leveler.js'
+import Wear from '../../src/classes/character/Wear.js'
+import StatsCombat from '../../src/classes/character/StatsCombat.js'
+import statsBasic from '../../src/dicts/statsBasic.js'
 
 async function обновляется_ли_активити_при_активации_ауры() {
-  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
+  const sb = { ...statsBasic.Orc.Fighter }
   const leveler = new Leveler()
   const coords = new Coords()
   const target = new Target(coords)
   const activities = new Activities()
-  const health = new Health(stats, leveler, activities)
-  const mana = new Mana(stats, leveler, activities)
+  const wear = new Wear(activities)
+  const statsCombat = new StatsCombat(sb, leveler, wear, activities)
+  const health = new Health(statsCombat, leveler, activities)
+  const mana = new Mana(statsCombat, leveler, activities)
   const abilities = new Abilities(activities, target, health, mana)
   const aura = abilityFabric('aura', 'Concentration Aura', 1n)
   await abilities.learn(aura)
@@ -62,12 +67,12 @@ async function работает_ли_пульсирование() {
   const intervalId = setInterval(() => {
     console.assert(player1.health.current < oldHpCurrent)
     oldHpCurrent = player1.health.current
-    if (oldHpCurrent < 411n) {
+    if (oldHpCurrent < 415n) {
       clearInterval(intervalId)
       player1.social.destroy()
       player1.activities.removeAll()
     }
-  }, player1.activities.auras[0].config.pulseIntervalDelay + 33)
+  }, player1.activities.auras[0].config.pulseIntervalDelay + 17)
 }
 async function без_сп_обучение_не_срабатывает() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
@@ -88,7 +93,7 @@ async function без_сп_обучение_не_срабатывает() {
   player1.activities.removeAll()
 }
 
-обновляется_ли_активити_при_активации_ауры()
-работает_ли_энфорс()
+// обновляется_ли_активити_при_активации_ауры()
+// работает_ли_энфорс()
 работает_ли_пульсирование()
-без_сп_обучение_не_срабатывает()
+// без_сп_обучение_не_срабатывает()

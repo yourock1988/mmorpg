@@ -40,4 +40,10 @@ export default {
     duration: 0,
     pulseIntervalDelay: 0,
   },
+
+  spells: {
+    isSeen: false,
+    duration: 0,
+    pulseIntervalDelay: 0,
+  },
 }

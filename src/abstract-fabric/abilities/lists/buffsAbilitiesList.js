@@ -8,11 +8,11 @@ export default [
       hp: 0,
     },
     config: {
-      castSpeed: 500,
+      castSpeed: 150,
       castRange: 5000,
       massRange: 0,
       abortRange: 8000,
-      cooldownTotal: 3000,
+      cooldownTotal: 100,
       isMassive: false,
     },
   },

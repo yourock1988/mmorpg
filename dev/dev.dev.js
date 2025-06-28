@@ -12,6 +12,7 @@ require('./unit/classes/character/Mana.dev.js')
 require('./unit/classes/character/StatsCombat.dev.js')
 require('./unit/classes/character/Target.dev.js')
 require('./unit/classes/character/Wear.dev.js')
+require('./unit/classes/Delayer.dev.js')
 
 require('./unit/abstract-fabric/abilities/abilityFabric.dev.js')
 require('./unit/abstract-fabric/activities/actitvityFabric.dev.js')

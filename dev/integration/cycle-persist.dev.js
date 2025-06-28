@@ -8,15 +8,20 @@ import Target from '../../src/classes/character/Target.js'
 import Health from '../../src/classes/character/Health.js'
 import Mana from '../../src/classes/character/Mana.js'
 import Leveler from '../../src/classes/character/Leveler.js'
+import Wear from '../../src/classes/character/Wear.js'
+import StatsCombat from '../../src/classes/character/StatsCombat.js'
+import statsBasic from '../../src/dicts/statsBasic.js'
 
 async function обновляется_ли_персист_активити_при_добавлении_абилки() {
-  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
+  const sb = { ...statsBasic.Orc.Fighter }
   const leveler = new Leveler()
   const coords = new Coords()
   const target = new Target(coords)
   const activities = new Activities()
-  const health = new Health(stats, leveler, activities)
-  const mana = new Mana(stats, leveler, activities)
+  const wear = new Wear(activities)
+  const statsCombat = new StatsCombat(sb, leveler, wear, activities)
+  const health = new Health(statsCombat, leveler, activities)
+  const mana = new Mana(statsCombat, leveler, activities)
   const abilities = new Abilities(activities, target, health, mana)
   const persist = abilityFabric('persist', 'Defensive Persist', 1n)
 

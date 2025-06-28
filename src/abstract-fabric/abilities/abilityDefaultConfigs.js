@@ -34,4 +34,8 @@ export default {
   skills: {
     isAbortable: false,
   },
+
+  spells: {
+    isAbortable: true,
+  },
 }

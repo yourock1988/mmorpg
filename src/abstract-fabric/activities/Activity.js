@@ -21,6 +21,10 @@ export default class Activity {
   }
 
   executor(statusHealth) {
+    if (statusHealth !== 'already_dead') {
+      if (this.self.social) this.attacker.social.activateModePvP()
+      if (!this.self.social) this.attacker.social.activateModePvE()
+    }
     if (statusHealth === 'killed_now') {
       this.attacker.social.postmortem(this.self.social, this.self.health.total)
     }

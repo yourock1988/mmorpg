@@ -27,7 +27,9 @@ export default class Fight {
   }
 
   receiveDamage(type, value) {
-    const dmg = calcDamage(value, this.statsCombat.current.PDef)
+    let dmg
+    if (type === 'phys') dmg = calcDamage(value, this.statsCombat.current.PDef)
+    if (type === 'magic') dmg = calcDamage(value, this.statsCombat.current.MDef)
     return this.health.lose(dmg)
   }
 

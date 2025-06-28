@@ -5,6 +5,7 @@ import debuffsActivitiesList from './lists/debuffsActivitiesList.js'
 import equipmentsActivitiesList from './lists/equipmentsActivitiesList.js'
 import persistsActivitiesList from './lists/persistsActivitiesList.js'
 import skillsActivitiesList from './lists/skillsActivitiesList.js'
+import spellsActivitiesList from './lists/spellsActivitiesList.js'
 
 export default {
   auras: aurasActivitiesList,
@@ -14,4 +15,5 @@ export default {
   equipments: equipmentsActivitiesList,
   persists: persistsActivitiesList,
   skills: skillsActivitiesList,
+  spells: spellsActivitiesList,
 }

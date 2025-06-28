@@ -10,14 +10,14 @@ import Mana from '../../../../src/classes/character/Mana.js'
 import StatsCombat from '../../../../src/classes/character/StatsCombat.js'
 import Target from '../../../../src/classes/character/Target.js'
 import Wear from '../../../../src/classes/character/Wear.js'
-import sb from '../../../../src/dicts/statsBasic.js'
+import statsBasic from '../../../../src/dicts/statsBasic.js'
 
 function работает_ли_естественная_регенерация_хп() {
-  const statsBasic = { ...sb.Orc.Fighter }
+  const sb = { ...statsBasic.Orc.Fighter }
   const leveler = new Leveler()
   const wear = new Wear()
   const activities = new Activities()
-  const statsCombat = new StatsCombat(statsBasic, leveler, wear, activities)
+  const statsCombat = new StatsCombat(sb, leveler, wear, activities)
   const health = new Health(statsCombat, leveler, activities)
 
   health.lose(health.total / 7)
@@ -34,10 +34,14 @@ function работает_ли_естественная_регенерация_�
 }
 
 function умрёт_ли_без_здоровья() {
-  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
+  const sb = { ...statsBasic.Orc.Fighter }
   const leveler = new Leveler()
+  const coords = new Coords()
+  const target = new Target(coords)
   const activities = new Activities()
-  const health = new Health(stats, leveler, activities)
+  const wear = new Wear(activities)
+  const statsCombat = new StatsCombat(sb, leveler, wear, activities)
+  const health = new Health(statsCombat, leveler, activities)
   const oldHPtotal = health.total
 
   health.forceDeath()
@@ -51,14 +55,18 @@ function умрёт_ли_без_здоровья() {
   activities.removeAll()
 }
 function повышается_ли_здоровье_при_увеличении_CON() {
-  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
+  const sb = { ...statsBasic.Orc.Fighter }
   const leveler = new Leveler()
+  const coords = new Coords()
+  const target = new Target(coords)
   const activities = new Activities()
-  const health = new Health(stats, leveler, activities)
+  const wear = new Wear(activities)
+  const statsCombat = new StatsCombat(sb, leveler, wear, activities)
+  const health = new Health(statsCombat, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
 
-  stats.current.hpTotal += 50
+  sb.CON += 50
 
   console.assert(health.total > oldHPtotal && health.current === oldHPcurrent)
 
@@ -66,10 +74,10 @@ function повышается_ли_здоровье_при_увеличении_
 }
 function повышается_ли_здоровье_при_левелапе() {
   const activities = new Activities()
-  const statsBasic = sb.Orc.Fighter
+  const sb = { ...statsBasic.Orc.Fighter }
   const leveler = new Leveler()
   const wear = new Wear(activities)
-  const statsCombat = new StatsCombat(statsBasic, leveler, wear, activities)
+  const statsCombat = new StatsCombat(sb, leveler, wear, activities)
   const health = new Health(statsCombat, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
@@ -81,13 +89,15 @@ function повышается_ли_здоровье_при_левелапе() {
   activities.removeAll()
 }
 async function повышается_ли_здоровье_при_персисте() {
-  const stats = { current: { hpTotal: 430, mpTotal: 130 } }
+  const sb = { ...statsBasic.Orc.Fighter }
   const leveler = new Leveler()
   const coords = new Coords()
   const target = new Target(coords)
   const activities = new Activities()
-  const health = new Health(stats, leveler, activities)
-  const mana = new Mana(stats, leveler, activities)
+  const wear = new Wear(activities)
+  const statsCombat = new StatsCombat(sb, leveler, wear, activities)
+  const health = new Health(statsCombat, leveler, activities)
+  const mana = new Mana(statsCombat, leveler, activities)
   const abilities = new Abilities(activities, target, health, mana)
   const persist = abilityFabric('persist', 'Defensive Persist', 1n)
 
@@ -101,13 +111,15 @@ async function повышается_ли_здоровье_при_персист�
   activities.removeAll()
 }
 async function повышается_ли_здоровье_при_ауре() {
-  const stats = { current: { hpTotal: 430, mpTotal: 130 } }
+  const sb = { ...statsBasic.Orc.Fighter }
   const leveler = new Leveler()
   const coords = new Coords()
   const target = new Target(coords)
   const activities = new Activities()
-  const health = new Health(stats, leveler, activities)
-  const mana = new Mana(stats, leveler, activities)
+  const wear = new Wear(activities)
+  const statsCombat = new StatsCombat(sb, leveler, wear, activities)
+  const health = new Health(statsCombat, leveler, activities)
+  const mana = new Mana(statsCombat, leveler, activities)
   const abilities = new Abilities(activities, target, health, mana)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
@@ -121,11 +133,14 @@ async function повышается_ли_здоровье_при_ауре() {
   activities.removeAll()
 }
 function повышается_ли_здоровье_при_снаряжении() {
-  const activities = new Activities()
-  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
+  const sb = { ...statsBasic.Orc.Fighter }
   const leveler = new Leveler()
+  const coords = new Coords()
+  const target = new Target(coords)
+  const activities = new Activities()
   const inventory = new Inventory(activities)
-  const health = new Health(stats, leveler, activities)
+  const statsCombat = new StatsCombat(sb, leveler, inventory.wear, activities)
+  const health = new Health(statsCombat, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
   const equipment = equipmentFabric('Helmet Of Truth')
@@ -138,10 +153,14 @@ function повышается_ли_здоровье_при_снаряжении(
   activities.removeAll()
 }
 function повышается_ли_здоровье_при_баффе() {
-  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
+  const sb = { ...statsBasic.Orc.Fighter }
   const leveler = new Leveler()
+  const coords = new Coords()
+  const target = new Target(coords)
   const activities = new Activities()
-  const health = new Health(stats, leveler, activities)
+  const wear = new Wear(activities)
+  const statsCombat = new StatsCombat(sb, leveler, wear, activities)
+  const health = new Health(statsCombat, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
 
@@ -152,9 +171,13 @@ function повышается_ли_здоровье_при_баффе() {
   activities.removeAll()
 }
 function понижается_ли_здоровье_при_дебаффе() {
-  const stats = { current: { hpTotal: 430, hpRegen: 4.3, mpTotal: 130 } }
+  const sb = { ...statsBasic.Orc.Fighter }
   const leveler = new Leveler()
+  const coords = new Coords()
+  const target = new Target(coords)
   const activities = new Activities()
+  const wear = new Wear(activities)
+  const statsCombat = new StatsCombat(sb, leveler, wear, activities)
   const health = new Health(stats, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current

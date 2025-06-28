@@ -2,12 +2,12 @@ import { subPercent } from '../../../functions/utils.js'
 
 export default [
   {
-    caption: 'Iron Punch',
+    caption: 'Hydro Blast',
     level: 1n,
-    desc: 'наносит мощный физический удар',
+    desc: 'наносит мощный магический удар',
     once: {
       toFight(fight) {
-        const statusHealth = fight.receiveDamage('phys', 77)
+        const statusHealth = fight.receiveDamage('magic', 77)
         this.executor(statusHealth)
       },
     },

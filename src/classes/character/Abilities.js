@@ -1,3 +1,4 @@
+import Delayer from '../Delayer.js'
 import Cast from './Cast.js'
 
 export default class Abilities {
@@ -25,8 +26,9 @@ export default class Abilities {
   async cast(ability) {
     const { cost, config, status, type } = ability
     const { mana, health, target, activities, state } = this
+    const delayer = new Delayer(activities.statsCombat)
     const cast = new Cast({ state, status, config, target, health, mana, cost })
-    const result = await cast.run(activities, ability)
+    const result = await cast.run(activities, ability, delayer)
     const social = activities.fight?.social
     const badAbilities = ['debuff', 'skill', 'spell']
     if (result && config.isRequiresTarget && badAbilities.includes(type)) {
