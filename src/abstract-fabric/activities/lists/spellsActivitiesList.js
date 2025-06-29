@@ -7,7 +7,7 @@ export default [
     desc: 'наносит мощный магический удар',
     once: {
       toFight(fight) {
-        const statusHealth = fight.receiveDamage('magic', 77)
+        const statusHealth = fight.receiveDamageMagic(77)
         this.executor(statusHealth)
       },
     },
