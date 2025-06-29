@@ -1,10 +1,7 @@
+import { getPercent } from '../../../src/functions/utils.js'
 import defaultStats from '../../../src/dicts/defaultStats.js'
 import compileActs from '../../../src/functions/compileActs.js'
 import acts from '../../fixtures/acts.fixture.js'
-
-const round = n => +n.toFixed(2)
-const percent = (n, p) => round((n / 100) * p)
-const getPercent = (n, p) => round(n + percent(n, p))
 
 const statsCombat = { ...defaultStats }
 const health_mana = {

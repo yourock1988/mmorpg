@@ -5,6 +5,7 @@ function processContainer(entries) {
   return Object.fromEntries(entries.map(processBoxes))
 }
 function processBoxes([k, v]) {
+  if (!v) return []
   return [k, Object.fromEntries(Object.entries(v).map(processBox))]
 }
 function processBox([k, v]) {

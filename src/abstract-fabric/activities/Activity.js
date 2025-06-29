@@ -1,4 +1,6 @@
+import { getPercent } from '../../functions/utils.js'
 import randomId from '../../functions/randomId.js'
+import compileActs from '../../functions/compileActs.js'
 import activityDefaultConfigs from './activityDefaultConfigs.js'
 
 export default class Activity {
@@ -18,6 +20,10 @@ export default class Activity {
     this.enforce = enforce
     this.pulse = pulse
     this.once = { ...once, executor: this.executor.bind(this) }
+    this.acts = compileActs({ enforce, pulse, once })
+    // this.once = { ...acts.once, executor: this.executor.bind(this) }
+    // this.pulse = { ...acts.pulse, executor: this.executor.bind(this) }
+    // this.enforce = { ...acts.enforce, getPercent }
   }
 
   executor(statusHealth) {
