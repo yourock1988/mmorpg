@@ -1,5 +1,6 @@
 import abilityFabric from '../../../../src/abstract-fabric/abilities/abilityFabric.js'
 import equipmentFabric from '../../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
+import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
 import Abilities from '../../../../src/classes/character/Abilities.js'
 import Activities from '../../../../src/classes/character/Activities.js'
 import Coords from '../../../../src/classes/character/Coords.js'
@@ -143,7 +144,7 @@ function повышается_ли_здоровье_при_снаряжении(
   const health = new Health(statsCombat, leveler, activities)
   const oldHPtotal = health.total
   const oldHPcurrent = health.current
-  const equipment = equipmentFabric('Helmet Of Truth')
+  const equipment = itemFabric('equipment', 'Helmet Of Truth')
   inventory.cargo.addItem(equipment)
 
   inventory.wearItemById(equipment.id)
@@ -230,7 +231,7 @@ function одновременно_статы_лвл_пасивка_активк�
   oldHPtotal = health.total
   oldHPcurrent = health.current
   ///?????
-  activities.add(equipmentFabric('Helmet Of Truth').activity)
+  activities.add(itemFabric('equipment', 'Helmet Of Truth').activity)
   ///?????
   console.assert(health.total > oldHPtotal && health.current <= oldHPcurrent)
 

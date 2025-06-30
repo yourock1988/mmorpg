@@ -1,7 +1,8 @@
 require('./unit/functions/calcStatsCombat.dev.js')
+require('./unit/abstract-fabric/items/Item.dev.js')
 
 require('./unit/classes/character/Abilities.dev.js')
-require('./unit/classes/character/Cargo.dev.js')
+// require('./unit/classes/character/Cargo.dev.js')
 require('./unit/classes/character/Cast.dev.js')
 require('./unit/classes/character/Character.dev.js')
 require('./unit/classes/character/Coords.dev.js')

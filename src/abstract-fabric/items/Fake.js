@@ -16,7 +16,7 @@ export default class Fake extends Item {
   drop(count) {
     if (count > 0 && this.count - count >= 0) {
       this.count -= count
-      return fakeFabric(this.caption, count)
+      return itemFabric('fake', this.caption, count)
     }
     return null
   }

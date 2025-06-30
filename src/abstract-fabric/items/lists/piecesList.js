@@ -2,21 +2,21 @@ export default [
   {
     caption: 'Powder',
     kind: 'groupable',
+    hasActivity: false,
   },
   {
-    caption: 'Skel',
-    kind: 'single',
+    caption: 'Skull',
+    kind: 'groupable',
+    hasActivity: false,
   },
   {
     caption: 'Bone',
     kind: 'groupable',
+    hasActivity: false,
   },
   {
     caption: 'Heart',
-    kind: 'single',
-  },
-  {
-    caption: 'Art',
-    kind: 'single',
+    kind: 'groupable',
+    hasActivity: false,
   },
 ]

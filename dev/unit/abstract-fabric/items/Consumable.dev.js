@@ -6,6 +6,7 @@ import statsBasic from '../../../../src/dicts/statsBasic.js'
 import Activities from '../../../../src/classes/character/Activities.js'
 import StatsCombat from '../../../../src/classes/character/StatsCombat.js'
 import consumableFabric from '../../../../src/abstract-fabric/items/fabrics/consumableFabric.js'
+import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
 
 const sb = { ...statsBasic.Orc.Fighter }
 const leveler = new Leveler()
@@ -13,7 +14,7 @@ const activities = new Activities()
 const wear = new Wear(activities)
 const cargo = new Cargo(activities)
 const statsCombat = new StatsCombat(sb, leveler, wear, activities)
-const consumableItem = consumableFabric('Healing Potion')
+const consumableItem = itemFabric('consumable', 'Healing Potion')
 const health = new Health(statsCombat, leveler, activities)
 health.lose(health.current / 3)
 

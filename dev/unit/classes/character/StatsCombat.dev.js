@@ -5,6 +5,7 @@ import Activities from '../../../../src/classes/character/Activities.js'
 import StatsCombat from '../../../../src/classes/character/StatsCombat.js'
 import equipmentFabric from '../../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
 import activityFabric from '../../../../src/abstract-fabric/activities/activityFabric.js'
+import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
 
 function увеличиваются_ли_статы_при_повышении_левела() {
   const statsBasic = { ...sb2.Orc.Fighter }
@@ -42,7 +43,7 @@ function увеличиваются_ли_статы_при_надевании_ш
   const statsCombat = new StatsCombat(statsBasic, leveler, wear, activities)
   const oldStats = statsCombat.current
 
-  wear.mount(equipmentFabric('Axe Of Glory'))
+  wear.mount(itemFabric('equipment', 'Axe Of Glory'))
 
   console.assert(
     statsCombat.current.PAtk > oldStats.PAtk &&

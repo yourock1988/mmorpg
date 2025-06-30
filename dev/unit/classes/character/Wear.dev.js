@@ -1,11 +1,12 @@
 import Wear from '../../../../src/classes/character/Wear.js'
 import equipmentFabric from '../../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
+import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
 
 function checkStatsCalculations() {
   const wear = new Wear()
-  wear.mount(equipmentFabric('Axe Of Glory'))
-  wear.mount(equipmentFabric('Helmet Of Truth'))
-  wear.mount(equipmentFabric('Gloves Of Monk'))
+  wear.mount(itemFabric('equipment', 'Axe Of Glory'))
+  wear.mount(itemFabric('equipment', 'Helmet Of Truth'))
+  wear.mount(itemFabric('equipment', 'Gloves Of Monk'))
 
   const stats = wear.stats
 
@@ -14,8 +15,8 @@ function checkStatsCalculations() {
 
 function checkStatsAfterChangeEquipment() {
   const wear = new Wear()
-  wear.mount(equipmentFabric('Axe Of Glory'))
-  wear.mount(equipmentFabric('Blade Of Blood'))
+  wear.mount(itemFabric('equipment', 'Axe Of Glory'))
+  wear.mount(itemFabric('equipment', 'Blade Of Blood'))
 
   const stats = wear.stats
 
@@ -25,7 +26,7 @@ function checkStatsAfterChangeEquipment() {
 // function вычисляется_ли_listActivities() {
 //   const wear = new Wear()
 
-//   wear.mount(equipmentFabric('Helmet Of Truth'))
+//   wear.mount(itemFabric('equipment', 'Helmet Of Truth'))
 
 //   console.assert(
 //     wear.listActivities.length === 1 &&

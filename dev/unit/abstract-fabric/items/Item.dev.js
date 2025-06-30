@@ -1,0 +1,16 @@
+import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
+
+const weapon = itemFabric('equipment', 'Helmet Of Truth')
+// console.log(weapon)
+const consumable = itemFabric('consumable', 'Healing Potion')
+// console.log(consumable)
+const piece = itemFabric('piece', 'Skull')
+// console.log(piece)
+const fake = itemFabric('fake', 'Money', 420)
+let a1 = weapon.createActivity()
+// console.log(a1)
+let a2 = consumable.createActivity()
+// console.log(a2)
+let fake2 = fake.drop(111)
+// console.log(fake)
+// console.log(fake2)

@@ -10,7 +10,7 @@ export default class Inventory {
 
   wearItemById(id) {
     const item = this.cargo.findItemById(id)
-    if (item instanceof Equipment) {
+    if (item.type === 'equipment') {
       this.cargo.removeItemById(id)
       const oldEquipment = this.wear.mount(item)
       if (oldEquipment) this.cargo.addItem(oldEquipment)

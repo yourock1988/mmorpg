@@ -1,4 +1,5 @@
 import equipmentFabric from '../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
+import itemFabric from '../../src/abstract-fabric/items/fabrics/itemFabric.js'
 import Character from '../../src/classes/character/Character.js'
 import FightHalf from '../../src/classes/FightHalf.js'
 import viewCharacter from '../../src/functions/viewCharacter.js'
@@ -12,12 +13,15 @@ const fightHalf2 = new FightHalf(P2, P1, false)
 // viewCharacter(P1)
 // viewCharacter(P2)
 
-P2.inventory.cargo.addItem(equipmentFabric('Axe Of Glory'))
+const weapon = itemFabric('equipment', 'Axe Of Glory')
+P2.inventory.cargo.addItem(weapon)
 const idToWear = P2.inventory.cargo.items[0].id
 // P2.inventory.wearItemById(idToWear)
 // viewCharacter(P2)
 
-setTimeout(() => P2.inventory.wearItemById(idToWear), 2500)
+setTimeout(() => {
+  P2.inventory.wearItemById(idToWear)
+}, 2500)
 
 fightHalf1.autoAttack()
 fightHalf2.autoAttack()

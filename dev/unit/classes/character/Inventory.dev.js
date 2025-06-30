@@ -8,12 +8,13 @@ import Coords from '../../../../src/classes/character/Coords.js'
 import Target from '../../../../src/classes/character/Target.js'
 import Wear from '../../../../src/classes/character/Wear.js'
 import StatsCombat from '../../../../src/classes/character/StatsCombat.js'
+import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
 
 function tryToWearEquipment() {
   const inventory = new Inventory()
-  inventory.cargo.addItem(equipmentFabric('Axe Of Glory'))
-  inventory.cargo.addItem(equipmentFabric('Helmet Of Truth'))
-  inventory.cargo.addItem(equipmentFabric('Gloves Of Monk'))
+  inventory.cargo.addItem(itemFabric('equipment', 'Axe Of Glory'))
+  inventory.cargo.addItem(itemFabric('equipment', 'Helmet Of Truth'))
+  inventory.cargo.addItem(itemFabric('equipment', 'Gloves Of Monk'))
   const idToWear0 = inventory.cargo.items[0].id
   const idToWear2 = inventory.cargo.items[1].id
   const idToWear3 = inventory.cargo.items[2].id
@@ -32,9 +33,9 @@ function tryToWearEquipment() {
 
 function tryToUnwearEquipment() {
   const inventory = new Inventory()
-  inventory.cargo.addItem(equipmentFabric('Axe Of Glory'))
-  inventory.cargo.addItem(equipmentFabric('Helmet Of Truth'))
-  inventory.cargo.addItem(equipmentFabric('Gloves Of Monk'))
+  inventory.cargo.addItem(itemFabric('equipment', 'Axe Of Glory'))
+  inventory.cargo.addItem(itemFabric('equipment', 'Helmet Of Truth'))
+  inventory.cargo.addItem(itemFabric('equipment', 'Gloves Of Monk'))
   const idToWear0 = inventory.cargo.items[0].id
   const idToWear2 = inventory.cargo.items[1].id
   const idToWear3 = inventory.cargo.items[2].id
@@ -52,10 +53,10 @@ function tryToUnwearEquipment() {
 
 function tryToChangeWearEquipment() {
   const inventory = new Inventory()
-  inventory.cargo.addItem(equipmentFabric('Axe Of Glory'))
-  inventory.cargo.addItem(equipmentFabric('Blade Of Blood'))
-  inventory.cargo.addItem(equipmentFabric('Helmet Of Truth'))
-  inventory.cargo.addItem(equipmentFabric('Gloves Of Monk'))
+  inventory.cargo.addItem(itemFabric('equipment', 'Axe Of Glory'))
+  inventory.cargo.addItem(itemFabric('equipment', 'Blade Of Blood'))
+  inventory.cargo.addItem(itemFabric('equipment', 'Helmet Of Truth'))
+  inventory.cargo.addItem(itemFabric('equipment', 'Gloves Of Monk'))
   const idToWear0 = inventory.cargo.items[0].id
   const idToWear1 = inventory.cargo.items[1].id
   const idToWear2 = inventory.cargo.items[2].id
@@ -84,7 +85,7 @@ function проверка_пульсирования_при_надетом_шл�
   const statsCombat = new StatsCombat(sb, leveler, wear, activities)
   const inventory = new Inventory(activities)
   const health = new Health(statsCombat, leveler, activities)
-  const equipment = equipmentFabric('Helmet Of Truth')
+  const equipment = itemFabric('equipment', 'Helmet Of Truth')
   let oldHpTotal = health.total
   let oldHpCurrent = health.current
   inventory.cargo.addItem(equipment)
