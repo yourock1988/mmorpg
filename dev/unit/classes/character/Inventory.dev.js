@@ -1,14 +1,13 @@
 import Activities from '../../../../src/classes/character/Activities.js'
 import Health from '../../../../src/classes/character/Health.js'
 import Inventory from '../../../../src/classes/character/Inventory.js'
-import equipmentFabric from '../../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
 import Leveler from '../../../../src/classes/character/Leveler.js'
 import statsBasic from '../../../../src/dicts/statsBasic.js'
 import Coords from '../../../../src/classes/character/Coords.js'
 import Target from '../../../../src/classes/character/Target.js'
 import Wear from '../../../../src/classes/character/Wear.js'
 import StatsCombat from '../../../../src/classes/character/StatsCombat.js'
-import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
+import itemFabric from '../../../../src/abstract-fabric/items/itemFabric.js'
 
 function tryToWearEquipment() {
   const inventory = new Inventory()

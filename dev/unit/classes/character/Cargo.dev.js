@@ -1,5 +1,5 @@
+import itemFabric from '../../../../src/abstract-fabric/items/itemFabric.js'
 import Cargo from '../../../../src/classes/character/Cargo.js'
-import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
 
 function добавление_итемов_и_группировка_итемов() {
   const cargo = new Cargo()

@@ -1,5 +1,3 @@
-import { addPercent } from '../../../functions/utils.js'
-
 export default [
   {
     caption: 'Defensive Persist',

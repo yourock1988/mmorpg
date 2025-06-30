@@ -1,0 +1,2 @@
+// части эквипа
+export default []

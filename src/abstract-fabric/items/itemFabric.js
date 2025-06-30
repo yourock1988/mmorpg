@@ -1,5 +1,5 @@
-import Item from '../Item.js'
-import itemDict from '../itemDict.js'
+import Item from './Item.js'
+import itemDict from './itemDict.js'
 
 export default function itemFabric(type, caption, count) {
   const itemsList = itemDict[type + 's']

@@ -1,3 +1,4 @@
+// куски барахла
 export default [
   {
     caption: 'Powder',

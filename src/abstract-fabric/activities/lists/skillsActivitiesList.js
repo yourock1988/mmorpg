@@ -1,5 +1,3 @@
-import { subPercent } from '../../../functions/utils.js'
-
 export default [
   {
     caption: 'Iron Punch',

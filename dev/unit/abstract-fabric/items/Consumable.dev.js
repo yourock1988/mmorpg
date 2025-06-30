@@ -5,8 +5,7 @@ import Leveler from '../../../../src/classes/character/Leveler.js'
 import statsBasic from '../../../../src/dicts/statsBasic.js'
 import Activities from '../../../../src/classes/character/Activities.js'
 import StatsCombat from '../../../../src/classes/character/StatsCombat.js'
-import consumableFabric from '../../../../src/abstract-fabric/items/fabrics/consumableFabric.js'
-import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
+import itemFabric from '../../../../src/abstract-fabric/items/itemFabric.js'
 
 const sb = { ...statsBasic.Orc.Fighter }
 const leveler = new Leveler()

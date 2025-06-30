@@ -3,9 +3,8 @@ import Wear from '../../../../src/classes/character/Wear.js'
 import Leveler from '../../../../src/classes/character/Leveler.js'
 import Activities from '../../../../src/classes/character/Activities.js'
 import StatsCombat from '../../../../src/classes/character/StatsCombat.js'
-import equipmentFabric from '../../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
 import activityFabric from '../../../../src/abstract-fabric/activities/activityFabric.js'
-import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
+import itemFabric from '../../../../src/abstract-fabric/items/itemFabric.js'
 
 function увеличиваются_ли_статы_при_повышении_левела() {
   const statsBasic = { ...sb2.Orc.Fighter }

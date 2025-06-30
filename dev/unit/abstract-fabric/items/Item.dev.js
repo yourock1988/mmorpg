@@ -1,4 +1,4 @@
-import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
+import itemFabric from '../../../../src/abstract-fabric/items/itemFabric.js'
 
 const weapon = itemFabric('equipment', 'Helmet Of Truth')
 // console.log(weapon)

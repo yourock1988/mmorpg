@@ -1,6 +1,5 @@
 import abilityFabric from '../../../../src/abstract-fabric/abilities/abilityFabric.js'
-import equipmentFabric from '../../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
-import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
+import itemFabric from '../../../../src/abstract-fabric/items/itemFabric.js'
 import Abilities from '../../../../src/classes/character/Abilities.js'
 import Activities from '../../../../src/classes/character/Activities.js'
 import Coords from '../../../../src/classes/character/Coords.js'

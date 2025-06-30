@@ -1,7 +1,4 @@
-import consumableFabric from '../../../../src/abstract-fabric/items/fabrics/consumableFabric.js'
-import equipmentFabric from '../../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
-import fakeFabric from '../../../../src/abstract-fabric/items/fabrics/fakeFabric.js'
-import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
+import itemFabric from '../../../../src/abstract-fabric/items/itemFabric.js'
 import Activities from '../../../../src/classes/character/Activities.js'
 import Cargo from '../../../../src/classes/character/Cargo.js'
 

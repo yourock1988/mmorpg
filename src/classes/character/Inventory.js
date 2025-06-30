@@ -1,4 +1,3 @@
-import Equipment from '../../abstract-fabric/items/Equipment.js'
 import Cargo from './Cargo.js'
 import Wear from './Wear.js'
 

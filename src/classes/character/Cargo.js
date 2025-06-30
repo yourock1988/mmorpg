@@ -1,5 +1,3 @@
-import Consumable from '../../abstract-fabric/items/Consumable.js'
-
 export default class Cargo {
   constructor(activities) {
     this.items = []
@@ -7,7 +5,7 @@ export default class Cargo {
   }
 
   consumeItem(item) {
-    if (!(item instanceof Consumable)) return
+    if (item.type !== 'consumable') return
     const activity = item.createActivity()
     this.activities.add(activity)
     this.removeItemById(item.id)

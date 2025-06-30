@@ -1,6 +1,5 @@
 import Character from '../../../../src/classes/character/Character.js'
-import equipmentFabric from '../../../../src/abstract-fabric/items/fabrics/equipmentFabric.js'
-import itemFabric from '../../../../src/abstract-fabric/items/fabrics/itemFabric.js'
+import itemFabric from '../../../../src/abstract-fabric/items/itemFabric.js'
 
 function characterDieWithKillingDamage() {
   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')

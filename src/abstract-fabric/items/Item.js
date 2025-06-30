@@ -1,6 +1,6 @@
 import randomId from '../../functions/randomId.js'
+import itemFabric from './itemFabric.js'
 import activityFabric from '../activities/activityFabric.js'
-import itemFabric from './fabrics/itemFabric.js'
 
 export default class Item {
   constructor({ type, kind, caption, hasActivity, content }) {
