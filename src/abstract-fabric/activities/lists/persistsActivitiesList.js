@@ -6,16 +6,14 @@ export default [
     level: 1n,
     desc: 'увеличивает защиту, макс хп и реген хп',
     enforce: {
-      toStatsCombat(statsCombat) {
-        statsCombat.PDef = addPercent(statsCombat.PDef, 10)
-      },
-      toHealth(health) {
-        health.protoTotal = addPercent(health.protoTotal, 10)
+      toStatsCombat: {
+        PDef: 10,
+        hpTotal: 10,
       },
     },
     pulse: {
-      toHealth(health) {
-        health.gain(7)
+      toHealth: {
+        $gain: 7,
       },
     },
   },
@@ -24,8 +22,8 @@ export default [
     level: 1n,
     desc: 'естественная регенерация здоровья',
     pulse: {
-      toHealth(health) {
-        health.gain(health.statsCombat.current.hpRegen)
+      toHealth: {
+        $gain: 'o.statsCombat.current.hpRegen',
       },
     },
   },
@@ -34,8 +32,8 @@ export default [
     level: 1n,
     desc: 'естественная регенерация маны',
     pulse: {
-      toMana(mana) {
-        mana.gain(mana.statsCombat.current.mpRegen)
+      toMana: {
+        $gain: 'o.statsCombat.current.mpRegen',
       },
     },
   },

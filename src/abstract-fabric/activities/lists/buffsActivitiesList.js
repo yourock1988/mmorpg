@@ -6,19 +6,17 @@ export default [
     level: 1n,
     desc: 'увеличивает точность, макс хп и реген. потребляет мп',
     enforce: {
-      toStatsCombat(statsCombat) {
-        statsCombat.Accuracy = addPercent(statsCombat.Accuracy, 10)
-      },
-      toHealth(health) {
-        health.protoTotal = addPercent(health.protoTotal, 10)
+      toStatsCombat: {
+        Accuracy: 10,
+        hpTotal: 10,
       },
     },
     pulse: {
-      toHealth(health) {
-        health.gain(3)
+      toHealth: {
+        $gain: 3,
       },
-      toMana(mana) {
-        mana.lose(7)
+      toMana: {
+        $lose: 7,
       },
     },
   },
@@ -27,8 +25,8 @@ export default [
     level: 1n,
     desc: 'увеличивает скорость передвижения',
     enforce: {
-      toStatsCombat(statsCombat) {
-        statsCombat.Speed = addPercent(statsCombat.Speed, 10)
+      toStatsCombat: {
+        Speed: 10,
       },
     },
   },

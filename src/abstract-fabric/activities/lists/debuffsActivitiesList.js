@@ -6,13 +6,13 @@ export default [
     level: 1n,
     desc: 'уменьшает макс хп и реген хп',
     enforce: {
-      toHealth(health) {
-        health.protoTotal = subPercent(health.protoTotal, 10)
+      toStatsCombat: {
+        hpTotal: -10,
       },
     },
     pulse: {
-      toHealth(health) {
-        health.lose(6)
+      toHealth: {
+        _$lose: 6,
       },
     },
   },

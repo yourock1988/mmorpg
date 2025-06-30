@@ -41,3 +41,7 @@ xxx.pulse.toMana(health_mana)
 xxx.once.toHealth(health_mana)
 xxx.once.toMana(health_mana)
 xxx.once.toFight(fight)
+
+// let x, y, z
+
+// console.log(compileActs({ x: {}, y, z: {} }))

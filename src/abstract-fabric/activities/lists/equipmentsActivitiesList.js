@@ -6,16 +6,14 @@ export default [
     level: 1n,
     desc: 'увеличивает защиту, макс хп и реген хп',
     enforce: {
-      toStatsCombat(statsCombat) {
-        statsCombat.PDef = addPercent(statsCombat.PDef, 10)
-      },
-      toHealth(health) {
-        health.protoTotal = addPercent(health.protoTotal, 10)
+      toStatsCombat: {
+        PDef: 10,
+        hpTotal: 10,
       },
     },
     pulse: {
-      toHealth(health) {
-        health.gain(7)
+      toHealth: {
+        $gain: 7,
       },
     },
   },
@@ -24,11 +22,9 @@ export default [
     level: 1n,
     desc: 'увеличивает макс мп',
     enforce: {
-      toMana(mana) {
-        mana.protoTotal = addPercent(mana.protoTotal, 10)
-      },
-      toHealth(health) {
-        health.protoTotal = addPercent(health.protoTotal, 10)
+      toStatsCombat: {
+        hpTotal: 10,
+        mpTotal: 10,
       },
     },
   },
