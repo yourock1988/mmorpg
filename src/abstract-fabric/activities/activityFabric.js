@@ -2,7 +2,8 @@ import Activity from './Activity.js'
 import activityDict from './activityDict.js'
 
 export default function activityFabric(type, caption, level = 1n) {
-  const findFn = a => a.caption === caption && a.level === level
+  //! говнокостыль из-за отсутсвия BigInt в json
+  const findFn = a => a.caption === caption && BigInt(a.level) === level
   const activitiesList = activityDict[type + 's']
   const findedActivity = activitiesList.find(findFn)
   if (!findedActivity) throw new Error(`wrong ${type}`)

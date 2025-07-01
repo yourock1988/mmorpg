@@ -1,9 +1,9 @@
 export default [
   {
     caption: 'Curse Poison',
-    level: 1n,
+    level: 1,
     cost: {
-      sp: 100n,
+      sp: 100,
       mp: 50,
       hp: 0,
     },

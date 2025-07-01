@@ -1,9 +1,9 @@
 export default [
   {
     caption: 'Iron Punch',
-    level: 1n,
+    level: 1,
     cost: {
-      sp: 100n,
+      sp: 100,
       mp: 30,
       hp: 0,
     },

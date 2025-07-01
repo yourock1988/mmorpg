@@ -1,7 +1,7 @@
 export default [
   {
     caption: 'Heart Of Lion',
-    level: 1n,
+    level: 1,
     desc: 'увеличивает точность, макс хп и реген. потребляет мп',
     enforce: {
       toStatsCombat: {
@@ -20,7 +20,7 @@ export default [
   },
   {
     caption: 'Haste',
-    level: 1n,
+    level: 1,
     desc: 'увеличивает скорость передвижения',
     enforce: {
       toStatsCombat: {

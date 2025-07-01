@@ -8,7 +8,7 @@ export default class Activity {
     this.id = randomId()
     this.type = type
     this.caption = caption
-    this.level = level
+    this.level = BigInt(level) //! говнокостыль из-за отсутсвия BigInt в json
     this.desc = desc
     this.config = { ...activityDefaultConfigs[type + 's'], ...config }
     this.status = {

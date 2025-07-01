@@ -1,7 +1,7 @@
 export default [
   {
     caption: 'Curse Poison',
-    level: 1n,
+    level: 1,
     desc: 'уменьшает макс хп и реген хп',
     enforce: {
       toStatsCombat: {

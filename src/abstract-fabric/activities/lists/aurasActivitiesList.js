@@ -1,7 +1,7 @@
 export default [
   {
     caption: 'Concentration Aura',
-    level: 1n,
+    level: 1,
     desc: 'увеличивает точность и макс хп. потребляет хп',
     enforce: {
       toStatsCombat: {
@@ -17,7 +17,7 @@ export default [
   },
   {
     caption: 'Breathe Aura',
-    level: 1n,
+    level: 1,
     desc: 'увеличивает скорость атаки и макс хп. потребляет мп',
     enforce: {
       toStatsCombat: {

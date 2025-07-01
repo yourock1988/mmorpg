@@ -1,7 +1,7 @@
 export default [
   {
     caption: 'Iron Punch',
-    level: 1n,
+    level: 1,
     desc: 'наносит мощный физический удар',
     once: {
       toFight: {

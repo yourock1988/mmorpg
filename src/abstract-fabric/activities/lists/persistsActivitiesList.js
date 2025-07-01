@@ -1,7 +1,7 @@
 export default [
   {
     caption: 'Defensive Persist',
-    level: 1n,
+    level: 1,
     desc: 'увеличивает защиту, макс хп и реген хп',
     enforce: {
       toStatsCombat: {
@@ -17,7 +17,7 @@ export default [
   },
   {
     caption: 'Natural HP Regeneration',
-    level: 1n,
+    level: 1,
     desc: 'естественная регенерация здоровья',
     pulse: {
       toHealth: {
@@ -27,7 +27,7 @@ export default [
   },
   {
     caption: 'Natural MP Regeneration',
-    level: 1n,
+    level: 1,
     desc: 'естественная регенерация маны',
     pulse: {
       toMana: {

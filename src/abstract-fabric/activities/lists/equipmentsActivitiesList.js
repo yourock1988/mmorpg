@@ -1,7 +1,7 @@
 export default [
   {
     caption: 'Helmet Of Truth',
-    level: 1n,
+    level: 1,
     desc: 'увеличивает защиту, макс хп и реген хп',
     enforce: {
       toStatsCombat: {
@@ -17,7 +17,7 @@ export default [
   },
   {
     caption: 'Gloves Of Monk',
-    level: 1n,
+    level: 1,
     desc: 'увеличивает макс мп',
     enforce: {
       toStatsCombat: {

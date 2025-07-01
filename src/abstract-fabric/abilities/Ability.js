@@ -6,9 +6,10 @@ export default class Ability {
   constructor({ type, caption, level, cost, config }) {
     this.id = randomId()
     this.caption = caption
-    this.level = level
+    this.level = BigInt(level) //! говнокостыль из-за отсутсвия BigInt в json
     this.type = type
     this.cost = cost
+    this.cost.sp = BigInt(this.cost.sp) //! говнокостыль из-за отсутсвия BigInt в json
     this.config = { ...abilityDefaultConfigs[type + 's'], ...config }
     this.status = { cooldownCurrent: 0, cdAwaiter: Promise.resolve() }
     this.desc = this.createActivity().desc

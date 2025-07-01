@@ -1,9 +1,9 @@
 export default [
   {
     caption: 'Heart Of Lion',
-    level: 1n,
+    level: 1,
     cost: {
-      sp: 100n,
+      sp: 100,
       mp: 50,
       hp: 0,
     },
@@ -16,9 +16,9 @@ export default [
   },
   {
     caption: 'Haste',
-    level: 1n,
+    level: 1,
     cost: {
-      sp: 100n,
+      sp: 100,
       mp: 50,
       hp: 0,
     },
