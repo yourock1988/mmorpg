@@ -37,13 +37,13 @@ export default {
 
   skills: {
     isSeen: false,
-    duration: 0,
-    pulseIntervalDelay: 0,
+    duration: 3000,
+    pulseIntervalDelay: 1000,
   },
 
   spells: {
     isSeen: false,
-    duration: 0,
-    pulseIntervalDelay: 0,
+    duration: 3000,
+    pulseIntervalDelay: 1000,
   },
 }

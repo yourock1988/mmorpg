@@ -6,6 +6,8 @@ export default class Activities {
     this.debuffs = []
     this.equipments = []
     this.consumables = []
+    this.skills = []
+    this.spells = []
     this.statsCombat = null
     this.health = null
     this.mana = null
@@ -43,6 +45,8 @@ export default class Activities {
       'debuffs',
       'equipments',
       'consumables',
+      'skills',
+      'spells',
     ].forEach(t => this[t].map(a => a).forEach(this.remove.bind(this)))
   }
   removeByTypes(types) {
@@ -68,6 +72,8 @@ export default class Activities {
       ...this.debuffs,
       ...this.equipments,
       ...this.consumables,
+      ...this.skills,
+      ...this.spells,
     ]
   }
 }

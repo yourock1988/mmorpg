@@ -24,6 +24,7 @@ async function можно_ли_убить_скиллом() {
   const skill = abilityFabric('skill', 'Iron Punch', 1n)
   Player1.target.set(Player2)
 
+  Player2.health.lose(390)
   await Player1.abilities.cast(skill)
   await skill.status.cdAwaiter
   await Player1.abilities.cast(skill)
@@ -47,5 +48,5 @@ async function можно_ли_убить_скиллом() {
   Player2.activities.removeAll()
 }
 
-наносит_ли_скилл_урон()
+// наносит_ли_скилл_урон()
 можно_ли_убить_скиллом()

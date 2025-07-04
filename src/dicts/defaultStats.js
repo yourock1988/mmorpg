@@ -13,4 +13,13 @@ export default {
   Evasion: 80,
   Speed: 500,
   CastSpd: 600,
+  //
+  // CritDmg: 9,
+  // ResistDebuffs: 9,
+  // RisistEarth: 9,
+  // RisistWater: 9,
+  // RisistWind: 9,
+  // RisistFire: 9,
+  // RisistHoly: 9,
+  // RisistUnholy: 9,
 }

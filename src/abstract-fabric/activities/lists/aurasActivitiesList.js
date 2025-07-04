@@ -31,4 +31,82 @@ export default [
       },
     },
   },
+
+  //
+
+  {
+    caption: 'Vicious Stance',
+    level: 1,
+    desc: 'когда включен, увеличивает шанс крита. потребляет мп',
+    enforce: {
+      toStatsCombat: {
+        CritRate: 15,
+      },
+    },
+    pulse: {
+      toMana: {
+        $lose: 3,
+      },
+    },
+  },
+
+  {
+    caption: 'Accuracy',
+    level: 1,
+    desc: 'когда включен, увеличивает точность. потребляет мп',
+    enforce: {
+      toStatsCombat: {
+        Accuracy: 5,
+      },
+    },
+    pulse: {
+      toMana: {
+        $lose: 3,
+      },
+    },
+  },
+
+  {
+    caption: 'Fist Fury',
+    level: 1,
+    desc: 'когда включен, увеличивает скорость атаки. потребляет хп',
+    enforce: {
+      toStatsCombat: {
+        AtkSpd: 20,
+      },
+    },
+    pulse: {
+      toHealth: {
+        _$lose: 5,
+      },
+    },
+  },
+
+  {
+    caption: 'Recovering Mana Using Health',
+    level: 1,
+    desc: 'когда включен, восстанавливает ману. потребляет хп',
+    pulse: {
+      toHealth: {
+        _$lose: 7,
+      },
+      toMana: {
+        $gain: 11,
+      },
+    },
+  },
+
+  {
+    caption: 'Recovering Health Using Mana',
+    level: 1,
+    desc: 'когда включен, восстанавливает здоровье. потребляет мп',
+    pulse: {
+      toMana: {
+        $lose: 7,
+      },
+      toHealth: {
+        $gain: 11,
+      },
+    },
+  },
 ]
