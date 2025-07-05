@@ -4,7 +4,7 @@ import Character from '../../src/classes/character/Character.js'
 async function дебаф_не_выучивается_при_недостатке_сп() {
   const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
-  player1.social.sp = 55n
+  player1.social.sp = 45n
 
   await bootcamp.train('debuff', 'Curse Poison', 1n)
 

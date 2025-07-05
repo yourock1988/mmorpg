@@ -8,7 +8,7 @@ export default class Ability {
     this.caption = caption
     this.level = BigInt(level) //! говнокостыль из-за отсутсвия BigInt в json
     this.type = type
-    this.cost = cost
+    this.cost = { sp: 0, mp: 0, hp: 0, ...cost }
     this.cost.sp = BigInt(this.cost.sp) //! говнокостыль из-за отсутсвия BigInt в json
     this.config = { ...abilityDefaultConfigs[type + 's'], ...config }
     this.status = { cooldownCurrent: 0, cdAwaiter: Promise.resolve() }

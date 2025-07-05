@@ -37,7 +37,7 @@ export default [
     desc: 'мгновенно восстанавливает собственное здоровье',
     once: {
       toHealth: {
-        $gain: 10,
+        $gain: 15,
       },
     },
   },
@@ -87,23 +87,23 @@ export default [
   },
 
   {
-    caption: 'Acumen',
-    level: 1,
-    desc: 'временно увеличивает скорость произношения заклинания',
-    enforce: {
-      toStatsCombat: {
-        CastSpd: 15,
-      },
-    },
-  },
-
-  {
     caption: 'Wind Walk',
     level: 1,
     desc: 'временно увеличивает скорость передвижения',
     enforce: {
       toStatsCombat: {
         Speed: 15,
+      },
+    },
+  },
+
+  {
+    caption: 'Acumen',
+    level: 1,
+    desc: 'временно увеличивает скорость произношения заклинания',
+    enforce: {
+      toStatsCombat: {
+        CastSpd: 15,
       },
     },
   },
