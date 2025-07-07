@@ -3,12 +3,13 @@ import itemFabric from './itemFabric.js'
 import activityFabric from '../activities/activityFabric.js'
 
 export default class Item {
-  constructor({ type, kind, caption, hasActivity, content, cost }) {
+  constructor({ type, kind, caption, hasActivity, content, cost, weight }) {
     this.id = randomId()
     this.type = type
     this.kind = kind // single|groupable|countable
     this.caption = caption
     this.hasActivity = hasActivity
+    this.weight = weight ?? 0
     this.cost = { money: 0, ...cost }
     Object.assign(this, content)
   }

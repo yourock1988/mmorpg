@@ -98,3 +98,29 @@ StatsCombat = StatsBasic + Leveler.lvl + Wear.stats + activities.toStatsCombat()
 и тогда получится что абилки на мгновенный физический/магический урон будут
 hasActivity: false  
 вот и всё решение всех проблем.
+
+
+      use: 'sword',
+      look: 'sword',
+      form: 'sword',
+      case: 'sword',
+      shell: 'sword',
+      style: 'sword',
+      shape: 'sword',
+      variant: 'sword',
+
+  // dagger|blunt|sword|fist|dual|bow|pole|book|staff|
+
+  // dagger :: 7 : Accuracy: -4,CritRate: 12,AtkSpd: 80
+  // sword  :: 8 : Accuracy: 0, CritRate: 8, AtkSpd: 40
+  // blunt  :: 8 : Accuracy: 5, CritRate: 4, AtkSpd: 40
+  // pole   :: 8 : Accuracy: -4,CritRate: 8, AtkSpd: 0
+  // fist  :: 10 : Accuracy: 5, CritRate: 4, AtkSpd: 0
+  // dual  :: 10 : Accuracy: 0, CritRate: 8, AtkSpd: 0
+  // bow   :: 16 : Accuracy: -4,CritRate: 12,AtkSpd: -40
+
+  // book   :: 16 : Evasion: -4, CastSpd: 80
+  // staff   :: 16 : Evasion: -4, CastSpd: 40
+
+  //   Polearm Multi-Attack Ур. 1
+  // Enables the character to attack multiple targets.
