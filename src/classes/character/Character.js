@@ -13,13 +13,13 @@ import Mana from './Mana.js'
 import Fight from './Fight.js'
 
 export default class Character {
-  constructor(nick, race, kind, prof) {
+  constructor(nick, race, kind) {
     this.id = randomId()
     this.type = 'character'
     this.nick = nick
     this.race = race
     this.kind = kind
-    this.prof = prof
+    this.prof = race + kind
     this.partyId = 0n
     this.clanId = 0n
     this.money = 0n
@@ -54,5 +54,10 @@ export default class Character {
 
   get statsBasic() {
     return { ...statsBasic[this.race][this.kind] }
+  }
+
+  destroy() {
+    this.social.destroy()
+    this.activities.removeAll()
   }
 }
