@@ -1,7 +1,6 @@
-// import abilityDict from '../abstract-fabric/abilities/abilityDict.js'
 import abilityFabric from '../abstract-fabric/abilities/abilityFabric.js'
-import profAbilitiesSheet from '../dicts/profAbilitiesSheet.js'
-import profHierarhy from '../dicts/profHierarhy.js'
+import getAbilityTypeByCaption from '../functions/getAbilityTypeByCaption.js'
+import getAvailableForTrainAbilities from '../functions/getAvailableForTrainAbilities.js'
 
 export default class Bootcamp {
   constructor(character) {
@@ -9,15 +8,12 @@ export default class Bootcamp {
   }
 
   get availableAbilities() {
-    // return Object.entries(abilityDict)
-    //   .flat()
-    //   .filter(a => this.available.includes(a.caption))
+    return getAvailableForTrainAbilities(this.character)
   }
 
-  get availableAbilitiesSP() {
-    return this.availableAbilities.map(a =>
-      a.cost > this.character.social.sp ? (a.disabled = true) && a : a
-    )
+  async selectAbility(caption, level) {
+    const type = getAbilityTypeByCaption(caption)
+    await this.train(type, caption, level)
   }
 
   async train(type, caption, level) {
