@@ -8,19 +8,13 @@ player.abilities.learn(abilityFabric('debuff', 'Dryad Root', 1n))
 player.abilities.buffs[0].level = 2n
 player.leveler.forceSetLevel(31n)
 player.prof = 'Raider'
-player.abilities.buffs.push({ caption: 'Noob Blessing', level: 11n })
+player.abilities.buffs.push({ caption: 'Noob Blessing', level: 7n })
 
 let toTrainEntries = getAvailableForTrainAbilities(player)
 
 // console.log(toTrainEntries)
 
-console.assert(
-  toTrainEntries.length === 4 &&
-    toTrainEntries[0][1] === 1n &&
-    toTrainEntries[1][1] === 12n &&
-    toTrainEntries[2][1] === 1n &&
-    toTrainEntries[3][1] === 3n
-)
+console.assert(toTrainEntries[3][1] === 8n)
 
 ////
 

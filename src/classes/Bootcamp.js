@@ -12,6 +12,7 @@ export default class Bootcamp {
   }
 
   async selectAbility(caption, level) {
+    if (!this.availableAbilities.find(([c]) => c === caption)) return
     const type = getAbilityTypeByCaption(caption)
     await this.train(type, caption, level)
   }

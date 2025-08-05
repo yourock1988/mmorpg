@@ -3,7 +3,7 @@ import getAbilityTypeByCaption from '../../../src/functions/getAbilityTypeByCapt
 let type
 
 type = getAbilityTypeByCaption('Breathe Aura')
-console.assert(type === 'auras')
+console.assert(type === 'aura')
 
 type = getAbilityTypeByCaption('Curse Poison')
-console.assert(type === 'debuffs')
+console.assert(type === 'debuff')
