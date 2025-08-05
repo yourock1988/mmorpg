@@ -1,24 +1,17 @@
-import abilityDict from '../abstract-fabric/abilities/abilityDict.js'
+// import abilityDict from '../abstract-fabric/abilities/abilityDict.js'
 import abilityFabric from '../abstract-fabric/abilities/abilityFabric.js'
-import profAbilities from '../dicts/profAbilities.js'
+import profAbilitiesSheet from '../dicts/profAbilitiesSheet.js'
 import profHierarhy from '../dicts/profHierarhy.js'
 
 export default class Bootcamp {
   constructor(character) {
     this.character = character
-    // const profs = profHierarhy.getProfsByProf(character.prof)
-    // this.available = profs.reduce(
-    //   (acc, prof) => acc.concat(...profAbilities[prof]),
-    //   []
-    // )
-
-    this.available = ['ability-caption']
   }
 
   get availableAbilities() {
-    return Object.entries(abilityDict)
-      .flat()
-      .filter(a => this.available.includes(a.caption))
+    // return Object.entries(abilityDict)
+    //   .flat()
+    //   .filter(a => this.available.includes(a.caption))
   }
 
   get availableAbilitiesSP() {

@@ -1,4 +1,8 @@
 require('./unit/functions/calcStatsCombat.dev.js')
+require('./unit/functions/getAbilityTypeByCaption.dev.js')
+require('./unit/functions/nextProfessions.dev.js')
+require('./unit/functions/prevProfessions.dev.js')
+
 require('./unit/abstract-fabric/items/Item.dev.js')
 
 require('./unit/classes/character/Abilities.dev.js')
@@ -28,3 +32,4 @@ require('./integration/cycle-fight.dev.js')
 require('./integration/cycle-persist.dev.js')
 require('./integration/cycle-skill.dev.js')
 require('./integration/fight.dev.js')
+require('./integration/show-abilities-to-train.dev.js')

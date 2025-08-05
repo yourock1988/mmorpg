@@ -1,15 +1,15 @@
 export default {
   OrcFighter: {
-    5: { 'Def Aura': 1n },
+    5: { 'Def Aura': 1n, 'Noob Blessing': 33n },
     10: { 'Def Aura': 3n },
     15: { 'Def Aura': 5n },
     20: { 'Def Aura': 7n },
   },
 
   Raider: {
-    20: { 'Def Aura': 10n, 'Shield Aura': 3n },
+    20: { 'Def Aura': 10n, 'Shield Aura': 3n, 'Self Heal': 2n },
     25: { 'Def Aura': 13n, 'Shield Aura': 6n },
-    30: { 'Def Aura': 16n, 'Shield Aura': 9n },
+    30: { 'Def Aura': 16n, 'Shield Aura': 9n, 'Self Heal': 4n },
     35: { 'Def Aura': 19n, 'Shield Aura': 12n },
     40: { 'Def Aura': 22n, 'Shield Aura': 15n },
   },

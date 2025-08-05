@@ -1,20 +1,17 @@
-import profHierarhy from '../dicts/profHierarhy.js'
-import govnofunc from '../functions/govnofunc.js'
+import nextProfessions from '../functions/nextProfessions.js'
 
 export default class University {
   constructor(character) {
     this.character = character
   }
 
-  get availableProfs() {
-    return govnofunc(profHierarhy, this.character.prof)
+  get availableProfessions() {
+    return nextProfessions(this.character.prof)
   }
 
   changeProfession(profession) {
-    if (this.availableProfs.includes(profession)) {
+    if (this.availableProfessions.includes(profession)) {
       this.character.prof = profession
-    } else {
-      throw new Error(`профессия ${profession} недоступна`)
     }
   }
 }

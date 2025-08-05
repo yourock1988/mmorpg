@@ -6,8 +6,8 @@ function доступные_для_смены_профессии() {
   const university = new University(character)
 
   console.assert(character.prof === 'OrcFighter')
-  console.assert(university.availableProfs.includes('Raider'))
-  console.assert(university.availableProfs.includes('Monk'))
+  console.assert(university.availableProfessions.includes('Raider'))
+  console.assert(university.availableProfessions.includes('Monk'))
 
   character.destroy()
 }
