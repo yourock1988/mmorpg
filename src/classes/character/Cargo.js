@@ -42,13 +42,27 @@ export default class Cargo {
     if (idx > -1) this.items.splice(idx, 1)
   }
 
+  removeItem(item) {
+    const idx = this.items.findIndex(i => i === item)
+    if (idx > -1) this.items.splice(idx, 1)
+  }
+
+  dropItem(item, count = 1) {
+    if (!item) return null
+    if (item.kind === 'countable') {
+      return item.drop(count)
+    }
+    this.removeItem(item)
+    return item
+  }
+
+  dropItemByCaption(caption, count = 1) {
+    let findedItem = this.findItemByCaption(caption)
+    return this.dropItem(findedItem, count)
+  }
+
   dropItemById(id, count = 1) {
     let findedItem = this.findItemById(id)
-    if (!findedItem) return null
-    if (findedItem.kind === 'countable') {
-      return findedItem.drop(count)
-    }
-    this.removeItemById(id)
-    return findedItem
+    return this.dropItem(findedItem, count)
   }
 }

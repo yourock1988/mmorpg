@@ -19,6 +19,7 @@ require('./unit/classes/character/Target.dev.js')
 require('./unit/classes/character/Wear.dev.js')
 require('./unit/classes/Bootcamp.dev.js')
 require('./unit/classes/Delayer.dev.js')
+require('./unit/classes/Shop.dev.js')
 require('./unit/classes/University.dev.js')
 
 require('./unit/abstract-fabric/abilities/abilityFabric.dev.js')
