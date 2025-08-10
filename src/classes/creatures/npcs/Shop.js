@@ -4,6 +4,7 @@ import Npc from '../Npc.js'
 
 export default class Shop extends Npc {
   constructor() {
+    super()
     this.kind = 'shop'
   }
 

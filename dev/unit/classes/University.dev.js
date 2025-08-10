@@ -1,8 +1,8 @@
-import Character from '../../../src/classes/character/Character.js'
-import University from '../../../src/classes/University.js'
+import Player from '../../../src/classes/creatures/Player.js'
+import University from '../../../src/classes/creatures/npcs/University.js'
 
 function доступные_для_смены_профессии() {
-  const character = new Character('Player', 'Orc', 'Fighter')
+  const character = new Player('Player', 'Orc', 'Fighter')
   const university = new University(character)
 
   console.assert(character.prof === 'OrcFighter')
@@ -13,7 +13,7 @@ function доступные_для_смены_профессии() {
 }
 
 function смена_професии_на_доступную() {
-  const character = new Character('Player', 'Orc', 'Fighter')
+  const character = new Player('Player', 'Orc', 'Fighter')
   const university = new University(character)
 
   university.changeProfession('Raider')
@@ -24,7 +24,7 @@ function смена_професии_на_доступную() {
 }
 
 function смена_професии_на_НЕдоступную_вызывает_ошибку() {
-  const character = new Character('Player', 'Orc', 'Fighter')
+  const character = new Player('Player', 'Orc', 'Fighter')
   const university = new University(character)
 
   university.changeProfession('Wizard')

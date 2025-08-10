@@ -1,9 +1,9 @@
 import abilityFabric from '../../src/abstract-fabric/abilities/abilityFabric.js'
-import Character from '../../src/classes/character/Character.js'
+import Player from '../../src/classes/creatures/Player.js'
 
 async function наносит_ли_спелл_урон() {
-  const Player1 = new Character('Player1', 'Orc', 'Fighter')
-  const Player2 = new Character('Player2', 'Orc', 'Fighter')
+  const Player1 = new Player('Player1', 'Orc', 'Fighter')
+  const Player2 = new Player('Player2', 'Orc', 'Fighter')
   const skill = abilityFabric('spell', 'Hydro Blast', 1n)
   const oldHealthCurrent = Player2.health.current
   Player1.target.set(Player2)

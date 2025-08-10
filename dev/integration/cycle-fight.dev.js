@@ -1,8 +1,8 @@
-import Character from '../../src/classes/character/Character.js'
+import Player from '../../src/classes/creatures/Player.js'
 
 function проверка_sendDamage_pvp() {
-  const Player1 = new Character('Player1', 'Orc', 'Fighter')
-  const Player2 = new Character('Player1', 'Orc', 'Fighter')
+  const Player1 = new Player('Player1', 'Orc', 'Fighter')
+  const Player2 = new Player('Player1', 'Orc', 'Fighter')
   let oldHealthCurrent = Player2.health.current
   Player1.target.set(Player2)
   Player2.target.set(Player1)
@@ -37,8 +37,8 @@ function проверка_sendDamage_pvp() {
 }
 
 async function проверка_attack_pvp() {
-  const Player1 = new Character('Player1', 'Orc', 'Fighter')
-  const Player2 = new Character('Player1', 'Orc', 'Fighter')
+  const Player1 = new Player('Player1', 'Orc', 'Fighter')
+  const Player2 = new Player('Player1', 'Orc', 'Fighter')
   let oldHealthCurrent = Player2.health.current
   Player1.target.set(Player2)
   Player2.target.set(Player1)
@@ -73,8 +73,8 @@ async function проверка_attack_pvp() {
 }
 
 async function проверка_autoAttack_pvp() {
-  const Player1 = new Character('Player1', 'Orc', 'Fighter')
-  const Player2 = new Character('Player1', 'Orc', 'Fighter')
+  const Player1 = new Player('Player1', 'Orc', 'Fighter')
+  const Player2 = new Player('Player1', 'Orc', 'Fighter')
   let oldHealthCurrent = Player2.health.current
   Player1.target.set(Player2)
   Player2.target.set(Player1)

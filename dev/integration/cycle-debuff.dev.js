@@ -1,8 +1,8 @@
 import Bootcamp from '../../src/classes/Bootcamp.js'
-import Character from '../../src/classes/character/Character.js'
+import Player from '../../src/classes/creatures/Player.js'
 
 async function дебаф_не_выучивается_при_недостатке_сп() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 45n
 
@@ -14,7 +14,7 @@ async function дебаф_не_выучивается_при_недостатк�
   player1.activities.removeAll()
 }
 async function дебаф_выучивается_при_наличии_сп() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
 
@@ -26,7 +26,7 @@ async function дебаф_выучивается_при_наличии_сп() {
   player1.activities.removeAll()
 }
 async function дебаф_кастуется_на_самого_себя() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.leveler.forceSetLevel(5n)
   player1.social.sp = 505n
@@ -42,8 +42,8 @@ async function дебаф_кастуется_на_самого_себя() {
   player1.activities.removeAll()
 }
 async function дебаф_кастуется_на_контрагенте() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
+  const player2 = new Player('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
   player1.target.set(player2)
@@ -60,8 +60,8 @@ async function дебаф_кастуется_на_контрагенте() {
   player1.activities.removeAll()
 }
 async function энфорс_действует_после_завершения_каста_на_контрагенте() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
+  const player2 = new Player('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
   player1.target.set(player2)
@@ -79,8 +79,8 @@ async function энфорс_действует_после_завершения_�
   player1.activities.removeAll()
 }
 async function пульсация_действует_после_завершения_каста_на_контрагенте() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
+  const player2 = new Player('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
   player1.target.set(player2)
@@ -104,8 +104,8 @@ async function пульсация_действует_после_завершен
   }, player2.activities.debuffs[0].config.pulseIntervalDelay + 33)
 }
 async function энфорс_до_завершения_каста_не_действует_на_контрагенте() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
+  const player2 = new Player('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
   player1.target.set(player2)
@@ -124,8 +124,8 @@ async function энфорс_до_завершения_каста_не_дейст
   player1.activities.removeAll()
 }
 async function пульсация_до_завершения_каста_не_действует_на_контрагенте() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
+  const player2 = new Player('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
   player1.target.set(player2)

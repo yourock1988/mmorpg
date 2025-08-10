@@ -1,8 +1,8 @@
-import Bootcamp from '../../src/classes/Bootcamp.js'
-import Character from '../../src/classes/character/Character.js'
+import Bootcamp from '../../src/classes/creatures/npcs/Bootcamp.js'
+import Player from '../../src/classes/creatures/Player.js'
 
 async function баф_не_выучивается_при_недостатке_сп() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   const oldAccuracy = player1.statsCombat.current.Accuracy
   const oldHpTotal = player1.health.total
@@ -16,7 +16,7 @@ async function баф_не_выучивается_при_недостатке_с
   player1.activities.removeAll()
 }
 async function баф_выучивается_при_наличии_сп() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   const oldAccuracy = player1.statsCombat.current.Accuracy
   const oldHpTotal = player1.health.total
@@ -30,7 +30,7 @@ async function баф_выучивается_при_наличии_сп() {
   player1.activities.removeAll()
 }
 async function баф_кастуется_на_самого_себя() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.leveler.forceSetLevel(5n)
   player1.social.sp = 505n
@@ -51,8 +51,8 @@ async function баф_кастуется_на_самого_себя() {
   player1.activities.removeAll()
 }
 async function баф_кастуется_на_контрагенте() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
+  const player2 = new Player('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
   player1.target.set(player2)
@@ -69,8 +69,8 @@ async function баф_кастуется_на_контрагенте() {
   player1.activities.removeAll()
 }
 async function энфорс_действует_после_завершения_каста_на_контрагенте() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
+  const player2 = new Player('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
   player1.target.set(player2)
@@ -92,19 +92,32 @@ async function энфорс_действует_после_завершения_�
   player1.activities.removeAll()
 }
 async function пульсация_действует_после_завершения_каста_на_контрагенте() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
+  const player2 = new Player('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
   player2.leveler.forceSetLevel(5n)
+
+  console.log(player2.statsBasic)
+  console.log(player2.statsCombat.current)
+
+  console.log(player2.health.total)
   player2.health.lose(200)
+  console.log(player2.health.total)
+
   await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
   let oldHpCurrent = player2.health.current
 
+  // console.log(buff)
+
+  // console.log(player1.abilities.buffs)
+
   await player1.abilities.cast(buff)
+
+  console.log(player2.activities.buffs)
 
   const intervalId = setInterval(() => {
     console.assert(player2.health.current > oldHpCurrent)
@@ -118,8 +131,8 @@ async function пульсация_действует_после_завершен
   }, player2.activities.buffs[0].config.pulseIntervalDelay + 33)
 }
 async function энфорс_до_завершения_каста_не_действует_на_контрагенте() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
+  const player2 = new Player('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
   player1.target.set(player2)
@@ -142,8 +155,8 @@ async function энфорс_до_завершения_каста_не_дейст
   player1.activities.removeAll()
 }
 async function пульсация_до_завершения_каста_не_действует_на_контрагенте() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
+  const player2 = new Player('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
   player1.target.set(player2)
@@ -168,7 +181,7 @@ async function пульсация_до_завершения_каста_не_де
   player1.activities.removeAll()
 }
 async function баф_не_кастуется_без_цели() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
   player1.leveler.forceSetLevel(5n)
@@ -183,8 +196,8 @@ async function баф_не_кастуется_без_цели() {
   player1.activities.removeAll()
 }
 async function при_превышении_дистанции_кастующий_начинает_преследование() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
-  const player2 = new Character('Player2', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
+  const player2 = new Player('Player2', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
   player1.target.set(player2)

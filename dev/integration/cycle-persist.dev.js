@@ -2,7 +2,6 @@ import abilityFabric from '../../src/abstract-fabric/abilities/abilityFabric.js'
 import Bootcamp from '../../src/classes/Bootcamp.js'
 import Abilities from '../../src/classes/character/Abilities.js'
 import Activities from '../../src/classes/character/Activities.js'
-import Character from '../../src/classes/character/Character.js'
 import Coords from '../../src/classes/character/Coords.js'
 import Target from '../../src/classes/character/Target.js'
 import Health from '../../src/classes/character/Health.js'
@@ -11,6 +10,7 @@ import Leveler from '../../src/classes/character/Leveler.js'
 import Wear from '../../src/classes/character/Wear.js'
 import StatsCombat from '../../src/classes/character/StatsCombat.js'
 import statsBasic from '../../src/dicts/statsBasic.js'
+import Player from '../../src/classes/creatures/Player.js'
 
 async function обновляется_ли_персист_активити_при_добавлении_абилки() {
   const sb = { ...statsBasic.Orc.Fighter }
@@ -32,7 +32,7 @@ async function обновляется_ли_персист_активити_пр�
   activities.removeAll()
 }
 async function действует_ли_выученный_персист_на_персонажа() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   const oldPDef = player1.statsCombat.current.PDef
   const oldHpTotal = player1.health.total
@@ -51,7 +51,7 @@ async function действует_ли_выученный_персист_на_п
   player1.activities.removeAll()
 }
 async function без_сп_обучение_не_срабатывает() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 55n
 
@@ -63,7 +63,7 @@ async function без_сп_обучение_не_срабатывает() {
   player1.activities.removeAll()
 }
 async function проверка_пульсирования_персиста() {
-  const player1 = new Character('Player1', 'Orc', 'Fighter', 'Raider')
+  const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
   const bootcamp = new Bootcamp(player1)
   let oldHpCurrent = player1.health.current
   player1.social.sp = 505n

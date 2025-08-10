@@ -1,9 +1,9 @@
-import Character from '../../../../src/classes/character/Character.js'
 import itemFabric from '../../../../src/abstract-fabric/items/itemFabric.js'
+import Player from '../../../../src/classes/creatures/Player.js'
 
 function characterDieWithKillingDamage() {
-  const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
-  const characterBad = new Character('Bad', 'Orc', 'Fighter', 'Raider')
+  const characterGood = new Player('Good', 'Orc', 'Fighter', 'Raider')
+  const characterBad = new Player('Bad', 'Orc', 'Fighter', 'Raider')
   const killingDamage = characterGood.hp
 
   characterBad.sendDamageToTarget(characterGood, killingDamage)
@@ -15,7 +15,7 @@ function characterDieWithKillingDamage() {
 }
 
 function increaseStatsWhenLevelUp() {
-  const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
+  const characterGood = new Player('Good', 'Orc', 'Fighter', 'Raider')
   characterGood.leveler.exp = 1n
   const oldStats = { ...characterGood.statsCombat.current }
 
@@ -39,7 +39,7 @@ function increaseStatsWhenLevelUp() {
 }
 
 function увеличатся_ли_статы_при_надетом_снаряжении() {
-  const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
+  const characterGood = new Player('Good', 'Orc', 'Fighter', 'Raider')
   const weapon = itemFabric('equipment', 'Axe Of Glory')
   characterGood.inventory.cargo.addItem(weapon)
   const idToWear = characterGood.inventory.cargo.items[0].id
@@ -54,7 +54,7 @@ function увеличатся_ли_статы_при_надетом_снаряж
 }
 
 function уменьшатся_ли_статы_при_снятии_снаряжения() {
-  const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
+  const characterGood = new Player('Good', 'Orc', 'Fighter', 'Raider')
   const weapon = itemFabric('equipment', 'Axe Of Glory')
   characterGood.inventory.cargo.addItem(weapon)
   const idToWear = characterGood.inventory.cargo.items[0].id
@@ -70,7 +70,7 @@ function уменьшатся_ли_статы_при_снятии_снаряже
 }
 
 // function увеличатся_ли_статы_при_бафе() {
-//   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
+//   const characterGood = new Player('Good', 'Orc', 'Fighter', 'Raider')
 //   const oldStats = { ...characterGood.statsCombat.current }
 //   const haste = buffsFabric('Haste', 1n)
 
@@ -80,7 +80,7 @@ function уменьшатся_ли_статы_при_снятии_снаряже
 // }
 
 // function умешьшатся_ли_статы_при_снятии_бафа() {
-//   const characterGood = new Character('Good', 'Orc', 'Fighter', 'Raider')
+//   const characterGood = new Player('Good', 'Orc', 'Fighter', 'Raider')
 //   const haste = buffsFabric('Haste', 1n)
 //   characterGood.activities.add(haste)
 //   const oldStats = { ...characterGood.statsCombat.current }

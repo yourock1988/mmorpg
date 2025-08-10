@@ -1,9 +1,9 @@
 import abilityFabric from '../../src/abstract-fabric/abilities/abilityFabric.js'
-import Character from '../../src/classes/character/Character.js'
+import Player from '../../src/classes/creatures/Player.js'
 
 async function наносит_ли_скилл_урон() {
-  const Player1 = new Character('Player1', 'Orc', 'Fighter')
-  const Player2 = new Character('Player2', 'Orc', 'Fighter')
+  const Player1 = new Player('Player1', 'Orc', 'Fighter')
+  const Player2 = new Player('Player2', 'Orc', 'Fighter')
   const skill = abilityFabric('skill', 'Iron Punch', 1n)
   const oldHealthCurrent = Player2.health.current
   Player1.target.set(Player2)
@@ -19,8 +19,8 @@ async function наносит_ли_скилл_урон() {
 }
 
 async function можно_ли_убить_скиллом() {
-  const Player1 = new Character('Player1', 'Orc', 'Fighter')
-  const Player2 = new Character('Player2', 'Orc', 'Fighter')
+  const Player1 = new Player('Player1', 'Orc', 'Fighter')
+  const Player2 = new Player('Player2', 'Orc', 'Fighter')
   const skill = abilityFabric('skill', 'Iron Punch', 1n)
   Player1.target.set(Player2)
 

@@ -1,8 +1,8 @@
-import Character from '../../src/classes/character/Character.js'
 import abilityFabric from '../../src/abstract-fabric/abilities/abilityFabric.js'
 import getAvailableForTrainAbilities from '../../src/functions/getAvailableForTrainAbilities.js'
+import Player from '../../src/classes/creatures/Player.js'
 
-const player = new Character('Good', 'Orc', 'Fighter')
+const player = new Player('Good', 'Orc', 'Fighter')
 player.abilities.learn(abilityFabric('buff', 'Self Heal', 1n))
 player.abilities.learn(abilityFabric('debuff', 'Dryad Root', 1n))
 player.abilities.buffs[0].level = 2n
