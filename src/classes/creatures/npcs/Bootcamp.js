@@ -1,6 +1,6 @@
-import abilityFabric from '../abstract-fabric/abilities/abilityFabric.js'
-import getAbilityTypeByCaption from '../functions/getAbilityTypeByCaption.js'
-import getAvailableForTrainAbilities from '../functions/getAvailableForTrainAbilities.js'
+import abilityFabric from '../../../abstract-fabric/abilities/abilityFabric.js'
+import getAbilityTypeByCaption from '../../../functions/getAbilityTypeByCaption.js'
+import getAvailableForTrainAbilities from '../../../functions/getAvailableForTrainAbilities.js'
 
 export default class Bootcamp {
   constructor(character) {

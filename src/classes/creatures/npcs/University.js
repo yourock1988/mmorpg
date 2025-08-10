@@ -1,4 +1,4 @@
-import nextProfessions from '../functions/nextProfessions.js'
+import nextProfessions from '../../../functions/nextProfessions.js'
 
 export default class University {
   constructor(character) {

@@ -1,4 +1,4 @@
-import Coords from '../../../../src/classes/character/Coords.js'
+import Coords from '../../../../src/classes/Coords.js'
 import calcDistance from '../../../../src/functions/calcDistance.js'
 
 function мгновенная_телепортация() {

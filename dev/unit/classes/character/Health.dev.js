@@ -2,7 +2,7 @@ import abilityFabric from '../../../../src/abstract-fabric/abilities/abilityFabr
 import itemFabric from '../../../../src/abstract-fabric/items/itemFabric.js'
 import Abilities from '../../../../src/classes/character/Abilities.js'
 import Activities from '../../../../src/classes/character/Activities.js'
-import Coords from '../../../../src/classes/character/Coords.js'
+import Coords from '../../../../src/classes/Coords.js'
 import Health from '../../../../src/classes/character/Health.js'
 import Inventory from '../../../../src/classes/character/Inventory.js'
 import Leveler from '../../../../src/classes/character/Leveler.js'

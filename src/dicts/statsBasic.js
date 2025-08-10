@@ -1,4 +1,5 @@
 export default {
+  x: { x: { STR: 9, DEX: 9, CON: 9, INT: 9, WIT: 9, MEN: 9 } },
   Orc: {
     Fighter: {
       STR: 40,

@@ -1,5 +1,5 @@
 import Character from '../../../../src/classes/character/Character.js'
-import Coords from '../../../../src/classes/character/Coords.js'
+import Coords from '../../../../src/classes/Coords.js'
 import Target from '../../../../src/classes/character/Target.js'
 
 async function хотьба_к_цели() {

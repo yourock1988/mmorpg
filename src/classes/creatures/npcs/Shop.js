@@ -1,9 +1,10 @@
-import itemDict from '../abstract-fabric/items/itemDict.js'
-import itemFabric from '../abstract-fabric/items/itemFabric.js'
+import itemDict from '../../../abstract-fabric/items/itemDict.js'
+import itemFabric from '../../../abstract-fabric/items/itemFabric.js'
+import Npc from '../Npc.js'
 
-export default class Shop {
-  constructor(character) {
-    this.character = character
+export default class Shop extends Npc {
+  constructor() {
+    this.kind = 'shop'
   }
 
   get availableItems() {
@@ -19,7 +20,7 @@ export default class Shop {
     const predicate = ai => ai.caption === caption && ai.type === type
     if (!this.availableItems.find(predicate)) return
     const item = itemFabric(type, caption)
-    const { cargo } = this.character.inventory
+    const { cargo } = this.target.subject.inventory
     const payment = cargo.dropItemByCaption('Money', item.cost.money)
     if (payment) cargo.addItem(item)
     // else console.log('не хватает денег')

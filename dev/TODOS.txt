@@ -52,6 +52,15 @@
 тогда группы пересоберутся с новым порядком
 
 
+/**
+ * bodies
+ * creatures
+ * population
+ * residents
+ * persons
+ */
+ 
+
 CON          
 lvl          
 persists     // Activity, работающий на игроке. включен постоянно
