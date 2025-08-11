@@ -99,25 +99,12 @@ async function пульсация_действует_после_завершен
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
   player2.leveler.forceSetLevel(5n)
-
-  console.log(player2.statsBasic)
-  console.log(player2.statsCombat.current)
-
-  console.log(player2.health.total)
   player2.health.lose(200)
-  console.log(player2.health.total)
-
   await bootcamp.train('buff', 'Heart Of Lion', 1n)
   const buff = player1.abilities.buffs[0]
   let oldHpCurrent = player2.health.current
 
-  // console.log(buff)
-
-  // console.log(player1.abilities.buffs)
-
   await player1.abilities.cast(buff)
-
-  console.log(player2.activities.buffs)
 
   const intervalId = setInterval(() => {
     console.assert(player2.health.current > oldHpCurrent)

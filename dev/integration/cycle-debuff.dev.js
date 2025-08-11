@@ -1,4 +1,4 @@
-import Bootcamp from '../../src/classes/Bootcamp.js'
+import Bootcamp from '../../src/classes/creatures/npcs/Bootcamp.js'
 import Player from '../../src/classes/creatures/Player.js'
 
 async function дебаф_не_выучивается_при_недостатке_сп() {

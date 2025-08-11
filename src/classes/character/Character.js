@@ -12,8 +12,10 @@ import Fight from './Fight.js'
 import Mana from './Mana.js'
 
 export default class Character extends Subject {
-  constructor() {
+  constructor({ race, kind }) {
     super()
+    this.race = race
+    this.kind = kind
     this.activities = new Activities()
     this.leveler = new Leveler()
     this.target = new Target(this.coords)

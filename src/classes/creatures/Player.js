@@ -2,7 +2,7 @@ import Character from '../character/Character.js'
 
 export default class Player extends Character {
   constructor(nick, race, kind) {
-    super()
+    super({ race, kind })
     this.type = 'player'
     this.nick = nick
     this.race = race
