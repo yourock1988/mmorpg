@@ -1,6 +1,6 @@
-import itemFabric from '../../../src/abstract-fabric/items/itemFabric.js'
-import Player from '../../../src/classes/creatures/Player.js'
-import Shop from '../../../src/classes/creatures/npcs/Shop.js'
+import itemFabric from '../../../../../src/abstract-fabric/items/itemFabric.js'
+import Player from '../../../../../src/classes/creatures/Player.js'
+import Shop from '../../../../../src/classes/creatures/npcs/Shop.js'
 
 function вычесление_количества_итемов_в_наличии() {
   const shop = new Shop()

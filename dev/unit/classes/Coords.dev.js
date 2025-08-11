@@ -1,5 +1,5 @@
-import Coords from '../../../../src/classes/Coords.js'
-import calcDistance from '../../../../src/functions/calcDistance.js'
+import Coords from '../../../src/classes/Coords.js'
+import calcDistance from '../../../src/functions/calcDistance.js'
 
 function мгновенная_телепортация() {
   const coords = new Coords()

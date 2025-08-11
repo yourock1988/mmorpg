@@ -1,5 +1,5 @@
-import Player from '../../../src/classes/creatures/Player.js'
-import University from '../../../src/classes/creatures/npcs/University.js'
+import Player from '../../../../../src/classes/creatures/Player.js'
+import University from '../../../../../src/classes/creatures/npcs/University.js'
 
 function доступные_для_смены_профессии() {
   const character = new Player('Player', 'Orc', 'Fighter')

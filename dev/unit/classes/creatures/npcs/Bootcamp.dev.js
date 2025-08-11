@@ -1,6 +1,6 @@
-import Bootcamp from '../../../src/classes/creatures/npcs/Bootcamp.js'
-import University from '../../../src/classes/creatures/npcs/University.js'
-import Player from '../../../src/classes/creatures/Player.js'
+import Bootcamp from '../../../../../src/classes/creatures/npcs/Bootcamp.js'
+import University from '../../../../../src/classes/creatures/npcs/University.js'
+import Player from '../../../../../src/classes/creatures/Player.js'
 
 async function methodName() {
   const character = new Player('Player', 'Orc', 'Fighter')
