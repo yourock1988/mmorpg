@@ -1,36 +1,36 @@
-require('./unit/functions/calcStatsCombat.dev.js')
-require('./unit/functions/getAbilityTypeByCaption.dev.js')
-require('./unit/functions/nextProfessions.dev.js')
-require('./unit/functions/prevProfessions.dev.js')
+import './unit/functions/calcStatsCombat.dev.js'
+import './unit/functions/getAbilityTypeByCaption.dev.js'
+import './unit/functions/nextProfessions.dev.js'
+import './unit/functions/prevProfessions.dev.js'
 
-require('./unit/abstract-fabric/items/Item.dev.js')
+import './unit/abstract-fabric/items/Item.dev.js'
 
-require('./unit/classes/Coords.dev.js')
-require('./unit/classes/Delayer.dev.js')
-require('./unit/classes/character/Abilities.dev.js')
-require('./unit/classes/character/Cargo.dev.js')
-require('./unit/classes/character/Cast.dev.js')
-require('./unit/classes/character/Character.dev.js')
-require('./unit/classes/character/Health.dev.js')
-require('./unit/classes/character/Inventory.dev.js')
-require('./unit/classes/character/Leveler.dev.js')
-require('./unit/classes/character/Mana.dev.js')
-require('./unit/classes/character/StatsCombat.dev.js')
-require('./unit/classes/character/Target.dev.js')
-require('./unit/classes/character/Wear.dev.js')
-require('./unit/classes/creatures/npcs/Bootcamp.dev.js')
-require('./unit/classes/creatures/npcs/Shop.dev.js')
-require('./unit/classes/creatures/npcs/University.dev.js')
+import './unit/classes/Coords.dev.js'
+import './unit/classes/Delayer.dev.js'
+import './unit/classes/character/Abilities.dev.js'
+import './unit/classes/character/Cargo.dev.js'
+import './unit/classes/character/Cast.dev.js'
+import './unit/classes/character/Character.dev.js'
+import './unit/classes/character/Health.dev.js'
+import './unit/classes/character/Inventory.dev.js'
+import './unit/classes/character/Leveler.dev.js'
+import './unit/classes/character/Mana.dev.js'
+import './unit/classes/character/StatsCombat.dev.js'
+import './unit/classes/character/Target.dev.js'
+import './unit/classes/character/Wear.dev.js'
+import './unit/classes/creatures/npcs/Bootcamp.dev.js'
+import './unit/classes/creatures/npcs/Shop.dev.js'
+import './unit/classes/creatures/npcs/University.dev.js'
 
-require('./unit/abstract-fabric/abilities/abilityFabric.dev.js')
-require('./unit/abstract-fabric/activities/actitvityFabric.dev.js')
-require('./unit/abstract-fabric/items/Consumable.dev.js')
-require('./unit/abstract-fabric/items/Fake.dev.js')
+import './unit/abstract-fabric/abilities/abilityFabric.dev.js'
+import './unit/abstract-fabric/activities/actitvityFabric.dev.js'
+import './unit/abstract-fabric/items/Consumable.dev.js'
+import './unit/abstract-fabric/items/Fake.dev.js'
 
-require('./integration/cycle-aura.dev.js')
-require('./integration/cycle-buff.dev.js')
-require('./integration/cycle-debuff.dev.js')
-require('./integration/cycle-fight.dev.js')
-require('./integration/cycle-persist.dev.js')
-require('./integration/cycle-skill.dev.js')
-require('./integration/show-abilities-to-train.dev.js')
+import './integration/cycle-aura.dev.js'
+import './integration/cycle-buff.dev.js'
+import './integration/cycle-debuff.dev.js'
+import './integration/cycle-fight.dev.js'
+import './integration/cycle-persist.dev.js'
+import './integration/cycle-skill.dev.js'
+import './integration/show-abilities-to-train.dev.js'
