@@ -1,9 +1,11 @@
 import abilityFabric from '../../../abstract-fabric/abilities/abilityFabric.js'
 import getAbilityTypeByCaption from '../../../functions/getAbilityTypeByCaption.js'
 import getAvailableForTrainAbilities from '../../../functions/getAvailableForTrainAbilities.js'
+import Npc from '../Npc.js'
 
-export default class Bootcamp {
+export default class Bootcamp extends Npc {
   constructor(character) {
+    super({ title: 'Bootcamp' })
     this.character = character
   }
 

@@ -10,6 +10,7 @@ function доступные_для_смены_профессии() {
   console.assert(university.availableProfessions.includes('Monk'))
 
   character.destroy()
+  university.destroy()
 }
 
 function смена_професии_на_доступную() {
@@ -21,6 +22,7 @@ function смена_професии_на_доступную() {
   console.assert(character.prof === 'Raider')
 
   character.destroy()
+  university.destroy()
 }
 
 function смена_професии_на_НЕдоступную_вызывает_ошибку() {
@@ -32,6 +34,7 @@ function смена_професии_на_НЕдоступную_вызывае�
   console.log(character.prof)
 
   character.destroy()
+  university.destroy()
 }
 
 доступные_для_смены_профессии()

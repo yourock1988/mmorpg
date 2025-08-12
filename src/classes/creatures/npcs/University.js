@@ -1,7 +1,9 @@
 import nextProfessions from '../../../functions/nextProfessions.js'
+import Npc from '../Npc.js'
 
-export default class University {
+export default class University extends Npc {
   constructor(character) {
+    super({ title: 'University' })
     this.character = character
   }
 

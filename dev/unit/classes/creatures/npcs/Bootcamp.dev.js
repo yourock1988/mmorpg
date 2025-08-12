@@ -20,6 +20,8 @@ async function methodName() {
   // bootcamp.selectAbility('Noob Blessing', 1n)
 
   character.destroy()
+  bootcamp.destroy()
+  university.destroy()
 }
 
 methodName()

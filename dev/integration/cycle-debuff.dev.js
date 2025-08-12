@@ -12,6 +12,7 @@ async function дебаф_не_выучивается_при_недостатк�
 
   player1.social.destroy()
   player1.activities.removeAll()
+  bootcamp.destroy()
 }
 async function дебаф_выучивается_при_наличии_сп() {
   const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
@@ -24,6 +25,7 @@ async function дебаф_выучивается_при_наличии_сп() {
 
   player1.social.destroy()
   player1.activities.removeAll()
+  bootcamp.destroy()
 }
 async function дебаф_кастуется_на_самого_себя() {
   const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
@@ -40,6 +42,7 @@ async function дебаф_кастуется_на_самого_себя() {
 
   player1.social.destroy()
   player1.activities.removeAll()
+  bootcamp.destroy()
 }
 async function дебаф_кастуется_на_контрагенте() {
   const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
@@ -58,6 +61,7 @@ async function дебаф_кастуется_на_контрагенте() {
   player2.activities.removeAll()
   player1.social.destroy()
   player1.activities.removeAll()
+  bootcamp.destroy()
 }
 async function энфорс_действует_после_завершения_каста_на_контрагенте() {
   const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
@@ -77,6 +81,7 @@ async function энфорс_действует_после_завершения_�
   player2.activities.removeAll()
   player1.social.destroy()
   player1.activities.removeAll()
+  bootcamp.destroy()
 }
 async function пульсация_действует_после_завершения_каста_на_контрагенте() {
   const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
@@ -100,6 +105,7 @@ async function пульсация_действует_после_завершен
       player2.activities.removeAll()
       player1.social.destroy()
       player1.activities.removeAll()
+      bootcamp.destroy()
     }
   }, player2.activities.debuffs[0].config.pulseIntervalDelay + 33)
 }
@@ -122,6 +128,7 @@ async function энфорс_до_завершения_каста_не_дейст
   player2.activities.removeAll()
   player1.social.destroy()
   player1.activities.removeAll()
+  bootcamp.destroy()
 }
 async function пульсация_до_завершения_каста_не_действует_на_контрагенте() {
   const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
@@ -147,6 +154,7 @@ async function пульсация_до_завершения_каста_не_де
   player2.activities.removeAll()
   player1.social.destroy()
   player1.activities.removeAll()
+  bootcamp.destroy()
 }
 
 дебаф_не_выучивается_при_недостатке_сп()

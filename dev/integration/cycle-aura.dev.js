@@ -53,6 +53,7 @@ async function работает_ли_энфорс() {
   )
   player1.social.destroy()
   player1.activities.removeAll()
+  bootcamp.destroy()
 }
 async function работает_ли_пульсирование() {
   const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
@@ -71,6 +72,7 @@ async function работает_ли_пульсирование() {
       clearInterval(intervalId)
       player1.social.destroy()
       player1.activities.removeAll()
+      bootcamp.destroy()
     }
   }, player1.activities.auras[0].config.pulseIntervalDelay + 17)
 }
@@ -91,6 +93,7 @@ async function без_сп_обучение_не_срабатывает() {
   )
   player1.social.destroy()
   player1.activities.removeAll()
+  bootcamp.destroy()
 }
 
 обновляется_ли_активити_при_активации_ауры()

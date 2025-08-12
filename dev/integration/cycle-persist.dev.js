@@ -49,6 +49,7 @@ async function действует_ли_выученный_персист_на_п
 
   player1.social.destroy()
   player1.activities.removeAll()
+  bootcamp.destroy()
 }
 async function без_сп_обучение_не_срабатывает() {
   const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
@@ -61,6 +62,7 @@ async function без_сп_обучение_не_срабатывает() {
 
   player1.social.destroy()
   player1.activities.removeAll()
+  bootcamp.destroy()
 }
 async function проверка_пульсирования_персиста() {
   const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
@@ -81,6 +83,7 @@ async function проверка_пульсирования_персиста() {
       clearInterval(intervalId)
       player1.social.destroy()
       player1.activities.removeAll()
+      bootcamp.destroy()
     }
   }, p.config.pulseIntervalDelay + 33)
 }

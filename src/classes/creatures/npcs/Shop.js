@@ -4,7 +4,7 @@ import Npc from '../Npc.js'
 
 export default class Shop extends Npc {
   constructor() {
-    super({ race: 'x', kind: 'x' })
+    super({ title: 'Shop' })
     this.npc = 'shop'
   }
 
