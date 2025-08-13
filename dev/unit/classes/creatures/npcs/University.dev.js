@@ -3,7 +3,8 @@ import University from '../../../../../src/classes/creatures/npcs/University.js'
 
 function доступные_для_смены_профессии() {
   const character = new Player('Player', 'Orc', 'Fighter')
-  const university = new University(character)
+  const university = new University()
+  university.selectCounterparty(character)
 
   console.assert(character.prof === 'OrcFighter')
   console.assert(university.availableProfessions.includes('Raider'))
@@ -15,7 +16,8 @@ function доступные_для_смены_профессии() {
 
 function смена_професии_на_доступную() {
   const character = new Player('Player', 'Orc', 'Fighter')
-  const university = new University(character)
+  const university = new University()
+  university.selectCounterparty(character)
 
   university.qualifyProfession('Raider')
 
@@ -27,7 +29,8 @@ function смена_професии_на_доступную() {
 
 function смена_професии_на_НЕдоступную_вызывает_ошибку() {
   const character = new Player('Player', 'Orc', 'Fighter')
-  const university = new University(character)
+  const university = new University()
+  university.selectCounterparty(character)
 
   university.qualifyProfession('Wizard')
 

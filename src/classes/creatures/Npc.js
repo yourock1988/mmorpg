@@ -6,4 +6,12 @@ export default class Npc extends Character {
     this.type = 'npc'
     this.title = title
   }
+
+  selectCounterparty(player) {
+    this.target.set(player)
+  }
+
+  cancelCounterparty() {
+    this.target.cancel()
+  }
 }

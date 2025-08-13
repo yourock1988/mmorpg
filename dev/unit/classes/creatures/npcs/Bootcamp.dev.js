@@ -4,8 +4,10 @@ import Player from '../../../../../src/classes/creatures/Player.js'
 
 async function methodName() {
   const character = new Player('Player', 'Orc', 'Fighter')
-  const university = new University(character)
-  const bootcamp = new Bootcamp(character)
+  const university = new University()
+  const bootcamp = new Bootcamp()
+  bootcamp.selectCounterparty(character)
+  university.selectCounterparty(character)
 
   character.social.receiveSp(9999n)
   character.leveler.forceSetLevel(20n)

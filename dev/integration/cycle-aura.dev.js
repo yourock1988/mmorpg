@@ -35,7 +35,8 @@ async function обновляется_ли_активити_при_актива�
 }
 async function работает_ли_энфорс() {
   const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new Bootcamp(player1)
+  const bootcamp = new Bootcamp()
+  bootcamp.selectCounterparty(player1)
   const oldAccuracy = player1.statsCombat.current.Accuracy
   const oldHpTotal = player1.health.total
   let oldHpCurrent = player1.health.current
@@ -57,7 +58,8 @@ async function работает_ли_энфорс() {
 }
 async function работает_ли_пульсирование() {
   const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new Bootcamp(player1)
+  const bootcamp = new Bootcamp()
+  bootcamp.selectCounterparty(player1)
   let oldHpCurrent = player1.health.current
   player1.social.sp = 505n
   await bootcamp.trainAbility('aura', 'Concentration Aura', 1n)
@@ -78,7 +80,8 @@ async function работает_ли_пульсирование() {
 }
 async function без_сп_обучение_не_срабатывает() {
   const player1 = new Player('Player1', 'Orc', 'Fighter', 'Raider')
-  const bootcamp = new Bootcamp(player1)
+  const bootcamp = new Bootcamp()
+  bootcamp.selectCounterparty(player1)
   const oldAccuracy = player1.statsCombat.current.Accuracy
   const oldHpTotal = player1.health.total
   const oldHpCurrent = player1.health.current

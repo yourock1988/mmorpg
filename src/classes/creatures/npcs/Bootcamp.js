@@ -4,13 +4,13 @@ import getAvailableForTrainAbilities from '../../../functions/getAvailableForTra
 import Npc from '../Npc.js'
 
 export default class Bootcamp extends Npc {
-  constructor(character) {
+  constructor() {
     super({ title: 'Bootcamp' })
-    this.character = character
+    this.npc = 'bootcamp'
   }
 
   get availableAbilities() {
-    return getAvailableForTrainAbilities(this.character)
+    return getAvailableForTrainAbilities(this.target.subject)
   }
 
   async selectAbility(caption, level) {
@@ -21,8 +21,8 @@ export default class Bootcamp extends Npc {
 
   async trainAbility(type, caption, level) {
     const ability = abilityFabric(type, caption, level)
-    if (ability.cost.sp > this.character.social.sp) return //console.log('low sp')
-    this.character.social.sp -= ability.cost.sp
-    await this.character.abilities.learn(ability)
+    if (ability.cost.sp > this.target.subject.social.sp) return //console.log('low sp')
+    this.target.subject.social.sp -= ability.cost.sp
+    await this.target.subject.abilities.learn(ability)
   }
 }
