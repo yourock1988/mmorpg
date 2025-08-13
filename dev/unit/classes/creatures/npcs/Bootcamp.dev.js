@@ -10,9 +10,9 @@ async function methodName() {
   character.social.receiveSp(9999n)
   character.leveler.forceSetLevel(20n)
   // console.log(bootcamp.availableAbilities)
-  university.changeProfession('Raider')
+  university.qualifyProfession('Raider')
   // console.log(bootcamp.availableAbilities)
-  university.changeProfession('Destroyer')
+  university.qualifyProfession('Destroyer')
   await bootcamp.selectAbility('Quick Step', 1n)
   // console.log(bootcamp.availableAbilities)
 

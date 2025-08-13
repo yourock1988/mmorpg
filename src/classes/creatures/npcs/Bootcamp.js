@@ -16,10 +16,10 @@ export default class Bootcamp extends Npc {
   async selectAbility(caption, level) {
     if (!this.availableAbilities.find(([c]) => c === caption)) return
     const type = getAbilityTypeByCaption(caption)
-    await this.train(type, caption, level)
+    await this.trainAbility(type, caption, level)
   }
 
-  async train(type, caption, level) {
+  async trainAbility(type, caption, level) {
     const ability = abilityFabric(type, caption, level)
     if (ability.cost.sp > this.character.social.sp) return //console.log('low sp')
     this.character.social.sp -= ability.cost.sp

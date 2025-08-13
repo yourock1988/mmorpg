@@ -16,7 +16,7 @@ function покупка_итема_за_деньги() {
   cargo.addItem(itemFabric('fake', 'Money', 9))
   shop.target.set(player)
 
-  shop.buy(type, caption)
+  shop.sellItem(type, caption)
 
   console.assert(
     cargo.findItemByCaption('Money').count === 0 &&
@@ -35,7 +35,7 @@ function покупка_итема_за_деньги_при_нехватке_д�
   cargo.addItem(itemFabric('fake', 'Money', 8))
   shop.target.set(player)
 
-  shop.buy(type, caption)
+  shop.sellItem(type, caption)
 
   console.assert(
     cargo.findItemByCaption('Money')?.count === 8 &&

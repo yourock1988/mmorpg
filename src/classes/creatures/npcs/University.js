@@ -11,7 +11,7 @@ export default class University extends Npc {
     return nextProfessions(this.character.prof)
   }
 
-  changeProfession(profession) {
+  qualifyProfession(profession) {
     if (this.availableProfessions.includes(profession)) {
       this.character.prof = profession
     }

@@ -17,7 +17,7 @@ export default class Shop extends Npc {
       .filter(eq => eq.cost)
   }
 
-  buy(type, caption) {
+  sellItem(type, caption) {
     const predicate = ai => ai.caption === caption && ai.type === type
     if (!this.availableItems.find(predicate)) return
     const item = itemFabric(type, caption)

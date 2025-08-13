@@ -6,7 +6,7 @@ async function дебаф_не_выучивается_при_недостатк�
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 45n
 
-  await bootcamp.train('debuff', 'Curse Poison', 1n)
+  await bootcamp.trainAbility('debuff', 'Curse Poison', 1n)
 
   console.assert(player1.abilities.debuffs.length === 0)
 
@@ -19,7 +19,7 @@ async function дебаф_выучивается_при_наличии_сп() {
   const bootcamp = new Bootcamp(player1)
   player1.social.sp = 505n
 
-  await bootcamp.train('debuff', 'Curse Poison', 1n)
+  await bootcamp.trainAbility('debuff', 'Curse Poison', 1n)
 
   console.assert(player1.abilities.debuffs.length === 1)
 
@@ -32,7 +32,7 @@ async function дебаф_кастуется_на_самого_себя() {
   const bootcamp = new Bootcamp(player1)
   player1.leveler.forceSetLevel(5n)
   player1.social.sp = 505n
-  await bootcamp.train('debuff', 'Curse Poison', 1n)
+  await bootcamp.trainAbility('debuff', 'Curse Poison', 1n)
   const debuff = player1.abilities.debuffs[0]
   player1.target.set(player1)
 
@@ -51,7 +51,7 @@ async function дебаф_кастуется_на_контрагенте() {
   player1.social.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
-  await bootcamp.train('debuff', 'Curse Poison', 1n)
+  await bootcamp.trainAbility('debuff', 'Curse Poison', 1n)
   const debuff = player1.abilities.debuffs[0]
 
   await player1.abilities.cast(debuff)
@@ -70,7 +70,7 @@ async function энфорс_действует_после_завершения_�
   player1.social.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
-  await bootcamp.train('debuff', 'Dryad Root', 1n)
+  await bootcamp.trainAbility('debuff', 'Dryad Root', 1n)
   const debuff = player1.abilities.debuffs[0]
   const oldHpTotal = player2.health.total
 
@@ -91,7 +91,7 @@ async function пульсация_действует_после_завершен
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
   player2.leveler.forceSetLevel(5n)
-  await bootcamp.train('debuff', 'Curse Poison', 1n)
+  await bootcamp.trainAbility('debuff', 'Curse Poison', 1n)
   const debuff = player1.abilities.debuffs[0]
 
   await player1.abilities.cast(debuff)
@@ -116,7 +116,7 @@ async function энфорс_до_завершения_каста_не_дейст
   player1.social.sp = 505n
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
-  await bootcamp.train('debuff', 'Curse Poison', 1n)
+  await bootcamp.trainAbility('debuff', 'Curse Poison', 1n)
   const debuff = player1.abilities.debuffs[0]
   const oldHpTotal = player2.health.total
 
@@ -138,7 +138,7 @@ async function пульсация_до_завершения_каста_не_де
   player1.target.set(player2)
   player1.leveler.forceSetLevel(5n)
   player2.leveler.forceSetLevel(5n)
-  await bootcamp.train('debuff', 'Curse Poison', 1n)
+  await bootcamp.trainAbility('debuff', 'Curse Poison', 1n)
   const debuff = player1.abilities.debuffs[0]
   let oldHpCurrent = player2.health.current
 

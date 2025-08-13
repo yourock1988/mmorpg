@@ -17,7 +17,7 @@ function смена_професии_на_доступную() {
   const character = new Player('Player', 'Orc', 'Fighter')
   const university = new University(character)
 
-  university.changeProfession('Raider')
+  university.qualifyProfession('Raider')
 
   console.assert(character.prof === 'Raider')
 
@@ -29,7 +29,7 @@ function смена_професии_на_НЕдоступную_вызывае�
   const character = new Player('Player', 'Orc', 'Fighter')
   const university = new University(character)
 
-  university.changeProfession('Wizard')
+  university.qualifyProfession('Wizard')
 
   console.log(character.prof)
 
