@@ -3,6 +3,7 @@ import statsBasic from '../../dicts/statsBasic.js'
 import Activities from './Activities.js'
 import Abilities from './Abilities.js'
 import Inventory from './Inventory.js'
+import Waypoint from '../Waypoint.js'
 import Subject from '../Subject.js'
 import Leveler from './Leveler.js'
 import Target from './Target.js'
@@ -18,8 +19,9 @@ export default class Character extends Subject {
     this.kind = kind
     this.activities = new Activities()
     this.leveler = new Leveler()
-    this.target = new Target(this.coords)
     this.social = new Social(this.leveler)
+    this.target = new Target(this.coords)
+    this.waypoint = new Waypoint(this.target)
     this.inventory = new Inventory(this.activities)
     this.statsCombat = new StatsCombat(
       this.statsBasic,

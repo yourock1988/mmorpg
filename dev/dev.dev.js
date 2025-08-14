@@ -7,6 +7,7 @@ import './unit/abstract-fabric/items/Item.dev.js'
 
 import './unit/classes/Coords.dev.js'
 import './unit/classes/Delayer.dev.js'
+import './unit/classes/Waypoint.dev.js'
 import './unit/classes/character/Abilities.dev.js'
 import './unit/classes/character/Cargo.dev.js'
 import './unit/classes/character/Cast.dev.js'
