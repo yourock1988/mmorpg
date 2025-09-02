@@ -2,6 +2,7 @@ import wait from '../functions/wait.js'
 import calcStep from '../functions/calcStep.js'
 import calcDistance from '../functions/calcDistance.js'
 import { round } from '../functions/utils.js'
+import EventEmitterAdapter from '../../x/EventEmitterAdapter.js'
 
 export default class Coords {
   #interrupt
@@ -10,6 +11,7 @@ export default class Coords {
     this.x = x
     this.y = y
     this.#interrupt = { break: false }
+    this.events = new EventEmitterAdapter()
   }
 
   teleportTo(coords) {
@@ -21,14 +23,16 @@ export default class Coords {
   async moveTo(coords, interrupt = { break: false }, gap = 1) {
     this.#interrupt.break = true
     this.#interrupt = interrupt
-    while ((await this.stepTo(coords)) > gap) if (interrupt.break) return false
+    while (this.stepTo(coords) > gap) {
+      await wait(100)
+      if (interrupt.break) return false
+    }
     return true
   }
 
-  async stepTo(coords) {
-    await wait(100)
+  stepTo(coords) {
     Object.assign(this, calcStep(this, coords, 88))
-    // console.log(this)
+    this.events.emit('on-player-step', { x: this.x, y: this.y })
     return this.getDistanceTo(coords)
   }
 
