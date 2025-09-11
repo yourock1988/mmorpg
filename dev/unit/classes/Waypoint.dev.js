@@ -23,7 +23,7 @@ async function test2() {
   const target = new Target(subject.coords)
   const waypoint = new Waypoint(target)
   const promise = waypoint.changeDirection({ x: 15, y: 15 })
-  setTimeout(() => waypoint.changeDirection({ x: 15, y: 0 }), 1000)
+  setTimeout(() => waypoint.changeDirection({ x: 15, y: 0 }), 200)
   setTimeout(
     () =>
       console.assert(

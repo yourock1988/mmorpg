@@ -24,7 +24,7 @@ export default class Coords {
     this.#interrupt.break = true
     this.#interrupt = interrupt
     while (this.stepTo(coords) > gap) {
-      await wait(100)
+      await wait(10)
       if (interrupt.break) return false
     }
     return true

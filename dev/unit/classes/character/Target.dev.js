@@ -21,7 +21,7 @@ async function прерывание_хотьбы_к_цели() {
   const target = new Target(coords)
   coords.teleportTo({ x: 15, y: 10 })
   target.set(anotherCharacter)
-  setTimeout(() => target.cancel(), 500)
+  setTimeout(() => target.cancel(), 100)
 
   let res = await target.goto()
 
@@ -37,7 +37,7 @@ async function прерывание_хотьбы_при_установке_др�
   const target = new Target(coords)
   coords.teleportTo({ x: 15, y: 10 })
   target.set(anotherCharacter)
-  setTimeout(() => target.set(anotherCharacter2), 500)
+  setTimeout(() => target.set(anotherCharacter2), 100)
 
   let res = await target.goto()
 

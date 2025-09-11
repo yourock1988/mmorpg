@@ -40,7 +40,7 @@ async function прерывание_хотьбы_в_направлении_не�
   const coords = new Coords()
   const targetCoords = { x: 20, y: -10 }
   const interrupt = { break: false }
-  setTimeout(() => (interrupt.break = true), 1000)
+  setTimeout(() => (interrupt.break = true), 100)
   await coords.moveTo(targetCoords, interrupt)
   console.assert(calcDistance(coords, targetCoords) > 1)
 }
