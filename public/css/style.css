@@ -1,0 +1,77 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+a {
+  font-family: sans-serif;
+  color: #def;
+  font-size: 18px;
+}
+
+button,
+input,
+textarea,
+select,
+option {
+  font-family: sans-serif;
+  font-size: 18px;
+  color: #234;
+}
+
+.d-flex {
+  display: flex;
+}
+
+body {
+  background: #234;
+}
+
+.wrap-input {
+  padding: 5px;
+  input {
+    padding: 5px;
+    width: 100%;
+    outline: none;
+  }
+}
+
+.wrap-button {
+  padding: 5px;
+  text-align: center;
+  button {
+    padding: 5px 35px;
+  }
+}
+
+form {
+  width: 300px;
+}
+
+.field {
+  background: #456;
+  height: 600px;
+  margin-top: 25px;
+  position: relative;
+  user-select: none;
+}
+
+h2 {
+  text-align: center;
+  margin: 0;
+}
+
+.character {
+  position: absolute;
+  transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px));
+}
+
+#elPlayer {
+  --x: 500;
+  --y: 200;
+}
+
+#elEnemy {
+  --x: 300;
+  --y: 500;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <h2>MMORPG</h2>
+      </div>
+      <div>
+        <form id="elFormCreatePlayer">
+          <div class="wrap-input">
+            <label for="">Ваш никнейм</label>
+            <input type="text" name="nickname" value="YouROCK" />
+          </div>
+          <div class="wrap-button">
+            <button form="elFormCreatePlayer" type="submit">
+              Создать персонажа
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="field" id="elField">
+        <!-- <button class="character" id="elPlayer">o.O</button> -->
+        <button class="character" id="elEnemy">-_-</button>
+      </div>
+    </div>
+
+    <script type="module" src="./js/controller.js"></script>
+  </body>
+</html>

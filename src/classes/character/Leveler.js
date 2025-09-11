@@ -1,8 +1,7 @@
 import logBigInt from '../../functions/logBigInt.js'
-import EventEmitter from 'node:events'
 import calcLevelProgress from '../../functions/calcLevelProgress.js'
 import { round } from '../../functions/utils.js'
-// import EventEmitter from '../../../x/EventEmitterAdapter.js'
+import EventEmitter from '../../../public/EventEmitterAdapter.js'
 
 export default class Leveler extends EventEmitter {
   constructor() {
