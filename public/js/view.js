@@ -5,6 +5,7 @@ const view = {
 
   onSubmitForm(e) {
     e.preventDefault()
+    e.stopPropagation()
     const formData = Object.fromEntries(new FormData(e.target))
     this.events.emit('on-create-player', formData)
   },
@@ -24,6 +25,13 @@ const view = {
     const detail = { x: offsetX, y: offsetY }
     this.events.emit('on-teleport-player', detail)
   },
+  onRightClickCharacter(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    if (!e.target.classList.contains('character')) return
+    const detail = e.target.id
+    this.events.emit('on-select-target', detail)
+  },
   renderPlayerCoords(coords) {
     elPlayer.style = `--x:${coords.x};--y:${coords.y}`
   },
@@ -32,11 +40,16 @@ const view = {
   },
   renderPlayerCreation() {
     elField.innerHTML += `<button class="character" id="elPlayer">o.O</button>`
+    elField.addEventListener(
+      'contextmenu',
+      view.onRightClickCharacter.bind(view)
+    )
   },
 }
 
 elFormCreatePlayer.addEventListener('submit', view.onSubmitForm.bind(view))
 elField.addEventListener('contextmenu', view.onRightClickField.bind(view))
 elField.addEventListener('dblclick', view.onDoubleClickField.bind(view))
+elEnemy.addEventListener('contextmenu', view.onRightClickCharacter.bind(view))
 
 export { view }

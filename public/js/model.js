@@ -12,7 +12,7 @@ const model = {
     this.player = new Player(nickname, 'Orc', 'Fighter')
     this.enemy.coords.teleportTo({ x: 300, y: 500 })
     this.enemy.target.set(this.player)
-    this.enemy.target.goto()
+    // this.enemy.target.goto()
     window.setInterval(() => {
       model.events.emit('on-step-enemy', this.enemy.coords)
     }, 10)
@@ -30,6 +30,16 @@ const model = {
   },
 
   goEnemy() {},
+
+  selectTarget(targetName) {
+    // console.log(this.player.target.subject)
+    // console.log(this[targetName])
+    if (this.player.target.subject === this[targetName]) {
+      this.player.target.goto(40)
+    } else {
+      this.player.target.set(this[targetName])
+    }
+  },
 }
 
 export { model }

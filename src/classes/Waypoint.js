@@ -13,7 +13,7 @@ export default class Waypoint extends Subject {
     this.isRunning = true
     this.coords.teleportTo(point)
     this.ownerTarget.set(this)
-    const x = await this.ownerTarget.goto()
+    const x = await this.ownerTarget.goto(1)
     // console.log('stop', x)
     this.isRunning = false
   }
