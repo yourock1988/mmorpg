@@ -10,35 +10,18 @@ const model = {
 
   createPlayer(nickname) {
     this.player = new Player(nickname, 'Orc', 'Fighter')
-    this.enemy.coords.teleportTo({ x: 300, y: 500 })
+    this.player.leveler.forceSetLevel(15n)
+    this.enemy.coords.teleportTo({ x: 100, y: 100 })
     this.enemy.target.set(this.player)
     // this.enemy.target.goto()
-    window.setInterval(() => {
-      model.events.emit('on-step-enemy', this.enemy.coords)
-    }, 10)
+    this.enemy.on('CL_PLAYER_DIED', () => console.log('BAR!!!!!!'))
+    // window.setInterval(() => {
+    //   model.events.emit('on-step-enemy', this.enemy.coords)
+    // }, 10)
+    model.events.emit('on-step-enemy', this.enemy.coords)
     this.player.coords.events.on('on-step-player', () => {
       model.events.emit('on-step-player', this.player.coords)
     })
-  },
-
-  teleportPlayer(coords) {
-    this.player.coords.teleportTo(coords)
-  },
-
-  movePlayer(coords) {
-    this.player.waypoint.changeDirection(coords)
-  },
-
-  goEnemy() {},
-
-  selectTarget(targetName) {
-    // console.log(this.player.target.subject)
-    // console.log(this[targetName])
-    if (this.player.target.subject === this[targetName]) {
-      this.player.target.goto(40)
-    } else {
-      this.player.target.set(this[targetName])
-    }
   },
 }
 

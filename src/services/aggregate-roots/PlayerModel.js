@@ -19,4 +19,6 @@ export default class PlayerModel extends Player {
     })
     // player id this.id updated waypoint from this.waypoint.coords to point
   }
+
+  // walkToPoint(point)
 }

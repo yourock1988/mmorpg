@@ -13,30 +13,34 @@ const view = {
     e.preventDefault()
     e.stopPropagation()
     if (e.target !== elField) return
-    const { offsetX, offsetY } = e
-    const detail = { x: offsetX, y: offsetY }
-    this.events.emit('on-move-player', detail)
+    const { offsetX: x, offsetY: y } = e
+    this.events.emit('on-move-player', { x, y })
   },
   onDoubleClickField(e) {
     e.preventDefault()
     e.stopPropagation()
     if (e.target !== elField) return
-    const { offsetX, offsetY } = e
-    const detail = { x: offsetX, y: offsetY }
-    this.events.emit('on-teleport-player', detail)
+    const { offsetX: x, offsetY: y } = e
+    this.events.emit('on-teleport-player', { x, y })
   },
   onRightClickCharacter(e) {
     e.preventDefault()
     e.stopPropagation()
     if (!e.target.classList.contains('character')) return
-    const detail = e.target.id
-    this.events.emit('on-select-target', detail)
+    const { id } = e.target
+    this.events.emit('on-select-target', id)
   },
+
   renderPlayerCoords(coords) {
     elPlayer.style = `--x:${coords.x};--y:${coords.y}`
   },
   renderEnemyCoords(coords) {
     elEnemy.style = `--x:${coords.x};--y:${coords.y}`
+  },
+  renderEnemyIsAlive(isAlive) {
+    console.log('isAlive :>> ', isAlive)
+    if (isAlive) elEnemy.textContent = '-_-'
+    else elEnemy.textContent = 'x_x'
   },
   renderPlayerCreation() {
     elField.innerHTML += `<button class="character" id="elPlayer">o.O</button>`

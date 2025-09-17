@@ -1,0 +1,42 @@
+export default {
+  UI: {
+    PLAYER: {
+      CREATE: 'UI.PLAYER.CREATE',
+      ENTER: 'UI.PLAYER.ENTER',
+
+      WALKED: 'UI.PLAYER.WALKED',
+      TELEPORTED: 'UI.PLAYER.TELEPORTED',
+      SELECTED: 'UI.PLAYER.SELECTED',
+    },
+  },
+
+  //
+
+  CL: {
+    PLAYER: {
+      CREATING: 'CL.PLAYER.CREATING',
+      ENTERING: 'CL.PLAYER.ENTERING',
+
+      WALKED: 'CL.PLAYER.WALKED',
+      TELEPORTED: 'CL.PLAYER.TELEPORTED',
+      SELECTED: 'CL.PLAYER.SELECTED',
+
+      DIED: 'CL.PLAYER.DIED',
+    },
+  },
+
+  //
+
+  SV: {
+    PLAYER: {
+      CREATED: 'SV.PLAYER.CREATED',
+      ENTERED: 'SV.PLAYER.ENTERED',
+
+      WALKED: 'SV.PLAYER.WALKED',
+      TELEPORTED: 'SV.PLAYER.TELEPORTED',
+      SELECTED: 'SV.PLAYER.SELECTED',
+
+      DIED: 'SV.PLAYER.DIED',
+    },
+  },
+}

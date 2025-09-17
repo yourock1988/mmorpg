@@ -43,7 +43,7 @@ export default class Fight {
 
   async attack() {
     if (!this.checkAttacker || !this.checkDefender) return false
-    await this.target.goto()
+    await this.target.goto(40)
     await wait(calcDelayAttack(this.statsCombat))
     return this.sendDamage()
   }
@@ -59,11 +59,14 @@ export default class Fight {
       if (!subject.social) this.social.activateModePvE()
     }
     if (statusHealth === 'killed_now') {
+      console.log('killed_now')
       this.social.postmortem(subject.social, subject.health.total)
     }
     if (statusHealth === 'damage_taken') {
+      console.log('damage_taken')
       return true
     }
+    console.log('already_dead')
     clearInterval(this.intervalId)
     return false
   }

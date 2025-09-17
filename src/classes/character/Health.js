@@ -1,8 +1,10 @@
 import activityFabric from '../../abstract-fabric/activities/activityFabric.js'
 import { round } from '../../functions/utils.js'
+import EventEmitter from '../../../public/EventEmitterAdapter.js'
 
-export default class Health {
+export default class Health extends EventEmitter {
   constructor(statsCombat, leveler, activities) {
+    super()
     this.statsCombat = statsCombat
     this.leveler = leveler
     this.activities = activities
@@ -31,6 +33,8 @@ export default class Health {
     if (this.current <= 0) {
       this.current = 0
       this.activities.removeAll()
+      // this.$_CMD(CL.PLAYER.DIED)
+      this.emit('CL.PLAYER.DIED')
       return 'killed_now'
     }
     return 'damage_taken'
