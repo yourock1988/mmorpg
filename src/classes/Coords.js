@@ -4,36 +4,37 @@ import calcDistance from '../functions/calcDistance.js'
 import { round } from '../functions/utils.js'
 import EventEmitterAdapter from '../../public/EventEmitterAdapter.js'
 
-export default class Coords {
+export default class Coords extends EventEmitterAdapter {
   #interrupt
 
   constructor({ x = 0, y = 0 } = {}) {
+    super()
     this.x = x
     this.y = y
     this.#interrupt = { break: false }
-    this.events = new EventEmitterAdapter()
   }
 
-  teleportTo(coords) {
+  teleportTo(point) {
     this.stop()
-    this.x = coords.x
-    this.y = coords.y
+    this.x = point.x
+    this.y = point.y
+    this.emit('CL.PLAYER.TELEPORTED', { x: this.x, y: this.y })
   }
 
-  async moveTo(coords, interrupt = { break: false }, gap = 1) {
+  async moveTo(point, interrupt = { break: false }, gap = 1) {
     this.#interrupt.break = true
     this.#interrupt = interrupt
-    while (this.stepTo(coords) > gap) {
+    while (this.stepTo(point) > gap) {
       await wait(10)
       if (interrupt.break) return false
     }
     return true
   }
 
-  stepTo(coords) {
-    Object.assign(this, calcStep(this, coords, 88))
-    this.events.emit('on-step-player', { x: this.x, y: this.y })
-    return this.getDistanceTo(coords)
+  stepTo(point) {
+    Object.assign(this, calcStep(this, point, 88))
+    this.emit('CL.PLAYER.STEP', { x: this.x, y: this.y })
+    return this.getDistanceTo(point)
   }
 
   stop() {
@@ -41,7 +42,7 @@ export default class Coords {
     this.#interrupt = { break: false }
   }
 
-  getDistanceTo(coords) {
-    return round(calcDistance(this, coords))
+  getDistanceTo(point) {
+    return round(calcDistance(this, point))
   }
 }

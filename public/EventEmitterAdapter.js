@@ -1,6 +1,6 @@
 export default class EventEmitterAdapter extends EventTarget {
   on(event, listener) {
-    this.addEventListener(event, e => listener(e.detail))
+    this.addEventListener(event, e => listener.bind(this)(e.detail))
     return this
   }
 

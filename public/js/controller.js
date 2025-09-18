@@ -14,30 +14,35 @@ function handleSelectTarget(targetId) {
 }
 function handleTeleportPlayer(point) {
   model.player.teleportToPoint(point)
-  view.renderPlayerCoords(model.player.coords)
 }
 
 function handleCreatePlayer(detail) {
   model.createPlayer(detail.nickname)
-  view.renderPlayerCreation()
-  view.renderPlayerCoords(model.player.coords)
 }
 
 function handleDieEnemy() {
   view.renderEnemyIsAlive(false)
 }
-function handleStepEnemy(modelCoords) {
-  view.renderEnemyCoords(modelCoords)
+function handleStepEnemy(point) {
+  view.renderEnemyPoint(point)
 }
-function handleStepPlayer(modelCoords) {
-  view.renderPlayerCoords(modelCoords)
+function handleStepPlayer(point) {
+  view.renderPlayerPoint(point)
 }
 
-view.events.on('on-move-player', handleMovePlayer)
-view.events.on('on-select-target', handleSelectTarget)
-view.events.on('on-create-player', handleCreatePlayer)
-view.events.on('on-teleport-player', handleTeleportPlayer)
+view.events.on('UI.PLAYER.CREATE', handleCreatePlayer)
 
-model.enemy.on('CL_PLAYER_DIED', handleDieEnemy)
-model.events.on('on-step-enemy', handleStepEnemy)
-model.events.on('on-step-player', handleStepPlayer)
+view.events.on('UI.PLAYER.WALK', handleMovePlayer)
+view.events.on('UI.PLAYER.SELECTED', handleSelectTarget)
+view.events.on('UI.PLAYER.TELEPORTED', handleTeleportPlayer)
+
+model.enemy.on('CL.PLAYER.DIED', handleDieEnemy)
+model.enemy.on('CL.PLAYER.TELEPORTED', handleStepEnemy)
+model.player.on('CL.PLAYER.TELEPORTED', handleStepPlayer)
+model.player.on('CL.PLAYER.STEP', handleStepPlayer)
+
+//
+
+model.player.leveler.forceSetLevel(15n)
+model.player.coords.teleportTo({ x: 0, y: 0 })
+model.enemy.coords.teleportTo({ x: 100, y: 100 })

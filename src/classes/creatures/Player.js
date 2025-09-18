@@ -1,4 +1,3 @@
-import EventEmitterAdapter from '../../../public/EventEmitterAdapter.js'
 import Character from '../character/Character.js'
 
 export default class Player extends Character {
@@ -16,7 +15,9 @@ export default class Player extends Character {
   }
 
   init() {
-    this.health.on('CL.PLAYER.DIED', () => this.emit('CL_PLAYER_DIED'))
+    this.transferEvent(this.health, 'CL.PLAYER.DIED')
+    this.transferEvent(this.coords, 'CL.PLAYER.STEP')
+    this.transferEvent(this.coords, 'CL.PLAYER.TELEPORTED')
   }
 
   teleportToPoint(point) {

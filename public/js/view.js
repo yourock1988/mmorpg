@@ -7,38 +7,37 @@ const view = {
     e.preventDefault()
     e.stopPropagation()
     const formData = Object.fromEntries(new FormData(e.target))
-    this.events.emit('on-create-player', formData)
+    this.events.emit('UI.PLAYER.CREATE', formData)
   },
   onRightClickField(e) {
     e.preventDefault()
     e.stopPropagation()
     if (e.target !== elField) return
     const { offsetX: x, offsetY: y } = e
-    this.events.emit('on-move-player', { x, y })
+    this.events.emit('UI.PLAYER.WALK', { x, y })
   },
   onDoubleClickField(e) {
     e.preventDefault()
     e.stopPropagation()
     if (e.target !== elField) return
     const { offsetX: x, offsetY: y } = e
-    this.events.emit('on-teleport-player', { x, y })
+    this.events.emit('UI.PLAYER.TELEPORTED', { x, y })
   },
   onRightClickCharacter(e) {
     e.preventDefault()
     e.stopPropagation()
     if (!e.target.classList.contains('character')) return
     const { id } = e.target
-    this.events.emit('on-select-target', id)
+    this.events.emit('UI.PLAYER.SELECTED', id)
   },
 
-  renderPlayerCoords(coords) {
-    elPlayer.style = `--x:${coords.x};--y:${coords.y}`
+  renderPlayerPoint(point) {
+    elPlayer.style = `--x:${point.x};--y:${point.y}`
   },
-  renderEnemyCoords(coords) {
-    elEnemy.style = `--x:${coords.x};--y:${coords.y}`
+  renderEnemyPoint(point) {
+    elEnemy.style = `--x:${point.x};--y:${point.y}`
   },
   renderEnemyIsAlive(isAlive) {
-    console.log('isAlive :>> ', isAlive)
     if (isAlive) elEnemy.textContent = '-_-'
     else elEnemy.textContent = 'x_x'
   },

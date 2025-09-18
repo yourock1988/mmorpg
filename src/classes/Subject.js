@@ -8,4 +8,8 @@ export default class Subject extends EventEmitterAdapter {
     this.id = randomId()
     this.coords = new Coords({ x, y })
   }
+
+  transferEvent(fromObject, eventName) {
+    fromObject.on(eventName, detail => this.emit(eventName, detail))
+  }
 }

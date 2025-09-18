@@ -4,7 +4,7 @@ export default {
       CREATE: 'UI.PLAYER.CREATE',
       ENTER: 'UI.PLAYER.ENTER',
 
-      WALKED: 'UI.PLAYER.WALKED',
+      WALK: 'UI.PLAYER.WALK',
       TELEPORTED: 'UI.PLAYER.TELEPORTED',
       SELECTED: 'UI.PLAYER.SELECTED',
     },
@@ -22,6 +22,8 @@ export default {
       SELECTED: 'CL.PLAYER.SELECTED',
 
       DIED: 'CL.PLAYER.DIED',
+
+      STEP: 'CL.PLAYER.STEP',
     },
   },
 
